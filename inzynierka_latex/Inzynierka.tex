@@ -1,0 +1,88 @@
+\documentclass[12pt]{extarticle}
+
+% polski font
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\selectlanguage{polish}
+
+% wykresy
+\usepackage{graphicx}
+
+% arial
+\renewcommand{\rmdefault}{phv}
+\renewcommand{\sfdefault}{phv}
+
+% kropki po numerach nagłówków
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+
+% kropki w labelkach rysunków itp.
+\usepackage[labelsep = period]{caption}
+
+% interlinia
+\linespread{1.25}
+
+% wyłączenie łamania słów i justowanie
+\usepackage[none]{hyphenat}
+\sloppy
+
+% wcięcie na pierwszych liniach rozdziałów
+\usepackage{indentfirst}
+
+% klikalne linki
+\usepackage[colorlinks, linkcolor=blue]{hyperref}
+
+% dane dokumentu
+\title{Praca inżynierska}
+\author{Amadeusz Hercog}
+\date{21 listopada 2018}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	
+	\newpage
+	\pagenumbering{arabic}
+	\section{Opis symulatora}	
+	Symulator użyty w projekcie jest programem napisanym w języku C++ autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec. Służy on do modelowania ruchu agentów (ludzi) w danej przestrzeni. Symulowana przestrzeń jest dwuwymiarowa, z możliwością dodania wielu poziomów odpowiadających kolejnym piętrom budynku. Główne okno programu jest widoczne na \hyperref[fig: glowne_okno_symulatora]{rysunku 1}.
+
+	\begin{figure}[h]
+ 		\includegraphics[width = \linewidth]{rysunki/symulator.png}
+		\caption{Główne okno symulatora.}
+		\label{fig: glowne_okno_symulatora}
+	\end{figure}
+	
+		\subsection{Sposób użycia}
+		Do przeprowadzenia symulacji potrzebne są następujące rzeczy:
+		\begin{itemize}
+		\item plik \textit{.xml} zawierający parametry wejściowe symulacji,
+		\item pliki \textit{.jpg} i \textit{.bmp} zwierające przestrzeń użytą do symulacji.
+		\end{itemize}
+	
+		W oknie głównym programu należy wybrać opcje otwarcia pliku \textit{.xml} po czym od razu zaczyna się symulacja w czasie rzeczywistym. Po symulacji, we wskazanym w pliku z parametrami folderze zostaną wygenerowane pliki \textit{.csv} z danymi wyjściowymi symulacji.
+		
+		\subsection{Dane wejściowe i wyjściowe}
+		Dane, na których miałem możliwość przeprowadzenia badań znajdowały się w:
+		\begin{itemize}
+		\item dane wejściowe - plik \textit{.xml},
+		\item dane wyjściowe - pliki \textit{.csv}.
+		\end{itemize}
+		
+		Danymi wejściowymi, które wybrałem - na podstawie łatwości modyfikacji - do dalszej analizy były:
+		
+		\begin{itemize}
+		\item Panic spread factor - współczynnik, który decydował jak duzy wpływ miał \textbf{tryb paniki} na agentów (tryb, w którym agenci zwracają mniejszą uwagę na otoczenie oraz charakteryzują się bardziej chaotycznym ruchem).
+		\item Panic cancel zone - współczynnik określający odległość od wyjść, w obrębie jakiej agenci mają szansę na deaktywację trybu paniki.
+		\item Cancel panic chance - podczas testów na anulowanie trybu paniki określa procent szans na powodzenie.
+		\item Choosing evacuation path mode - tryb wyboru drogi ewakuacyjnej przez agentów. Dostępne są 4 tryby:
+			\begin{itemize}
+			\item odległości
+			\item gęstości przy wyjściu
+			\item odległości oraz gęstości przy wyjściu
+			\item odległości, gęstości przy wyjściu oraz popularności wyboru wyjścia.
+			\end{itemize}
+		\item Number of pederastians - liczba agentów biorąca udział w symulacji.
+		\item 
+		\end{itemize}
+\end{document}
