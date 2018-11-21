@@ -1,10 +1,7 @@
-import xml.etree.ElementTree as ET
 import os
-import xml.etree.ElementTree
 from copy import deepcopy
-from os import listdir
+
 import numpy as np
-import pandas as pd
 import tensorflow as tf
 from matplotlib import pyplot as plt
 from tensorflow import keras
@@ -76,19 +73,19 @@ if __name__ == "__main__":
 
     history_list = []
     number_of_splits = 20
-    
+
     for i in range(number_of_splits)[1:]:
-         print(f"Iteration {i}/{number_of_splits - 1}")
-         i /= number_of_splits
-    
-         data_count, single_data_dimension = input_data.shape
-         new_data_count = int(round(data_count * i))
-    
-         model = create_model(single_data_dimension)
-         history = model.fit(input_data[:new_data_count], output_data[:new_data_count], epochs=learning_epochs,
-                             validation_split=validation_split, verbose=False)
-         history_list.append((new_data_count, history))
-    
+        print(f"Iteration {i}/{number_of_splits - 1}")
+        i /= number_of_splits
+
+        data_count, single_data_dimension = input_data.shape
+        new_data_count = int(round(data_count * i))
+
+        model = create_model(single_data_dimension)
+        history = model.fit(input_data[:new_data_count], output_data[:new_data_count], epochs=learning_epochs,
+                            validation_split=validation_split, verbose=False)
+        history_list.append((new_data_count, history))
+
     plot_learning_curves(history_list)
 
     # ===== Normal learning =====

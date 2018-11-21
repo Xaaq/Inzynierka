@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.21)  21 NOV 2018 21:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.21)  21 NOV 2018 23:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -645,6 +645,12 @@ LaTeX Font Info:    External font `cmex7' loaded for size
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 47.
+
+Underfull \hbox (badness 1194) in paragraph at lines 48--49
+\T1/phv/m/n/12 do mo-de-lo-wa-nia ru-chu agen-tów (lu-dzi) pod-czas ewa-ku-acji
+ w da-nej
+ []
+
 <rysunki/symulator.png, id=23, 642.4pt x 513.92pt>
 File: rysunki/symulator.png Graphic file (type png)
 <use rysunki/symulator.png>
@@ -652,7 +658,7 @@ Package pdftex.def Info: rysunki/symulator.png  used on input line 51.
 (pdftex.def)             Requested size: 390.0pt x 312.00864pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 56.
- [1 <./rysunki/symulator.png>]
+[1 <./rysunki/symulator.png>]
 LaTeX Font Info:    Try loading font information for OMS+phv on input line 59.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsphv.fd
@@ -668,33 +674,65 @@ Underfull \hbox (badness 6575) in paragraph at lines 66--67
 a«
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 73.
+
+Underfull \hbox (badness 3503) in paragraph at lines 72--73
+[]\T1/phv/m/n/12 Danymi wej-±cio-wymi, które wy-bra-ªem - na pod-sta-wie ªa-two
+-±ci
+ []
+
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 75.
 [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 73.
+Underfull \hbox (badness 2096) in paragraph at lines 85--86
+[]\T1/phv/b/n/12 Number of pe-de-ra-stians \T1/phv/m/n/12 - liczba agen-tów bio
+-r¡ca udziaª w
+ []
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 87--88
+[]\T1/phv/b/n/12 Density fac-tor \T1/phv/m/n/12 - okre-±la wpªyw wspóª-czyn-nik
+a g¦-sto-±ci wo-kóª
+ []
+
+
+Underfull \hbox (badness 3746) in paragraph at lines 92--93
+[]\T1/phv/b/n/12 Pre-movement time mean va-lue \T1/phv/m/n/12 oraz \T1/phv/b/n/
+12 Pre-movement time
+ []
+
+[3]
+Underfull \hbox (badness 7814) in paragraph at lines 99--100
+[]\T1/phv/m/n/12 czas ewa-ku-acji osa-tat-niego agenta (od-po-wia-da-j¡cy cza-s
+owi
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 102.
+[4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 102.
  (./Inzynierka.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 73.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 73.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 102.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 102.
 Package rerunfilecheck Info: File `Inzynierka.out' has not changed.
 (rerunfilecheck)             Checksum: B33A44517B9348C0647E39D45A14894A;190.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 73.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 102.
  ) 
 Here is how much of TeX's memory you used:
- 7562 strings out of 492982
- 112799 string characters out of 6134895
- 201263 words of memory out of 5000000
- 11037 multiletter control sequences out of 15000+600000
- 25205 words of font info for 35 fonts, out of 8000000 for 9000
+ 7567 strings out of 492982
+ 112844 string characters out of 6134895
+ 202263 words of memory out of 5000000
+ 11039 multiletter control sequences out of 15000+600000
+ 27935 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,6n,39p,455b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,6n,39p,473b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/h
 elvetic/uhvro8a.pfb>
-Output written on Inzynierka.pdf (3 pages, 43880 bytes).
+Output written on Inzynierka.pdf (5 pages, 49427 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
- 8 named destinations out of 1000 (max. 500000)
+ 66 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
+ 10 named destinations out of 1000 (max. 500000)
  30 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,19 +1,13 @@
-import xml.etree.ElementTree as ET
-import xml.etree.ElementTree as ET
 import os
 import xml.etree.ElementTree
-from copy import deepcopy
+import xml.etree.ElementTree as ET
 from itertools import chain
 from os import listdir
-from os.path import expanduser
+from random import randint, random
 
 import numpy as np
 import pandas as pd
-import tensorflow as tf
 from matplotlib import pyplot as plt
-from tensorflow import keras
-
-from random import randint, random
 
 
 class DataFilesManager:

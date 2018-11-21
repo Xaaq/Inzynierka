@@ -45,7 +45,7 @@
 	\newpage
 	\pagenumbering{arabic}
 	\section{Opis symulatora}	
-	Symulator użyty w projekcie jest programem napisanym w języku C++ autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec. Służy on do modelowania ruchu agentów (ludzi) w danej przestrzeni. Symulowana przestrzeń jest dwuwymiarowa, z możliwością dodania wielu poziomów odpowiadających kolejnym piętrom budynku. Główne okno programu jest widoczne na \hyperref[fig: glowne_okno_symulatora]{rysunku 1}.
+	Symulator użyty w projekcie jest programem napisanym w języku C++ autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec. Służy on do modelowania ruchu agentów (ludzi) podczas ewakuacji w danej przestrzeni. Symulowana przestrzeń jest dwuwymiarowa, z możliwością dodania wielu poziomów odpowiadających kolejnym piętrom budynku. Główne okno programu jest widoczne na \hyperref[fig: glowne_okno_symulatora]{rysunku 1}.
 
 	\begin{figure}[h]
  		\includegraphics[width = \linewidth]{rysunki/symulator.png}
@@ -72,17 +72,31 @@
 		Danymi wejściowymi, które wybrałem - na podstawie łatwości modyfikacji - do dalszej analizy były:
 		
 		\begin{itemize}
-		\item Panic spread factor - współczynnik, który decydował jak duzy wpływ miał \textbf{tryb paniki} na agentów (tryb, w którym agenci zwracają mniejszą uwagę na otoczenie oraz charakteryzują się bardziej chaotycznym ruchem).
-		\item Panic cancel zone - współczynnik określający odległość od wyjść, w obrębie jakiej agenci mają szansę na deaktywację trybu paniki.
-		\item Cancel panic chance - podczas testów na anulowanie trybu paniki określa procent szans na powodzenie.
-		\item Choosing evacuation path mode - tryb wyboru drogi ewakuacyjnej przez agentów. Dostępne są 4 tryby:
+		\item \textbf{Panic spread factor} - współczynnik, który decyduje jak duzy wpływ ma \textbf{tryb paniki} (tryb, w którym agenci zwracają mniejszą uwagę na otoczenie oraz charakteryzują się bardziej chaotycznym ruchem) na agentów.
+		\item \textbf{Panic cancel zone} - współczynnik określający odległość od wyjść, w obrębie jakiej agenci mają szansę na deaktywację trybu paniki.
+		\item \textbf{Cancel panic chance}- podczas testów na anulowanie trybu paniki określa procent szans na powodzenie.
+		\item \textbf{Choosing evacuation path mode} - tryb wyboru drogi ewakuacyjnej przez agentów. Dostępne są 4 tryby:
 			\begin{itemize}
-			\item odległości
-			\item gęstości przy wyjściu
-			\item odległości oraz gęstości przy wyjściu
+			\item odległości,
+			\item gęstości przy wyjściu,
+			\item odległości oraz gęstości przy wyjściu,
 			\item odległości, gęstości przy wyjściu oraz popularności wyboru wyjścia.
 			\end{itemize}
-		\item Number of pederastians - liczba agentów biorąca udział w symulacji.
-		\item 
+		\item \textbf{Number of pederastians} - liczba agentów biorąca udział w symulacji.
+		\item \textbf{Chaos level} - szansa na aktywację trybu paniki u agentów.
+		\item \textbf{Density factor} - określa wpływ współczynnika gęstości wokół agenta na funkcję kary.
+		\item \textbf{Frequency factor} - określa wpływ częstości wyboru danego pola na funkcję kary.
+		\item \textbf{Panic factor} - zwiększa część współczynników biorących udział w obliczaniu funkcji kary. 
+		\item \textbf{Distance factor} - wpływa na wybór agentów ruchu po skosie lub na wprost.
+		\item \textbf{Randomness factor} - czynnik losowości dla wartości kary.
+		\item \textbf{Pre-movement time mean value} oraz \textbf{Pre-movement time standard deviation} - średnia i odchylenie czasu \textit{Pre-movement}, który ma wpływ na częstotliwość wykonywania testu na zmianę obranego wyjścia przez agentów.
+		\item \textbf{Speed distribution mean value} oraz \textbf{Speed distribution standard deviation} - średnia i odchylenie prędkości agentów.
+		\end{itemize}
+		
+		Dane wyjściowe wybrane wybrane do analizy przeze mnie były następujące:
+		
+		\begin{itemize}
+		\item czas ewakuacji osatatniego agenta (odpowiadający czasowi ewakuacji wszystkich agentów),
+		\item błąd średniokwadratowy średnich prędkości wszystkich agentów w stosunku do średniej prędkości najszybszego agenta.
 		\end{itemize}
 \end{document}
