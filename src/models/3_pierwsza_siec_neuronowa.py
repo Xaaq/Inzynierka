@@ -9,7 +9,8 @@ from src.plotter import Plotter
 
 def create_model(input_neuron_count: int):
     model = keras.Sequential([
-        keras.layers.Dense(1, input_shape=(input_neuron_count,))
+        keras.layers.Dense(30, input_shape=(input_neuron_count,), activation=keras.activations.relu),
+        keras.layers.Dense(1)
     ])
 
     model.compile(loss=keras.losses.mean_squared_error,
@@ -26,6 +27,7 @@ if __name__ == "__main__":
 
     input_data, output_data = data_files_manager.extract_simulation_all_data("simulation_output_data", 1)
     input_data, output_data = data_operator.permutate_data(input_data, output_data)
+    input_data, _, _ = data_operator.normalize_data(input_data)
 
     learning_epochs = 300
     validation_split = 0.2

@@ -157,6 +157,26 @@ backend=bibtex
 \author{Amadeusz Hercog}
 \date{21 listopada 2018}
 
+% ładnie wystylizowana tabela
+\usepackage[table, svgnames]{xcolor} \usepackage{array}
+\usepackage{etoolbox}
+
+\definecolor{table_header_color}{HTML}{B0BEC5}
+\definecolor{even_row_color}{HTML}{EEEEEE}
+
+\newenvironment{tightcenter}{
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{
+  \end{center}
+}
+
+\newenvironment{mytabular}{\rowcolors{1}{\ifnumless{\rownum}{2}{table_header_color}{even_row_color}}{}\begin{tightcenter}\tabular}{\endtabular\end{tightcenter}}
+
+%centrowanie nagłówków
+\captionsetup{justification=centering}
+
 \begin{document}
 	\titlepages
 	
@@ -193,7 +213,10 @@ backend=bibtex
 		Symulator \textit{Pederastian Simulator Project} jest programem napisanym w języku C++ autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec. Służy on do modelowania ruchu agentów (ludzi) podczas ewakuacji w danej przestrzeni. Symulowana przestrzeń jest dwuwymiarowa, z możliwością dodania wielu poziomów odpowiadających kolejnym piętrom budynku. Główne okno programu jest widoczne na rysunku~\ref{fig: glowne_okno_symulatora}.
 	
 		\begin{figure}[h]
-	 		\includegraphics[width = \linewidth]{rysunki/symulator.png}
+	 		\begin{tightcenter}
+	 			\includegraphics[width = 0.75\linewidth]{rysunki/symulator.png}
+	 		\end{tightcenter}
+	 		
 			\caption{Główne okno symulatora.}
 			\label{fig: glowne_okno_symulatora}
 		\end{figure}
@@ -284,16 +307,17 @@ backend=bibtex
 		Budowa Perceptronu z jednym neuronem wyjściowym jest widoczna na rysunku \ref{fig: budowa_perceptronu}\footnote{\url{https://pythonmachinelearning.pro/perceptrons-the-first-neural-networks/}}.
 
 		\begin{figure}[h]
-			\begin{minipage}{\textwidth}
-	 		\includegraphics[width = \linewidth]{rysunki/perceptron.png}
+	 		\begin{tightcenter}
+	 			\includegraphics[width = 0.75\linewidth]{rysunki/perceptron.png}
+			\end{tightcenter}	 			
+	 			
  			\caption{Budowa Perceptronu z jednym neuronem wyjściowym.}
 			\label{fig: budowa_perceptronu}
-			\end{minipage}
 		\end{figure}
 
 		Podczas procesu uczenia \textit{Perceptronu} ważne jest aby określić \textbf{loss function} - metrykę którą chcemy optymalizować. Dla problemów regresji najczęściej uzywaną funkcją kosztu jest \textbf{MSE} (Mean Squared Error). Kolejnym parametrem sieci \textit{Perceptron} jest parametr \textbf{learning rate}, który określa jak bardzo będzie się zmieniać macierz/wektor wag na podstawie gradientu podczas każdej iteracji uczącej. Zbyt duży współczynnik \textit{learning rate} może spowodować, że zamiast optymalizować funkcję kosztu będzie wręcz przeciwnie - będzie ona osiągała coraz większe wartości. Gdy jest on zbyt mały, jest on mniej niebezpieczny gdyż nie doprowadzi on do wzrostu wartości funkcji kosztu; problemem jest jednak wolniejszy proces uczący sieci co wymaga więcej epok uczących. Nie ma jednak uniwersalnej metody regulującej sposób dobierania \textit{learning rate} - trzeba to robić eksperymentalnie.
 		
-		\section{Tworzenie pierwszego modelu}
+		\section{Pierwszy model - tworzenie i analiza} \label{pierwszy_model_tworzenie_i_analiza}
 		Dla powyższych zastosowań stworzyłem więc \textit{Perceptron} posiadający pojdeyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. Zestawy danych podzieliłem w stosunku 80\% : 20\% na \textbf{dane treningowe} i \textbf{dane testowe}, pozwala to na trenowanie sieci na danych treningowych oraz sprawdzanie jej efektowności na tanych testowych co daje możliwość walidacji tego, jak dobrze sieć radzi sobie z danymi, z którymi nie miała styczności.
 		
 		Podsumowując, parametry pierwszego modelu były więc następujące:
@@ -306,5 +330,115 @@ backend=bibtex
 		\item podział na \textbf{dane treningowe} i \textbf{dane testowe} - 80\% : 20\%.
 		\end{itemize}
 				
+		Proces uczący został wykonany 10 razy od nowa na nienauczonym modelu, za kazdym razem wykonując permutację danych. Średnie \textit{MSE} danych wyglądają następująco:
+		\begin{itemize}
+		\item \textbf{średnia i odchylenia MSE danych treningowych} - ($\pm$),
+		\item \textbf{średnia i odchylenia MSE danych testowych} - ($\pm$).
+		\end{itemize}
+		Najlepszy przypadek (biorąc pod uwagę \textit{MSE} danych testowych jest następujący:
+		\begin{itemize}
+		\item \textbf{MSE danych treningowych} - ,
+		\item \textbf{MSE danych testowych} - .
+		\end{itemize}
+		Zależność \textit{MSE} danych od iteracji uczacej tego przypadku jest widoczna na wykresie \ref{fig: pierwszy_model_wykres_uczenia}. Analizując go, doszedłem do następujących wniosków:
+		\begin{itemize}
+		\item \textit{MSE} danych treningowych jak i testowych jest na wysokim poziomie co oznacza, że model ma \textbf{wysoki bias}. Oznacza to, że użyty model jest zbyt prosty i nie ważne jak dużo danych zostanie do niego podanych i jak długo będzie się on uczył - \textit{MSE} danych nie obniży się poniżej pewnego poziomu.
+		\item Podczas uczenia \textit{MSE} danych jest bardzo niestabilny, co oznacza niestabilność danych lub modelu.
+		\item \textit{MSE} danych testowych jest przez większośc iteracji mniejsze niż treningowych co oznacza, że dla danych których sieć nie widziała, przewiduje ona wartości bliższe prawdzie niż na danych na których się uczyła. Jest to niecodzienne zachowanie co również dowodzi niestabilności modelu lub danych.
+		\end{itemize}
+		
+		\begin{figure}[h]
+	 		\begin{tightcenter}
+	 			\includegraphics[width = 0.75\linewidth]{rysunki/pierwszy_model_wykres_uczenia.png}
+	 		\end{tightcenter}
+	 		
+ 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w pierwszym modelu.}
+			\label{fig: pierwszy_model_wykres_uczenia}
+		\end{figure}
+		
+		Aby mieć szerszy pogląd na to jaki wpływ ma ilość danych na których się uczy sieć na \textit{MSE} tych danych postanowiłem	uruchomić proces uczacy kolejne 20 razy dla pojedynczej permutacji danych wejściowych, lecz przy zwiększającej się ilości danych treningowych. Wynik tego badania jest widoczny na wykresie \ref{fig: pierwszy_model_learning_curves}. Informacją jaką można z niego wyciągnąć jest ilość danych potrzebna do tego aby osiągnąć dany pułap \textit{MSE} danych. Widać że podczas gdy przy danych treningowych, większa ich ilość spowodowała spadek ich \textit{MSE} to przy danych testowych nie spowodowało to większej różnicy.
+		
+		\begin{figure}[h]
+	 		\begin{tightcenter}
+	 			\includegraphics[width = 0.75\linewidth]{rysunki/pierwszy_model_learning_curves.png}
+	 		\end{tightcenter}
+	 		
+ 			\caption{Zależność \textit{MSE} danych od ich ilości w pierwszym modelu.}
+			\label{fig: pierwszy_model_learning_curves}
+		\end{figure}
+		
+		Podsumowując, obecny model ma wysoki bias - jest zbyt prosty dla danych, przez co większa ich ilość oraz dłuższy proces uczący nie dają żadnych efektów. Na wykresach widać niestabilność modelu lub danych, co powoduje bardzo duże szumy na wykresach \textit{MSE}. Co więcej - niepokojący jest fakt, że \textit{MSE} danych testowych był przeważnie inższy niż \textit{MSE} danych treningowych.
+		
+		\section{Normalizacja danych}
+		Mając na uwadze problemy stworzonego modelu, w pierwszej kolejności postanowiłem przejrzeć dane wejściowe do modelu. Ze wszystkich zestawów danych obliczyłem więc średnią każdego z parametrów wejściowych do sieci neuronowej. Wyniki są widoczne w tabeli \ref{srednie_wartosci_i_odchylenia_parametrow_wejsciowych_modelu}. Widać w niej, że niektóre parametry mają wartości 2 rzędy wielkości większe niż inne. Takie różnice pomiędzy różnymi parametrami wejściowymi powodują faworyzowanie przez sieć jednych parametrów ponad drugie. Postanowiłem więc zastosować normalizację danych według wzoru:
+		
+		\begin{equation}
+		X_{new} = \frac{X_{old} - \mu}{\sigma}
+		\end{equation}		 
+		
+		Gdzie:
+		\begin{itemize}
+		\item $\mu$ - wektor średniej parametrów,
+		\item $\sigma$ - wektor odchylenia parametrów.
+		\end{itemize}
+		
+		\begin{table}[t]
+			\caption{Średnie wartości i odchylenia parametrów wejściowych do modelu.}
+			\begin{mytabular}{r c c}
+					\multicolumn{1}{c}{Nazwa parametru} & Średnia wartość \\
+					Panic spread factor & 1.74 \\
+					Panic cancel zone & 0.53 \\
+					Cancel panic chance& 51.59 \\
+					Choosing evacuation path mode & 2.53 \\
+					Number of pederastian& 271.8 \\
+					Chaos level & 53.9 \\
+					Density factor & 5.26 \\
+					Frequency factor & 5.33 \\
+					Panic factor & 1.45 \\
+					Distance factor & 2.51 \\
+					Randomness factor & 0.49 \\
+					Pre-movement time mean value & 5.44 \\
+					Pre-movement time standard deviation & 0.51 \\
+					Speed distribution mean value & 5.62 \\
+					Speed distribution standard deviation & 0.54
+			\end{mytabular}
+			\label{srednie_wartosci_i_odchylenia_parametrow_wejsciowych_modelu}
+		\end{table}
+		
+		Posiadając tak przygotowane dane wykonałem - tak jak w punkcie \ref{pierwszy_model_tworzenie_i_analiza} - 10 cykli nauczania z różnymi permutacjami danych oraz 20 cykli z jedną permutacją, lecz zmieniającym się rozmiarem zestawu danych treningowych. Średnie \textit{MSE} danych są następujące:
+		\begin{itemize}
+		\item \textbf{średnia i odchylenia MSE danych treningowych} - 154,79 ($\pm$),
+		\item \textbf{średnia i odchylenia MSE danych testowych} - 78,88 ($\pm$).
+		\end{itemize}
+		Najlepszy wynik spośród cyklów z różnymi permutacjami danych wygląda tak:
+		\begin{itemize}
+		\item \textbf{MSE danych treningowych} - ,
+		\item \textbf{MSE danych testowych} - .
+		\end{itemize}
+		Jego proces uczenia jest widoczny na wykresie \ref{fig: pierwszy_model_wykres_uczenia_z_normalizacja}. Dodatkowo na wykresie \ref{fig: pierwszy_model_learning_curves_z_normalizacja} widać zależność \textit{MSE} danych od liczby danych treningowych. 
+		
+		\begin{figure}[h]
+			\begin{tightcenter}
+	 			\includegraphics[width = 0.75\linewidth]{rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png}
+	 		\end{tightcenter}
+	 		
+ 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w pierwszym modelu ze znormalizowanymi danymi.}
+			\label{fig: pierwszy_model_wykres_uczenia_z_normalizacja}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\begin{tightcenter}
+	 			\includegraphics[width = 0.75\linewidth]{rysunki/pierwszy_model_learning_curves_z_normalizacja.png}
+	 		\end{tightcenter}
+	 		
+ 			\caption{Zależność \textit{MSE} danych od ich ilości w pierwszym modelu ze znormalizowanymi danymi.}
+			\label{fig: pierwszy_model_learning_curves_z_normalizacja}
+		\end{figure}
+		
+		Pierwszą rzeczą rzucającą się w oczy jest duża stabilność wartości na wykresach - eliminuje to sytuacje w których wynik uczenia był winą przypadku, jako że kilka iteracji wcześniej lub później \textit{Perceptron} dawał zupełnie inny rezultat. Dzięki większej stabilności sieci łatwiej jest także wyciągać wnioski na podstawie wykresów. Lepiej widoczny jest problem zauwazony wcześniej - wysoki bias modelu. Objawia się on tym, że na początku \textit{MSE} danych maleje, aż do pewnego momentu gdzie jest stały i żadna ilość danych albo długość uczenia nie spowoduje jego zmniejszenia. Ostatnią rzeczą, która jest taka sama jak w rozdziale \ref{pierwszy_model_tworzenie_i_analiza} - \textit{MSE} danych testowych jest mniejsze niż danych treningowych.
+		
+		\section{Drugi model - tworzenie i analiza}
+		Chcąc rozwiązać główny problem mojego modelu - wysoki bias potrzebowałem modelu, który potrafi nauczyć się bardziej skomplikowanych funkcji. Takim modelem będzie sieć neuronowa z kilkoma warstwami. Dzięki każdej następnej warstwie ma ona możliwość uczenia się coraz bardziej skomplikowanych funkcji. Sieć jaką stworzyłem ma 1 warstwę ukrytą - warstwę neuronów pomiędzy wejściami a warstwą wyjść - z 30 neuronwami. Jako funkcję aktywacji wybrałem funkcję \textit{ReLU}.
+		
 		\printbibliography
 \end{document}

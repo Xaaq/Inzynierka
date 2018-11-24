@@ -10,10 +10,19 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 np.set_printoptions(linewidth=400, precision=2, threshold=np.nan, suppress=True)
+pd.set_option("display.max_rows", 500)
+pd.set_option("display.max_columns", 500)
+pd.set_option("display.width", 1000)
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 
 class DataFilesManager:
+    parameters_paper_name = ["Panic spread factor", "Panic cancel zone", "Cancel panic chance",
+                             "Choosing evacuation path mode", "Number of pederastians", "Chaos level", "Density factor",
+                             "Frequency factor", "Panic factor", "Distance factor", "Randomness factor",
+                             "Pre-movement time mean value", "Pre-movement time standard deviation",
+                             "Speed distribution mean value", "Speed distribution standard deviation"]
+
     independent_parameters = [("rootObj/globalConfiguration/panicSpreadFctr", (0.5, 3), float),
                               ("rootObj/globalConfiguration/panicCancelZone", (0.01, 0.95), float),
                               ("rootObj/globalConfiguration/cancelPanicChance", (10, 99), int),
