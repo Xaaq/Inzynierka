@@ -265,9 +265,9 @@ backend=bibtex
 		
 		Dla części symulacji, symulator niespodziewanie wyłączył się podczas pracy, przez co niektórym zestawom danych wejściwych odpowiada mniej niż 10 zestawów danych wyjściowych. Ostatecznie z 200 zestawów parametrów wejściowych uzyskałem 1888 zestawów parametrów wyjsciowych. Oznacza to, że 5,6\% z symulacji, które miały zostać przeprowadzone nie udały się.	
 		
-		\section{Tworzenie modelu}
-		W pierwszym podejściu, aby móc przetestować model w prostych warunkach, wybrałem z kazdego zestawu danych: wszystkie dane wejściowe, jedną daną wyjściową. Daną wyjściową, którą wybrałem był czas ewakuacji ostatniego agenta. Każdy zestaw danych zawierał więc \textbf{15} parametrów wejściowych oraz \textbf{1} parametr wyjściowy. Z tak przygotowanymi danymi miałem możliwość stworzenia pierwszego modelu.
+		W pierwszym podejściu, aby móc przetestować model w prostych warunkach, wybrałem z kazdego zestawu danych: wszystkie dane wejściowe, jedną daną wyjściową. Daną wyjściową, którą wybrałem był czas ewakuacji ostatniego agenta. Każdy zestaw danych zawierał więc \textbf{15} parametrów wejściowych oraz \textbf{1} parametr wyjściowy. Z tak przygotowanymi danymi miałem możliwość wybrania pierwszego modelu.
 		
+		\section{Opis modelu Perceptron}		
 		Na poczatek, wybrałem prosty model uczenia maszynowego - regresję liniową. Stworzyłem go wykorzystując \textbf{Perceptron}. Jest to prosta sieć neuronowa, która posiada zestaw neuronów wejściowych, kazdy odpowiadający pojedynczej danej wejsciowej. Składa się on także z jednego lub wielu niezależnych neuronów wyjściowych. Każdy z nich jest połączony ze wszystkimi neuronami wejściowymi za pomocą krawędzi posiadających wagi - definiują one jak duży wpływ na wyjście ma każda dana wejściowa. Jeśli wyrazimy:
 		\begin{itemize}
 		\item wejście jako wektor \textit{X},
@@ -290,8 +290,21 @@ backend=bibtex
 			\label{fig: budowa_perceptronu}
 			\end{minipage}
 		\end{figure}
+
+		Podczas procesu uczenia \textit{Perceptronu} ważne jest aby określić \textbf{loss function} - metrykę którą chcemy optymalizować. Dla problemów regresji najczęściej uzywaną funkcją kosztu jest \textbf{MSE} (Mean Squared Error). Kolejnym parametrem sieci \textit{Perceptron} jest parametr \textbf{learning rate}, który określa jak bardzo będzie się zmieniać macierz/wektor wag na podstawie gradientu podczas każdej iteracji uczącej. Zbyt duży współczynnik \textit{learning rate} może spowodować, że zamiast optymalizować funkcję kosztu będzie wręcz przeciwnie - będzie ona osiągała coraz większe wartości. Gdy jest on zbyt mały, jest on mniej niebezpieczny gdyż nie doprowadzi on do wzrostu wartości funkcji kosztu; problemem jest jednak wolniejszy proces uczący sieci co wymaga więcej epok uczących. Nie ma jednak uniwersalnej metody regulującej sposób dobierania \textit{learning rate} - trzeba to robić eksperymentalnie.
 		
-		Dla powyższych zastosowań stworzyłem więc perceptron posiadający pojdeyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. 
+		\section{Tworzenie pierwszego modelu}
+		Dla powyższych zastosowań stworzyłem więc \textit{Perceptron} posiadający pojdeyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. Zestawy danych podzieliłem w stosunku 80\% : 20\% na \textbf{dane treningowe} i \textbf{dane testowe}, pozwala to na trenowanie sieci na danych treningowych oraz sprawdzanie jej efektowności na tanych testowych co daje możliwość walidacji tego, jak dobrze sieć radzi sobie z danymi, z którymi nie miała styczności.
+		
+		Podsumowując, parametry pierwszego modelu były więc następujące:
+		\begin{itemize}
+		\item pojedyncza warstwa składająca się z jednego neuronu,
+		\item \textbf{funkcja aktywacji} - brak,
+		\item \textbf{learning rate} - 0.1,
+		\item \textbf{metryka do optymalizacji} - MSE,
+		\item \textbf{liczba epok uczacych} - 300,
+		\item podział na \textbf{dane treningowe} i \textbf{dane testowe} - 80\% : 20\%.
+		\end{itemize}
 				
 		\printbibliography
 \end{document}

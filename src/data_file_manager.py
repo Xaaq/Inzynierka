@@ -9,6 +9,9 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
+np.set_printoptions(linewidth=400, precision=2, threshold=np.nan, suppress=True)
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
 
 class DataFilesManager:
     independent_parameters = [("rootObj/globalConfiguration/panicSpreadFctr", (0.5, 3), float),
@@ -137,9 +140,6 @@ class DataFilesManager:
 
 
 if __name__ == "__main__":
-    np.set_printoptions(linewidth=400, precision=2, threshold=np.nan, suppress=True)
-    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-
     data_files_manager = DataFilesManager()
     plt.hist(data_files_manager.extract_simulation_means_data("simulation_output_data", 1)[1], 30)
     plt.show()

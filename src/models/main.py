@@ -1,19 +1,19 @@
-import os
 from copy import deepcopy
 
 import numpy as np
 import tensorflow as tf
-from matplotlib import pyplot as plt
 from tensorflow import keras
 
-from data_file_manager import DataFilesManager
+from src.data_file_manager import DataFilesManager
+from src.data_operator import DataOperator
+from src.plotter import Plotter
 
 
 def create_model(input_neuron_count: int):
     model = keras.Sequential([
-        keras.layers.Dense(40, input_shape=(input_neuron_count,), activation=keras.activations.relu,
-                           kernel_regularizer=keras.regularizers.l1_l2(3)),
-        keras.layers.Dense(1)
+        # keras.layers.Dense(40, input_shape=(input_neuron_count,), activation=keras.activations.relu,
+        #                    kernel_regularizer=keras.regularizers.l1_l2(3)),
+        keras.layers.Dense(1, input_shape=(input_neuron_count,))
     ])
 
     model.compile(loss=keras.losses.mean_squared_error,
@@ -23,48 +23,14 @@ def create_model(input_neuron_count: int):
     return model
 
 
-def plot_history(history):
-    plt.figure()
-    plt.xlabel("Epoch")
-    plt.ylabel("Mean squared error")
-    plt.title("Learning over time")
-    plt.plot(history.epoch, np.array(history.history["mean_squared_error"]), label="Train Loss")
-    plt.plot(history.epoch, np.array(history.history["val_mean_squared_error"]), label="Validation train Loss")
-    plt.ylim([0, 400])
-    plt.legend()
-    plt.show()
-
-
-def plot_learning_curves(history_list):
-    data_count_list = [data_count for data_count, _ in history_list]
-    mse_list = [history.history["mean_squared_error"][-1] for _, history in history_list]
-    val_mse_list = [history.history["val_mean_squared_error"][-1] for _, history in history_list]
-
-    plt.figure()
-    plt.xlabel("Number of data samples")
-    plt.ylabel("Mean squared error")
-    plt.title("Learning curves")
-    plt.plot(data_count_list, mse_list, label="Train Loss")
-    plt.plot(data_count_list, val_mse_list, label="Validation train Loss")
-    plt.ylim([0, 400])
-    plt.legend()
-    plt.show()
-
-
 if __name__ == "__main__":
-    np.set_printoptions(linewidth=400, precision=4, threshold=np.nan, suppress=True)
-    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-
     data_files_manager = DataFilesManager()
+    plotter = Plotter()
+    data_operator = DataOperator()
+
     input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data", 1)
-
-    indices_permutation = np.random.permutation(input_data.shape[0])
-    input_data = input_data[indices_permutation]
-    output_data = output_data[indices_permutation]
-
-    data_mean = input_data.mean(0)
-    data_std = input_data.std(0)
-    input_data = (input_data - data_mean) / data_std
+    input_data, output_data = data_operator.permutate_data(input_data, output_data)
+    input_data, data_mean, data_std = data_operator.normalize_data(input_data)
 
     learning_epochs = 300
     validation_split = 0.2
@@ -86,7 +52,7 @@ if __name__ == "__main__":
                             validation_split=validation_split, verbose=False)
         history_list.append((new_data_count, history))
 
-    plot_learning_curves(history_list)
+    plotter.plot_learning_curves(history_list)
 
     # ===== Normal learning =====
 
@@ -94,7 +60,7 @@ if __name__ == "__main__":
     model = create_model(single_data_dimension)
     history = model.fit(input_data, output_data, epochs=learning_epochs, validation_split=validation_split,
                         verbose=False)
-    plot_history(history)
+    plotter.plot_history(history)
 
     output_mse = history.history["mean_squared_error"][-1]
     output_val_mse = history.history["val_mean_squared_error"][-1]
