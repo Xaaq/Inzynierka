@@ -1,27 +1,146 @@
-\documentclass[12pt]{extarticle}
+\documentclass[12pt]{aghdpl}
 
-% polski font
-\usepackage[T1]{fontenc}
-\usepackage[polish]{babel}
+\usepackage[english,polish]{babel}
+
+% Użyj polskiego łamania wyrazów (zamiast domyślnego angielskiego).
+\usepackage{polski}
+
 \usepackage[utf8]{inputenc}
-\selectlanguage{polish}
 
-% wykresy
-\usepackage{graphicx}
+% dodatkowe pakiety
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+% --- < bibliografia > ---
+
+\usepackage[
+style=numeric,
+sorting=none,
+%
+% Zastosuj styl wpisu bibliograficznego właściwy językowi publikacji.
+language=autobib,
+autolang=other,
+% Zapisuj datę dostępu do strony WWW w formacie RRRR-MM-DD.
+urldate=iso8601,
+% Nie dodawaj numerów stron, na których występuje cytowanie.
+backref=false,
+% Podawaj ISBN.
+isbn=true,
+% Nie podawaj URL-i, o ile nie jest to konieczne.
+url=false,
+%
+% Ustawienia związane z polskimi normami dla bibliografii.
+maxbibnames=3,
+% Jeżeli używamy BibTeXa:
+backend=bibtex
+]{biblatex}
+
+\usepackage{csquotes}
+% Ponieważ `csquotes` nie posiada polskiego stylu, można skorzystać z mocno zbliżonego stylu chorwackiego.
+\DeclareQuoteAlias{croatian}{polish}
+
+\addbibresource{bibliografia.bib}
+
+% Nie wyświetlaj wybranych pól.
+%\AtEveryBibitem{\clearfield{note}}
+
+
+% ------------------------
+% --- < listingi > ---
+
+% Użyj czcionki kroju Courier.
+\usepackage{courier}
+
+\usepackage{listings}
+\lstloadlanguages{TeX}
+
+\lstset{
+	literate={ą}{{\k{a}}}1
+           {ć}{{\'c}}1
+           {ę}{{\k{e}}}1
+           {ó}{{\'o}}1
+           {ń}{{\'n}}1
+           {ł}{{\l{}}}1
+           {ś}{{\'s}}1
+           {ź}{{\'z}}1
+           {ż}{{\.z}}1
+           {Ą}{{\k{A}}}1
+           {Ć}{{\'C}}1
+           {Ę}{{\k{E}}}1
+           {Ó}{{\'O}}1
+           {Ń}{{\'N}}1
+           {Ł}{{\L{}}}1
+           {Ś}{{\'S}}1
+           {Ź}{{\'Z}}1
+           {Ż}{{\.Z}}1,
+	basicstyle=\footnotesize\ttfamily,
+}
+
+% ------------------------
+
+\AtBeginDocument{
+	\renewcommand{\tablename}{Tabela}
+	\renewcommand{\figurename}{Rys.}
+}
+
+% ------------------------
+% --- < tabele > ---
+
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage[flushleft]{threeparttable}
+
+% defines the X column to use m (\parbox[c]) instead of p (`parbox[t]`)
+\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}
+
+
+%---------------------------------------------------------------------------
+
+\author{Amadeusz Hercog}
+\shortauthor{A. Hercog}
+
+%\titlePL{Przygotowanie bardzo długiej i pasjonującej pracy dyplomowej w~systemie~\LaTeX}
+%\titleEN{Preparation of a very long and fascinating bachelor or master thesis in \LaTeX}
+
+\titlePL{Wykorzystanie algorytmu sztucznej inteligencji do rozwiązania problemu optymalnego wyboru ścieżki lub wyjścia ewakuacyjnego}
+\titleEN{}
+
+
+\shorttitlePL{Rozwiązanie problemu optymalnego wyboru ścieżki lub wyjścia ewakuacyjnego} % skrócona wersja tytułu jeśli jest bardzo długi
+\shorttitleEN{}
+
+\thesistype{Praca dyplomowa inżynierska}
+%\thesistype{Master of Science Thesis}
+
+\supervisor{mgr. inż. Robert Lubaś}
+%\supervisor{Marcin Szpyrka PhD, DSc}
+
+\degreeprogramme{Informatyka stosowana}
+%\degreeprogramme{Computer Science}
+
+\department{Wydział Informatyki Stosowanej}
+%\department{Department of Applied Computer Science}
+
+\faculty{Wydział Fizyki i Informatyki}
+%\faculty{Faculty of Electrical Engineering, Automatics, Computer Science and Biomedical Engineering}
+
+\acknowledgements{Serdecznie dziękuję \dots tu ciąg dalszych podziękowań np. dla promotora, żony, sąsiada itp.}
+
+\setlength{\cftsecnumwidth}{10mm}
+
+%---------------------------------------------------------------------------
+\setcounter{secnumdepth}{4}
+\brokenpenalty=10000\relax
 
 % arial
 \renewcommand{\rmdefault}{phv}
 \renewcommand{\sfdefault}{phv}
-
-% kropki po numerach nagłówków
-\usepackage{titlesec}
-\titlelabel{\thetitle.\quad}
-
-% kropki w labelkach rysunków itp.
-\usepackage[labelsep = period]{caption}
-
-% interlinia
-\linespread{1.25}
 
 % wyłączenie łamania słów i justowanie
 \usepackage[none]{hyphenat}
@@ -34,26 +153,52 @@
 \usepackage[colorlinks, linkcolor=blue]{hyperref}
 
 % dane dokumentu
-\title{Praca inżynierska}
+\title{Wykorzystanie algorytmu sztucznej inteligencji do rozwiązania problemu optymalnego wyboru ścieżki lub wyjścia ewakuacyjnego}
 \author{Amadeusz Hercog}
 \date{21 listopada 2018}
 
 \begin{document}
-	\pagenumbering{gobble}
-	\maketitle
+	\titlepages
+	
+	\chapter{Wstęp}
+	\textit{W tym rozdziale zostanie opisane podłoże historyczne, cel i jego założenia projektu. Zaprezentowane zostanie proponowane rozwiązanie postawionego problemu oraz technologie do tego użyte.}
+	
+		\section{Cel projektu}	
+		W wielu miastach miastach, gdzie istnieją duże skupiska ludzi prędzej czy później pojawia się problem alokacji przestrzeni na zabudowę. W tym celu nowoczesne budynki uzytku publicznego są projektowane pod kątem wykorzystania jak największej przestrzeni dla celów użytkowych, ale i z drugiej strony - dla zapewnienia jak największego bezpieczeństwa ludziom w nich przebywających. Jednym z czynników określających wchodzącym w skład szeroko pojętego bezpieczeństwa, jest zapewnienie ludziom ścieżek ewakuacyjnych w razie pożaru lub innych wypadków. Z tego powodu celu postawiłem następujący problem - rozwiązanie problemu optymalizacji wyboru ścieżki lub wyjścia ewakuacyjnego ludzi w budynku. Co więcej, w związku z moim wcześniejszym doświadczeniem z tematem uczenia maszynowego, postanowiłem rozwiązać ten problem za pomocą technik machine learning.
+		
+		\section{Użyte technologie oraz programy}
+		Wszystkie obliczenia oraz rysowanie wykresów zostało zrealizowane w języku programowania \textbf{Python} w wersji 3.6 przy użyciu bibliotek:
+		\begin{itemize}
+			\item \textbf{NumPy} - służąca do obliczeń numerycznych,
+			\item \textbf{Pandas} - słuzaca łatwiejszemu zarządzaniu duzą ilością danych,
+			\item \textbf{Matplotlib} - służąca do rysowania wykresów,
+			\item \textbf{Tensorflow} - używana do głębokiego uczenia maszynowego.
+		\end{itemize}
+		
+		Aby mieć możliwość symulacji ruchu pieszych w budynku, użyłem symulatora \textbf{PSP} \textit{(Pederastian Simulation Project)} autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec - opisany szerzej w rozdziale~\ref{sekcja_psp}.
+		
+		\section{Proponowane rozwiązanie}
+		Rozwiązanie proponowane przeze mnie zostało podzielone na kilka kroków:
+		\begin{enumerate}
+		\item\label{proponowane_rozwiazanie_generacja_danych} Wygenerowanie \textit{n} zestawów parametrów wejściowych do symulatora \textit{PSP} w celu pozyskania jego danych wyjściowych.
+		\item Stworzenie modelu uczenia maszynowego na podstawie wygenerowanych zestawów danych wejściowych oraz wyjściowych symulatora i nauczenie go na danych z punktu~\ref{proponowane_rozwiazanie_generacja_danych}. Daje to możliwość generowania nowych danych wyjściowych bez używania symulatora.
+		\item Optymalizacja zestawu danych wyjściowych modelu na podstawie jego danych wejściowych używając metod optymalizacji.
+		\end{enumerate}
 	
 	\newpage
-	\pagenumbering{arabic}
-	\section{Opis symulatora}	
-	Symulator użyty w projekcie jest programem napisanym w języku C++ autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec. Służy on do modelowania ruchu agentów (ludzi) podczas ewakuacji w danej przestrzeni. Symulowana przestrzeń jest dwuwymiarowa, z możliwością dodania wielu poziomów odpowiadających kolejnym piętrom budynku. Główne okno programu jest widoczne na \hyperref[fig: glowne_okno_symulatora]{rysunku 1}.
-
-	\begin{figure}[h]
- 		\includegraphics[width = \linewidth]{rysunki/symulator.png}
-		\caption{Główne okno symulatora.}
-		\label{fig: glowne_okno_symulatora}
-	\end{figure}
+	\chapter{PSP - Pederastian Simulator Project}\label{sekcja_psp}
+	\textit{W tym rozdziale opisany zostanie symutalor ruchu pieszych użyty w projekcie i jego sposób użycia wraz z potrzebnymi dodatkowymi plikami. Opisane zostaną użyte w projekcie parametry wejściowe do symulatora oraz metryki stworzone na podstawie jego danych wyjściowych.}
 	
-		\subsection{Sposób użycia}
+		\section{Opis}
+		Symulator \textit{Pederastian Simulator Project} jest programem napisanym w języku C++ autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec. Służy on do modelowania ruchu agentów (ludzi) podczas ewakuacji w danej przestrzeni. Symulowana przestrzeń jest dwuwymiarowa, z możliwością dodania wielu poziomów odpowiadających kolejnym piętrom budynku. Główne okno programu jest widoczne na rysunku~\ref{fig: glowne_okno_symulatora}.
+	
+		\begin{figure}[h]
+	 		\includegraphics[width = \linewidth]{rysunki/symulator.png}
+			\caption{Główne okno symulatora.}
+			\label{fig: glowne_okno_symulatora}
+		\end{figure}
+	
+		\section{Sposób użycia}
 		Do przeprowadzenia symulacji potrzebne są następujące rzeczy:
 		\begin{itemize}
 		\item plik \textit{.xml} zawierający parametry wejściowe symulacji,
@@ -62,14 +207,14 @@
 	
 		W oknie głównym programu należy wybrać opcje otwarcia pliku \textit{.xml} po czym od razu zaczyna się symulacja w czasie rzeczywistym. Po symulacji, we wskazanym w pliku z parametrami folderze zostaną wygenerowane pliki \textit{.csv} z danymi wyjściowymi symulacji.
 		
-		\subsection{Dane wejściowe i wyjściowe}
+		\section{Dane wejściowe i wyjściowe}
 		Dane, na których miałem możliwość przeprowadzenia badań znajdowały się w:
 		\begin{itemize}
 		\item dane wejściowe - plik \textit{.xml},
 		\item dane wyjściowe - pliki \textit{.csv}.
 		\end{itemize}
 		
-		Danymi wejściowymi, które wybrałem - na podstawie łatwości modyfikacji - do dalszej analizy były:
+		Danymi wejściowymi, które wybrałem - na podstawie łatwości modyfikacji - do dalszej analizy były:\label{dane_do_dalszej_analizy}
 		
 		\begin{itemize}
 		\item \textbf{Panic spread factor} - współczynnik, który decyduje jak duzy wpływ ma \textbf{tryb paniki} (tryb, w którym agenci zwracają mniejszą uwagę na otoczenie oraz charakteryzują się bardziej chaotycznym ruchem) na agentów.
@@ -86,7 +231,7 @@
 		\item \textbf{Chaos level} - szansa na aktywację trybu paniki u agentów.
 		\item \textbf{Density factor} - określa wpływ współczynnika gęstości wokół agenta na funkcję kary.
 		\item \textbf{Frequency factor} - określa wpływ częstości wyboru danego pola na funkcję kary.
-		\item \textbf{Panic factor} - zwiększa część współczynników biorących udział w obliczaniu funkcji kary. 
+		\item \textbf{Panic factor} - potęguje część współczynników biorących udział w obliczaniu funkcji kary. 
 		\item \textbf{Distance factor} - wpływa na wybór agentów ruchu po skosie lub na wprost.
 		\item \textbf{Randomness factor} - czynnik losowości dla wartości kary.
 		\item \textbf{Pre-movement time mean value} oraz \textbf{Pre-movement time standard deviation} - średnia i odchylenie czasu \textit{Pre-movement}, który ma wpływ na częstotliwość wykonywania testu na zmianę obranego wyjścia przez agentów.
@@ -99,4 +244,54 @@
 		\item czas ewakuacji osatatniego agenta (odpowiadający czasowi ewakuacji wszystkich agentów),
 		\item błąd średniokwadratowy średnich prędkości wszystkich agentów w stosunku do średniej prędkości najszybszego agenta.
 		\end{itemize}
+		
+		Dodatkowe parametry wejściowe, które były mi potrzebne (lecz nie wpływały na sam proces badawczy) to:
+		\begin{itemize}
+		\item \textbf{Repeat number} - ilość powtórzeń symulacji wykonanej na pojedynczym pliku \textit{.xml}.
+		\item \textbf{Sim directory} - określa ścieżkę do folderu zawierającego pliki symulowanej przestrzeni.
+		\item \textbf{Sim stat directory} - określa ścieżkę do folderu, do którego zostaną zapisane dane wyjściowe symulacji (pliki \textit{.csv}).
+		\end{itemize}
+		
+	\newpage
+	\chapter{Budowa projektu}
+	\textit{W tym rozdziale opisany będzie proces zbierania danych za pomocą symulatora PSP, tworzenie modelu uczenia maszynowego oraz optymalizacji jego wartości wyjściowych.}
+	
+		\section{Zebranie danych}
+		W celu zebrania danych, które miałyby trafić później do modelu uczenia maszynowego, stworzyłem skrypt pythonowy, który wygenerował 200 różnych zestawów parametrów wejściowych do symulatora. Rodzaje danych, które wygenerowałem znajdują się w rozdziale~\ref{dane_do_dalszej_analizy}. Dla każdego zestawu danych ustawiłem parametrowi \textit{Repeat number} wartość 10, dzięki czemu dla każdego zestawu danych wejściowych generowane było 10 zestawów danych wyjściowych. Było to niezwykle cenne z 2 powodów:
+		\begin{itemize}
+		\item Do symulatora trzeba było ręcznie ładować plik \textit{.xml}, a dzięki temu z jedngo pliku otrzymywałem od razu 10 zestawów plików wyjściowych.
+		\item Ruchy agentów, nawet z takim samym zestawem parametrów, rożnią się między symulacjami, a dzięki powtórzeniom łatwiej było wyeliminować te różnice.
+		\end{itemize}
+		
+		Dla części symulacji, symulator niespodziewanie wyłączył się podczas pracy, przez co niektórym zestawom danych wejściwych odpowiada mniej niż 10 zestawów danych wyjściowych. Ostatecznie z 200 zestawów parametrów wejściowych uzyskałem 1888 zestawów parametrów wyjsciowych. Oznacza to, że 5,6\% z symulacji, które miały zostać przeprowadzone nie udały się.	
+		
+		\section{Tworzenie modelu}
+		W pierwszym podejściu, aby móc przetestować model w prostych warunkach, wybrałem z kazdego zestawu danych: wszystkie dane wejściowe, jedną daną wyjściową. Daną wyjściową, którą wybrałem był czas ewakuacji ostatniego agenta. Każdy zestaw danych zawierał więc \textbf{15} parametrów wejściowych oraz \textbf{1} parametr wyjściowy. Z tak przygotowanymi danymi miałem możliwość stworzenia pierwszego modelu.
+		
+		Na poczatek, wybrałem prosty model uczenia maszynowego - regresję liniową. Stworzyłem go wykorzystując \textbf{Perceptron}. Jest to prosta sieć neuronowa, która posiada zestaw neuronów wejściowych, kazdy odpowiadający pojedynczej danej wejsciowej. Składa się on także z jednego lub wielu niezależnych neuronów wyjściowych. Każdy z nich jest połączony ze wszystkimi neuronami wejściowymi za pomocą krawędzi posiadających wagi - definiują one jak duży wpływ na wyjście ma każda dana wejściowa. Jeśli wyrazimy:
+		\begin{itemize}
+		\item wejście jako wektor \textit{X},
+		\item wyjście pojedyczego Perceptronu jako \textit{a},
+		\item neuron jako wektor wag \textit{N},
+		\item funkcję aktywacji jako $\sigma$ - jest to funkcja wprowadzająca nieliniowość danych, najpopularniejsze z nich to \textit{Sigmoid}, \textit{ReLU (Rectified linear unit)} czy też \textit{Softmax}
+		\end{itemize}
+		to zachodzi równanie:
+		
+		\begin{equation}
+		Y=\sigma(NX)
+		\end{equation}
+	
+		Budowa Perceptronu z jednym neuronem wyjściowym jest widoczna na rysunku \ref{fig: budowa_perceptronu}\footnote{\url{https://pythonmachinelearning.pro/perceptrons-the-first-neural-networks/}}.
+
+		\begin{figure}[h]
+			\begin{minipage}{\textwidth}
+	 		\includegraphics[width = \linewidth]{rysunki/perceptron.png}
+ 			\caption{Budowa Perceptronu z jednym neuronem wyjściowym.}
+			\label{fig: budowa_perceptronu}
+			\end{minipage}
+		\end{figure}
+		
+		Dla powyższych zastosowań stworzyłem więc perceptron posiadający pojdeyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. 
+				
+		\printbibliography
 \end{document}
