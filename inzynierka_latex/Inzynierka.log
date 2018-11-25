@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.21)  24 NOV 2018 22:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.21)  25 NOV 2018 14:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1733,7 +1733,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 180.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \c__siunitx_mathtt_int=\count450
-<agh.jpg, id=60, 146.4672pt x 284.7438pt>
+<agh.jpg, id=64, 146.4672pt x 284.7438pt>
 File: agh.jpg Graphic file (type jpg)
 <use agh.jpg>
 Package pdftex.def Info: agh.jpg  used on input line 181.
@@ -1878,7 +1878,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 208.
 [6]
 Rozdzia\l  2.
-<rysunki/symulator.png, id=93, 642.4pt x 513.92pt>
+<rysunki/symulator.png, id=97, 642.4pt x 513.92pt>
 File: rysunki/symulator.png Graphic file (type png)
 <use rysunki/symulator.png>
 Package pdftex.def Info: rysunki/symulator.png  used on input line 217.
@@ -1936,7 +1936,7 @@ Underfull \hbox (badness 1946) in paragraph at lines 294--296
 
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 307.
-<rysunki/perceptron.png, id=122, 861.2175pt x 478.78876pt>
+<rysunki/perceptron.png, id=126, 861.2175pt x 478.78876pt>
 File: rysunki/perceptron.png Graphic file (type png)
 <use rysunki/perceptron.png>
 Package pdftex.def Info: rysunki/perceptron.png  used on input line 311.
@@ -1951,81 +1951,100 @@ Underfull \hbox (badness 3281) in paragraph at lines 318--319
  []
 
 [12] [13 <./rysunki/perceptron.png>]
-<rysunki/pierwszy_model_wykres_uczenia.png, id=139, 642.4pt x 481.8pt>
+<rysunki/pierwszy_model_wykres_uczenia.png, id=144, 642.4pt x 481.8pt>
 File: rysunki/pierwszy_model_wykres_uczenia.png Graphic file (type png)
 <use rysunki/pierwszy_model_wykres_uczenia.png>
 Package pdftex.def Info: rysunki/pierwszy_model_wykres_uczenia.png  used on inp
-ut line 352.
+ut line 347.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<rysunki/pierwszy_model_learning_curves.png, id=141, 642.4pt x 481.8pt>
+ [14 <./rysunki/pierwszy_model_wykres_uczenia.png (PNG copy)>]
+<rysunki/pierwszy_model_learning_curves.png, id=152, 642.4pt x 481.8pt>
 File: rysunki/pierwszy_model_learning_curves.png Graphic file (type png)
 <use rysunki/pierwszy_model_learning_curves.png>
 Package pdftex.def Info: rysunki/pierwszy_model_learning_curves.png  used on in
-put line 363.
+put line 358.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 3954) in paragraph at lines 373--374
+Underfull \hbox (badness 3954) in paragraph at lines 368--369
 []\T1/phv/m/n/12 Maj¡c na uwa-dze pro-blemy stwo-rzo-nego mo-delu, w pierw-szej
  ko-lej-no-±ci
  []
 
-[14] [15 <./rysunki/pierwszy_model_wykres_uczenia.png (PNG copy)>]
-<rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png, id=161, 642.4pt x 48
+[15 <./rysunki/pierwszy_model_learning_curves.png (PNG copy)>]
+<rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png, id=163, 642.4pt x 48
 1.8pt>
 File: rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png Graphic file (ty
 pe png)
 <use rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png>
 Package pdftex.def Info: rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.p
-ng  used on input line 422.
+ng  used on input line 412.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<rysunki/pierwszy_model_learning_curves_z_normalizacja.png, id=162, 642.4pt x 4
+ [16]
+<rysunki/pierwszy_model_learning_curves_z_normalizacja.png, id=170, 642.4pt x 4
 81.8pt>
 File: rysunki/pierwszy_model_learning_curves_z_normalizacja.png Graphic file (t
 ype png)
 <use rysunki/pierwszy_model_learning_curves_z_normalizacja.png>
 Package pdftex.def Info: rysunki/pierwszy_model_learning_curves_z_normalizacja.
-png  used on input line 431.
+png  used on input line 421.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16 <./rysunki/pierwszy_model_learning_curves.png (PNG copy)>] [17] [18 <./rysu
-nki/pierwszy_model_wykres_uczenia_z_normalizacja.png (PNG copy)> <./rysunki/pie
-rwszy_model_learning_curves_z_normalizacja.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 444.
- [19
+
+Underfull \hbox (badness 4144) in paragraph at lines 431--434
+[]\T1/phv/m/n/12 Chc¡c roz-wi¡-za¢ gªówny pro-blem po-przed-niego mo-delu - wy-
+soki bias -
+ []
+
+[17 <./rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png (PNG copy)>]
+Underfull \hbox (badness 1009) in paragraph at lines 442--444
+[]\T1/phv/m/n/12 Proces ucz¡cy prze-pro-wa-dzi-ªem iden-tycz-nie jak po-przed-n
+io - wy-ko-na-ªem 10
+ []
+
+[18 <./rysunki/pierwszy_model_learning_curves_z_normalizacja.png (PNG copy)>]
+<rysunki/drugi_model_wykres_uczenia.png, id=184, 642.4pt x 481.8pt>
+File: rysunki/drugi_model_wykres_uczenia.png Graphic file (type png)
+<use rysunki/drugi_model_wykres_uczenia.png>
+Package pdftex.def Info: rysunki/drugi_model_wykres_uczenia.png  used on input 
+line 451.
+(pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
+<rysunki/drugi_model_learning_curves.png, id=185, 642.4pt x 481.8pt>
+File: rysunki/drugi_model_learning_curves.png Graphic file (type png)
+<use rysunki/drugi_model_learning_curves.png>
+Package pdftex.def Info: rysunki/drugi_model_learning_curves.png  used on input
+ line 460.
+(pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[19 <./rysunki/drugi_model_wykres_uczenia.png (PNG copy)>] [20 <./rysunki/drugi
+_model_learning_curves.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 472.
+ [21
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 444.
-
-(./Inzynierka.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 444.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 444.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 472.
+ (./Inzynierka.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 472.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 472.
 Package rerunfilecheck Info: File `Inzynierka.out' has not changed.
-(rerunfilecheck)             Checksum: BF550CE9F22B582F3A67279A0878EDEF;908.
+(rerunfilecheck)             Checksum: 355A9554C609E4AE96B20E65B4ABFD5F;1014.
 Package logreq Info: Writing requests to 'Inzynierka.run.xml'.
 \openout1 = `Inzynierka.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30438 strings out of 492982
- 554481 string characters out of 6134895
- 847741 words of memory out of 5000000
- 33569 multiletter control sequences out of 15000+600000
+ 30457 strings out of 492982
+ 555047 string characters out of 6134895
+ 845741 words of memory out of 5000000
+ 33581 multiletter control sequences out of 15000+600000
  591927 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,11n,45p,10388b,2653s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,45p,10388b,2655s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/
@@ -2034,10 +2053,10 @@ ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/
 uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
 
-Output written on Inzynierka.pdf (19 pages, 371151 bytes).
+Output written on Inzynierka.pdf (21 pages, 429535 bytes).
 PDF statistics:
- 226 PDF objects out of 1000 (max. 8388607)
- 187 compressed objects within 2 object streams
- 49 named destinations out of 1000 (max. 500000)
- 148 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 246 PDF objects out of 1000 (max. 8388607)
+ 202 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 166 words of extra memory for PDF output out of 10000 (max. 10000000)
 

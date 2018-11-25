@@ -276,7 +276,7 @@ backend=bibtex
 		\end{itemize}
 		
 	\newpage
-	\chapter{Budowa projektu}
+	\chapter{Budowa modelu uczenia maszynowego}
 	\textit{W tym rozdziale opisany będzie proces zbierania danych za pomocą symulatora PSP, tworzenie modelu uczenia maszynowego oraz optymalizacji jego wartości wyjściowych.}
 	
 		\section{Zebranie danych}
@@ -320,7 +320,7 @@ backend=bibtex
 		\section{Pierwszy model - tworzenie i analiza} \label{pierwszy_model_tworzenie_i_analiza}
 		Dla powyższych zastosowań stworzyłem więc \textit{Perceptron} posiadający pojdeyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. Zestawy danych podzieliłem w stosunku 80\% : 20\% na \textbf{dane treningowe} i \textbf{dane testowe}, pozwala to na trenowanie sieci na danych treningowych oraz sprawdzanie jej efektowności na tanych testowych co daje możliwość walidacji tego, jak dobrze sieć radzi sobie z danymi, z którymi nie miała styczności.
 		
-		Podsumowując, parametry pierwszego modelu były więc następujące:
+		Podsumowując, parametry pierwszego modelu były następujące:
 		\begin{itemize}
 		\item pojedyncza warstwa składająca się z jednego neuronu,
 		\item \textbf{funkcja aktywacji} - brak,
@@ -332,15 +332,10 @@ backend=bibtex
 				
 		Proces uczący został wykonany 10 razy od nowa na nienauczonym modelu, za kazdym razem wykonując permutację danych. Średnie \textit{MSE} danych wyglądają następująco:
 		\begin{itemize}
-		\item \textbf{średnia i odchylenia MSE danych treningowych} - ($\pm$),
-		\item \textbf{średnia i odchylenia MSE danych testowych} - ($\pm$).
+		\item \textbf{średnie MSE danych treningowych} - 147,77 ($\pm$16,04),
+		\item \textbf{średnie MSE danych testowych} - 166,18 ($\pm$50,77).
 		\end{itemize}
-		Najlepszy przypadek (biorąc pod uwagę \textit{MSE} danych testowych jest następujący:
-		\begin{itemize}
-		\item \textbf{MSE danych treningowych} - ,
-		\item \textbf{MSE danych testowych} - .
-		\end{itemize}
-		Zależność \textit{MSE} danych od iteracji uczacej tego przypadku jest widoczna na wykresie \ref{fig: pierwszy_model_wykres_uczenia}. Analizując go, doszedłem do następujących wniosków:
+		Zależność \textit{MSE} danych od iteracji uczacej najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczna na wykresie \ref{fig: pierwszy_model_wykres_uczenia}. Analizując go, doszedłem do następujących wniosków:
 		\begin{itemize}
 		\item \textit{MSE} danych treningowych jak i testowych jest na wysokim poziomie co oznacza, że model ma \textbf{wysoki bias}. Oznacza to, że użyty model jest zbyt prosty i nie ważne jak dużo danych zostanie do niego podanych i jak długo będzie się on uczył - \textit{MSE} danych nie obniży się poniżej pewnego poziomu.
 		\item Podczas uczenia \textit{MSE} danych jest bardzo niestabilny, co oznacza niestabilność danych lub modelu.
@@ -367,9 +362,9 @@ backend=bibtex
 			\label{fig: pierwszy_model_learning_curves}
 		\end{figure}
 		
-		Podsumowując, obecny model ma wysoki bias - jest zbyt prosty dla danych, przez co większa ich ilość oraz dłuższy proces uczący nie dają żadnych efektów. Na wykresach widać niestabilność modelu lub danych, co powoduje bardzo duże szumy na wykresach \textit{MSE}. Co więcej - niepokojący jest fakt, że \textit{MSE} danych testowych był przeważnie inższy niż \textit{MSE} danych treningowych.
+		Podsumowując, obecny model ma wysoki bias - jest zbyt prosty dla danych, przez co większa ich ilość oraz dłuższy proces uczący nie dają żadnych efektów. Na wykresach widać niestabilność modelu lub danych, co powoduje bardzo duże szumy na wykresach \textit{MSE}. Co więcej - niepokojący jest fakt, że \textit{MSE} danych testowych był często niższy niż \textit{MSE} danych treningowych.
 		
-		\section{Normalizacja danych}
+		\section{Normalizacja danych} \label{normalizacja_danych}
 		Mając na uwadze problemy stworzonego modelu, w pierwszej kolejności postanowiłem przejrzeć dane wejściowe do modelu. Ze wszystkich zestawów danych obliczyłem więc średnią każdego z parametrów wejściowych do sieci neuronowej. Wyniki są widoczne w tabeli \ref{srednie_wartosci_i_odchylenia_parametrow_wejsciowych_modelu}. Widać w niej, że niektóre parametry mają wartości 2 rzędy wielkości większe niż inne. Takie różnice pomiędzy różnymi parametrami wejściowymi powodują faworyzowanie przez sieć jednych parametrów ponad drugie. Postanowiłem więc zastosować normalizację danych według wzoru:
 		
 		\begin{equation}
@@ -383,7 +378,7 @@ backend=bibtex
 		\end{itemize}
 		
 		\begin{table}[t]
-			\caption{Średnie wartości i odchylenia parametrów wejściowych do modelu.}
+			\caption{Średnie wartości parametrów wejściowych do modelu.}
 			\begin{mytabular}{r c c}
 					\multicolumn{1}{c}{Nazwa parametru} & Średnia wartość \\
 					Panic spread factor & 1.74 \\
@@ -407,15 +402,10 @@ backend=bibtex
 		
 		Posiadając tak przygotowane dane wykonałem - tak jak w punkcie \ref{pierwszy_model_tworzenie_i_analiza} - 10 cykli nauczania z różnymi permutacjami danych oraz 20 cykli z jedną permutacją, lecz zmieniającym się rozmiarem zestawu danych treningowych. Średnie \textit{MSE} danych są następujące:
 		\begin{itemize}
-		\item \textbf{średnia i odchylenia MSE danych treningowych} - 154,79 ($\pm$),
-		\item \textbf{średnia i odchylenia MSE danych testowych} - 78,88 ($\pm$).
+		\item \textbf{średnia MSE danych treningowych} - 118,64 ($\pm$6,07),
+		\item \textbf{średnia MSE danych testowych} - 130,70 ($\pm$23,47).
 		\end{itemize}
-		Najlepszy wynik spośród cyklów z różnymi permutacjami danych wygląda tak:
-		\begin{itemize}
-		\item \textbf{MSE danych treningowych} - ,
-		\item \textbf{MSE danych testowych} - .
-		\end{itemize}
-		Jego proces uczenia jest widoczny na wykresie \ref{fig: pierwszy_model_wykres_uczenia_z_normalizacja}. Dodatkowo na wykresie \ref{fig: pierwszy_model_learning_curves_z_normalizacja} widać zależność \textit{MSE} danych od liczby danych treningowych. 
+		Proces uczenia najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczny na wykresie \ref{fig: pierwszy_model_wykres_uczenia_z_normalizacja}. Dodatkowo na wykresie \ref{fig: pierwszy_model_learning_curves_z_normalizacja} widać zależność \textit{MSE} danych od liczby danych treningowych. 
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
@@ -435,10 +425,48 @@ backend=bibtex
 			\label{fig: pierwszy_model_learning_curves_z_normalizacja}
 		\end{figure}
 		
-		Pierwszą rzeczą rzucającą się w oczy jest duża stabilność wartości na wykresach - eliminuje to sytuacje w których wynik uczenia był winą przypadku, jako że kilka iteracji wcześniej lub później \textit{Perceptron} dawał zupełnie inny rezultat. Dzięki większej stabilności sieci łatwiej jest także wyciągać wnioski na podstawie wykresów. Lepiej widoczny jest problem zauwazony wcześniej - wysoki bias modelu. Objawia się on tym, że na początku \textit{MSE} danych maleje, aż do pewnego momentu gdzie jest stały i żadna ilość danych albo długość uczenia nie spowoduje jego zmniejszenia. Ostatnią rzeczą, która jest taka sama jak w rozdziale \ref{pierwszy_model_tworzenie_i_analiza} - \textit{MSE} danych testowych jest mniejsze niż danych treningowych.
+		Pierwszą rzeczą rzucającą się w oczy jest duża stabilność wartości na wykresach - eliminuje to sytuacje w których wynik uczenia był winą przypadku, jako że kilka iteracji wcześniej lub później \textit{Perceptron} dawał zupełnie inny rezultat. Dzięki większej stabilności sieci łatwiej jest także wyciągać wnioski na podstawie wykresów. Lepiej widoczny jest problem zauważony wcześniej - wysoki bias modelu. Objawia się on tym, że na początku \textit{MSE} danych maleje, aż do pewnego momentu gdzie jest stały i żadna ilość danych albo długość uczenia nie spowoduje jego zmniejszenia. Ostatnią rzeczą, która jest taka sama jak w rozdziale \ref{pierwszy_model_tworzenie_i_analiza} - \textit{MSE} danych testowych często jest mniejsze niż danych treningowych.
 		
 		\section{Drugi model - tworzenie i analiza}
-		Chcąc rozwiązać główny problem mojego modelu - wysoki bias potrzebowałem modelu, który potrafi nauczyć się bardziej skomplikowanych funkcji. Takim modelem będzie sieć neuronowa z kilkoma warstwami. Dzięki każdej następnej warstwie ma ona możliwość uczenia się coraz bardziej skomplikowanych funkcji. Sieć jaką stworzyłem ma 1 warstwę ukrytą - warstwę neuronów pomiędzy wejściami a warstwą wyjść - z 30 neuronwami. Jako funkcję aktywacji wybrałem funkcję \textit{ReLU}.
+		Chcąc rozwiązać główny problem poprzedniego modelu - wysoki bias - potrzebowałem modelu, który potrafi nauczyć się bardziej skomplikowanych funkcji. Takim modelem była sieć neuronowa z kilkoma warstwami. Dzięki każdej następnej warstwie ma ona możliwość uczenia się coraz bardziej skomplikowanych funkcji. Sieć jaką stworzyłem miała 1 warstwę ukrytą - warstwę neuronów pomiędzy wejściami a warstwą wyjść - z 30 neuronwami. Jako funkcję aktywacji wybrałem funkcję \textit{ReLU}.
+		Podsumowując, parametry drugiego modelu były następujące:
+		\begin{itemize}
+			\item 1 warstwa ukryta z 30 neuronami i funkcją aktywacji ReLU,
+			\item warstwa wyjściowa składająca się z jednego neuronu bez funkcji aktywacji,
+			\item \textbf{learning rate} - 0.1,
+			\item \textbf{metryka do optymalizacji} - MSE,
+			\item \textbf{liczba epok uczacych} - 300,
+			\item podział na \textbf{dane treningowe} i \textbf{dane testowe} - 80\% : 20\%.
+		\end{itemize}
+		
+		Proces uczący przeprowadziłem identycznie jak poprzednio - wykonałem 10 osobnych cykli uczących z różnymi permutacjami danych oraz 20 osobnych cykli uczących na zmieniającej się wielkości zestawu danych traningowych. Średnie \textit{MSE} danych z 10 cykli są następujące:
+		\begin{itemize}
+		\item \textbf{średnia MSE danych treningowych} - 54,07 ($\pm$3,11),
+		\item \textbf{średnia MSE danych testowych} - 48,82 ($\pm$14,69).
+		\end{itemize}
+		Proces uczący najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczny na wykresie \ref{fig: drugi_model_wykres_uczenia}. Dane zebrane z cykli ze zmnieniającą się ilością danych treningowych umieszczone są na wykresie \ref{fig: drugi_model_learning_curves}.
+		
+		\begin{figure}[h]
+			\begin{tightcenter}
+	 			\includegraphics[width = 0.75\linewidth]{rysunki/drugi_model_wykres_uczenia.png}
+	 		\end{tightcenter}
+	 		
+ 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w drugim modelu.}
+			\label{fig: drugi_model_wykres_uczenia}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\begin{tightcenter}
+	 			\includegraphics[width = 0.75\linewidth]{rysunki/drugi_model_learning_curves.png}
+	 		\end{tightcenter}
+	 		
+ 			\caption{Zależność \textit{MSE} danych od ich ilości w drugim modelu.}
+			\label{fig: drugi_model_learning_curves}
+		\end{figure}
+		
+		Porównując te dane z tymi z sekcji \ref{normalizacja_danych} widać znaczącą poprawę modelu - trzykrotny spadek średnich \textit{MSE} danych treningowych oraz testowych. Mimo tego widać, \textit{MSE} po osiągnięciu pewnego pułapu przestaje maleć - oznacza to, że model dalej ma duży bias.
+		
+		\section{Zwiększenie stopnia skomplikowania modelu}
 		
 		\printbibliography
 \end{document}
