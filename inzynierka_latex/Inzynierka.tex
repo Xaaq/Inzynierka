@@ -344,7 +344,7 @@ backend=bibtex
 		
 		\begin{figure}[h]
 	 		\begin{tightcenter}
-	 			\includegraphics[width = 0.75\linewidth]{rysunki/pierwszy_model_wykres_uczenia.png}
+	 			\includegraphics[width = 0.75\linewidth]{wykresy/1_pierwszy_model_tworzenie_i_analiza/wykres_uczenia.png}
 	 		\end{tightcenter}
 	 		
  			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w pierwszym modelu.}
@@ -355,7 +355,7 @@ backend=bibtex
 		
 		\begin{figure}[h]
 	 		\begin{tightcenter}
-	 			\includegraphics[width = 0.75\linewidth]{rysunki/pierwszy_model_learning_curves.png}
+	 			\includegraphics[width = 0.75\linewidth]{wykresy/1_pierwszy_model_tworzenie_i_analiza/learning_curves.png}
 	 		\end{tightcenter}
 	 		
  			\caption{Zależność \textit{MSE} danych od ich ilości w pierwszym modelu.}
@@ -409,7 +409,7 @@ backend=bibtex
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
-	 			\includegraphics[width = 0.75\linewidth]{rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png}
+	 			\includegraphics[width = 0.75\linewidth]{wykresy/2_normalizacja_danych/wykres_uczenia.png}
 	 		\end{tightcenter}
 	 		
  			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w pierwszym modelu ze znormalizowanymi danymi.}
@@ -418,7 +418,7 @@ backend=bibtex
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
-	 			\includegraphics[width = 0.75\linewidth]{rysunki/pierwszy_model_learning_curves_z_normalizacja.png}
+	 			\includegraphics[width = 0.75\linewidth]{wykresy/2_normalizacja_danych/learning_curves.png}
 	 		\end{tightcenter}
 	 		
  			\caption{Zależność \textit{MSE} danych od ich ilości w pierwszym modelu ze znormalizowanymi danymi.}
@@ -427,8 +427,8 @@ backend=bibtex
 		
 		Pierwszą rzeczą rzucającą się w oczy jest duża stabilność wartości na wykresach - eliminuje to sytuacje w których wynik uczenia był winą przypadku, jako że kilka iteracji wcześniej lub później \textit{Perceptron} dawał zupełnie inny rezultat. Dzięki większej stabilności sieci łatwiej jest także wyciągać wnioski na podstawie wykresów. Lepiej widoczny jest problem zauważony wcześniej - wysoki bias modelu. Objawia się on tym, że na początku \textit{MSE} danych maleje, aż do pewnego momentu gdzie jest stały i żadna ilość danych albo długość uczenia nie spowoduje jego zmniejszenia. Ostatnią rzeczą, która jest taka sama jak w rozdziale \ref{pierwszy_model_tworzenie_i_analiza} - \textit{MSE} danych testowych często jest mniejsze niż danych treningowych.
 		
-		\section{Drugi model - tworzenie i analiza}
-		Chcąc rozwiązać główny problem poprzedniego modelu - wysoki bias - potrzebowałem modelu, który potrafi nauczyć się bardziej skomplikowanych funkcji. Takim modelem była sieć neuronowa z kilkoma warstwami. Dzięki każdej następnej warstwie ma ona możliwość uczenia się coraz bardziej skomplikowanych funkcji. Sieć jaką stworzyłem miała 1 warstwę ukrytą - warstwę neuronów pomiędzy wejściami a warstwą wyjść - z 30 neuronwami. Jako funkcję aktywacji wybrałem funkcję \textit{ReLU}.
+		\section{Drugi model - tworzenie i analiza} \label{drugi_model_tworzenie_i_analiza}
+		Chcąc rozwiązać główny problem poprzedniego modelu - wysoki bias - potrzebowałem modelu, który potrafi nauczyć się bardziej skomplikowanych funkcji. Takim modelem była sieć neuronowa z kilkoma warstwami. Dzięki każdej następnej warstwie ma ona możliwość uczenia się coraz bardziej skomplikowanych funkcji. Sieć jaką stworzyłem miała 1 \textbf{warstwę ukrytą} - warstwę neuronów pomiędzy wejściami a warstwą wyjść - z 30 neuronami. Jako funkcję aktywacji wybrałem funkcję \textit{ReLU}.
 		Podsumowując, parametry drugiego modelu były następujące:
 		\begin{itemize}
 			\item 1 warstwa ukryta z 30 neuronami i funkcją aktywacji ReLU,
@@ -448,7 +448,7 @@ backend=bibtex
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
-	 			\includegraphics[width = 0.75\linewidth]{rysunki/drugi_model_wykres_uczenia.png}
+	 			\includegraphics[width = 0.75\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png}
 	 		\end{tightcenter}
 	 		
  			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w drugim modelu.}
@@ -457,7 +457,7 @@ backend=bibtex
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
-	 			\includegraphics[width = 0.75\linewidth]{rysunki/drugi_model_learning_curves.png}
+	 			\includegraphics[width = 0.75\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png}
 	 		\end{tightcenter}
 	 		
  			\caption{Zależność \textit{MSE} danych od ich ilości w drugim modelu.}
@@ -467,6 +467,51 @@ backend=bibtex
 		Porównując te dane z tymi z sekcji \ref{normalizacja_danych} widać znaczącą poprawę modelu - trzykrotny spadek średnich \textit{MSE} danych treningowych oraz testowych. Mimo tego widać, \textit{MSE} po osiągnięciu pewnego pułapu przestaje maleć - oznacza to, że model dalej ma duży bias.
 		
 		\section{Zwiększenie stopnia skomplikowania modelu}
+		Próbując zmniejszyć bias sieci neuronowej, postanowiłem przeprowadzić eksperymenty z innymi parametrami sieci, a mianowicie:
+		\begin{itemize}
+		\item liczba warstw ukrytych - \textbf{1}, liczba neuronów w warstwie - \textbf{40};
+		\item liczba warstw ukrytych - \textbf{2}, liczba neuronów w każdej warstwie - \textbf{20};
+		\item liczba warstw ukrytych - \textbf{2}, liczba neuronów w każdej warstwie - \textbf{40};
+		\end{itemize}
 		
+		Zestawienie wynikow z sekcji \ref{drugi_model_tworzenie_i_analiza} oraz powyższych kombinacji parametrów jest widoczne na wykresach \ref{fig: drugi_model_kombinacje_parametrow_wykresy_uczenia} i \ref{fig: drugi_model_kombinacje_parametrow_learning_curves}.
+		
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_wykres_uczenia.png}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_wykres_uczenia.png}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_wykres_uczenia.png}
+		 	\end{subfigure}
+	 	
+ 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszych przypadków przy użyciu różnych kombinacji parametrów w drugim modelu.}
+			\label{fig: drugi_model_kombinacje_parametrow_wykresy_uczenia}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_learning_curves.png}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_learning_curves.png}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_learning_curves.png}
+		 	\end{subfigure}
+	 	
+ 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla różnych kombinacji parametrów w drugim modelu.}
+			\label{fig: drugi_model_kombinacje_parametrow_learning_curves}
+		\end{figure}
 		\printbibliography
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.21)  25 NOV 2018 14:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.21)  25 NOV 2018 22:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1951,18 +1951,23 @@ Underfull \hbox (badness 3281) in paragraph at lines 318--319
  []
 
 [12] [13 <./rysunki/perceptron.png>]
-<rysunki/pierwszy_model_wykres_uczenia.png, id=144, 642.4pt x 481.8pt>
-File: rysunki/pierwszy_model_wykres_uczenia.png Graphic file (type png)
-<use rysunki/pierwszy_model_wykres_uczenia.png>
-Package pdftex.def Info: rysunki/pierwszy_model_wykres_uczenia.png  used on inp
-ut line 347.
+<wykresy/1_pierwszy_model_tworzenie_i_analiza/wykres_uczenia.png, id=144, 642.4
+pt x 481.8pt>
+File: wykresy/1_pierwszy_model_tworzenie_i_analiza/wykres_uczenia.png Graphic f
+ile (type png)
+<use wykresy/1_pierwszy_model_tworzenie_i_analiza/wykres_uczenia.png>
+Package pdftex.def Info: wykresy/1_pierwszy_model_tworzenie_i_analiza/wykres_uc
+zenia.png  used on input line 347.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
- [14 <./rysunki/pierwszy_model_wykres_uczenia.png (PNG copy)>]
-<rysunki/pierwszy_model_learning_curves.png, id=152, 642.4pt x 481.8pt>
-File: rysunki/pierwszy_model_learning_curves.png Graphic file (type png)
-<use rysunki/pierwszy_model_learning_curves.png>
-Package pdftex.def Info: rysunki/pierwszy_model_learning_curves.png  used on in
-put line 358.
+ [14 <./wykresy/1_pierwszy_model_tworzenie_i_analiza/wykres_uczenia.png (PNG co
+py)>]
+<wykresy/1_pierwszy_model_tworzenie_i_analiza/learning_curves.png, id=152, 642.
+4pt x 481.8pt>
+File: wykresy/1_pierwszy_model_tworzenie_i_analiza/learning_curves.png Graphic 
+file (type png)
+<use wykresy/1_pierwszy_model_tworzenie_i_analiza/learning_curves.png>
+Package pdftex.def Info: wykresy/1_pierwszy_model_tworzenie_i_analiza/learning_
+curves.png  used on input line 358.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
 
 Underfull \hbox (badness 3954) in paragraph at lines 368--369
@@ -1970,23 +1975,21 @@ Underfull \hbox (badness 3954) in paragraph at lines 368--369
  ko-lej-no-±ci
  []
 
-[15 <./rysunki/pierwszy_model_learning_curves.png (PNG copy)>]
-<rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png, id=163, 642.4pt x 48
-1.8pt>
-File: rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png Graphic file (ty
-pe png)
-<use rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png>
-Package pdftex.def Info: rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.p
-ng  used on input line 412.
+[15 <./wykresy/1_pierwszy_model_tworzenie_i_analiza/learning_curves.png (PNG co
+py)>]
+<wykresy/2_normalizacja_danych/wykres_uczenia.png, id=163, 642.4pt x 481.8pt>
+File: wykresy/2_normalizacja_danych/wykres_uczenia.png Graphic file (type png)
+<use wykresy/2_normalizacja_danych/wykres_uczenia.png>
+Package pdftex.def Info: wykresy/2_normalizacja_danych/wykres_uczenia.png  used
+ on input line 412.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
  [16]
-<rysunki/pierwszy_model_learning_curves_z_normalizacja.png, id=170, 642.4pt x 4
-81.8pt>
-File: rysunki/pierwszy_model_learning_curves_z_normalizacja.png Graphic file (t
-ype png)
-<use rysunki/pierwszy_model_learning_curves_z_normalizacja.png>
-Package pdftex.def Info: rysunki/pierwszy_model_learning_curves_z_normalizacja.
-png  used on input line 421.
+<wykresy/2_normalizacja_danych/learning_curves.png, id=170, 642.4pt x 481.8pt>
+File: wykresy/2_normalizacja_danych/learning_curves.png Graphic file (type png)
+
+<use wykresy/2_normalizacja_danych/learning_curves.png>
+Package pdftex.def Info: wykresy/2_normalizacja_danych/learning_curves.png  use
+d on input line 421.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
 
 
@@ -1998,39 +2001,151 @@ Underfull \hbox (badness 4144) in paragraph at lines 431--434
 soki bias -
  []
 
-[17 <./rysunki/pierwszy_model_wykres_uczenia_z_normalizacja.png (PNG copy)>]
+[17 <./wykresy/2_normalizacja_danych/wykres_uczenia.png (PNG copy)>]
 Underfull \hbox (badness 1009) in paragraph at lines 442--444
 []\T1/phv/m/n/12 Proces ucz¡cy prze-pro-wa-dzi-ªem iden-tycz-nie jak po-przed-n
 io - wy-ko-na-ªem 10
  []
 
-[18 <./rysunki/pierwszy_model_learning_curves_z_normalizacja.png (PNG copy)>]
-<rysunki/drugi_model_wykres_uczenia.png, id=184, 642.4pt x 481.8pt>
-File: rysunki/drugi_model_wykres_uczenia.png Graphic file (type png)
-<use rysunki/drugi_model_wykres_uczenia.png>
-Package pdftex.def Info: rysunki/drugi_model_wykres_uczenia.png  used on input 
-line 451.
+[18 <./wykresy/2_normalizacja_danych/learning_curves.png (PNG copy)>]
+<wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png, id=184, 642.4pt 
+x 481.8pt>
+File: wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png Graphic file
+ (type png)
+<use wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png>
+Package pdftex.def Info: wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczen
+ia.png  used on input line 451.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
-<rysunki/drugi_model_learning_curves.png, id=185, 642.4pt x 481.8pt>
-File: rysunki/drugi_model_learning_curves.png Graphic file (type png)
-<use rysunki/drugi_model_learning_curves.png>
-Package pdftex.def Info: rysunki/drugi_model_learning_curves.png  used on input
- line 460.
+<wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png, id=185, 642.4pt
+ x 481.8pt>
+File: wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png Graphic fil
+e (type png)
+<use wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png>
+Package pdftex.def Info: wykresy/3_drugi_model_tworzenie_i_analiza/learning_cur
+ves.png  used on input line 460.
 (pdftex.def)             Requested size: 341.43307pt x 256.0806pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[19 <./rysunki/drugi_model_wykres_uczenia.png (PNG copy)>] [20 <./rysunki/drugi
-_model_learning_curves.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 472.
- [21
+
+Underfull \hbox (badness 7649) in paragraph at lines 470--472
+[]\T1/phv/m/n/12 Próbuj¡c zmniej-szy¢ bias sieci neu-ro-no-wej, po-sta-no-wi-ªe
+m prze-pro-wa-dzi¢
+ []
+
+File: wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png Graphic file
+ (type png)
+<use wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png>
+Package pdftex.def Info: wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczen
+ia.png  used on input line 481.
+(pdftex.def)             Requested size: 227.62206pt x 170.71304pt.
+<wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_wykr
+es_uczenia.png, id=190, 642.4pt x 481.8pt>
+File: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow
+_wykres_uczenia.png Graphic file (type png)
+<use wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_
+wykres_uczenia.png>
+Package pdftex.def Info: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_
+warstwa_40_neuronow_wykres_uczenia.png  used on input line 484.
+(pdftex.def)             Requested size: 227.62206pt x 170.71304pt.
+
+Overfull \hbox (2.54399pt too wide) in paragraph at lines 480--486
+[]$[]$ $[]$ 
+ []
+
+<wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_wykr
+es_uczenia.png, id=191, 642.4pt x 481.8pt>
+File: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow
+_wykres_uczenia.png Graphic file (type png)
+<use wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_
+wykres_uczenia.png>
+Package pdftex.def Info: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_
+warstwy_20_neuronow_wykres_uczenia.png  used on input line 488.
+(pdftex.def)             Requested size: 227.62206pt x 170.71304pt.
+<wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_wykr
+es_uczenia.png, id=192, 642.4pt x 481.8pt>
+File: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow
+_wykres_uczenia.png Graphic file (type png)
+<use wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_
+wykres_uczenia.png>
+Package pdftex.def Info: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_
+warstwy_40_neuronow_wykres_uczenia.png  used on input line 491.
+(pdftex.def)             Requested size: 227.62206pt x 170.71304pt.
+
+Overfull \hbox (2.54399pt too wide) in paragraph at lines 487--493
+[]$[]$ $[]$ 
+ []
+
+[19 <./wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png (PNG copy)>
+]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png Graphic fil
+e (type png)
+<use wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png>
+Package pdftex.def Info: wykresy/3_drugi_model_tworzenie_i_analiza/learning_cur
+ves.png  used on input line 500.
+(pdftex.def)             Requested size: 227.62206pt x 170.71304pt.
+<wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_lear
+ning_curves.png, id=200, 642.4pt x 481.8pt>
+File: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow
+_learning_curves.png Graphic file (type png)
+<use wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_
+learning_curves.png>
+Package pdftex.def Info: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_
+warstwa_40_neuronow_learning_curves.png  used on input line 503.
+(pdftex.def)             Requested size: 227.62206pt x 170.71304pt.
+
+Overfull \hbox (2.54399pt too wide) in paragraph at lines 499--505
+[]$[]$ $[]$ 
+ []
+
+<wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_lear
+ning_curves.png, id=201, 642.4pt x 481.8pt>
+File: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow
+_learning_curves.png Graphic file (type png)
+<use wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_
+learning_curves.png>
+Package pdftex.def Info: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_
+warstwy_20_neuronow_learning_curves.png  used on input line 507.
+(pdftex.def)             Requested size: 227.62206pt x 170.71304pt.
+<wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_lear
+ning_curves.png, id=202, 642.4pt x 481.8pt>
+File: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow
+_learning_curves.png Graphic file (type png)
+<use wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_
+learning_curves.png>
+Package pdftex.def Info: wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_
+warstwy_40_neuronow_learning_curves.png  used on input line 510.
+(pdftex.def)             Requested size: 227.62206pt x 170.71304pt.
+
+Overfull \hbox (2.54399pt too wide) in paragraph at lines 506--512
+[]$[]$ $[]$ 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[20 <./wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png (PNG copy)
+>] [21 <./wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neur
+onow_wykres_uczenia.png (PNG copy)> <./wykresy/4_zwiekszenie_stopnia_skomplikow
+ania_modelu/2_warstwy_20_neuronow_wykres_uczenia.png (PNG copy)> <./wykresy/4_z
+wiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_wykres_uczenia.p
+ng (PNG copy)>] [22 <./wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_wa
+rstwa_40_neuronow_learning_curves.png (PNG copy)> <./wykresy/4_zwiekszenie_stop
+nia_skomplikowania_modelu/2_warstwy_20_neuronow_learning_curves.png (PNG copy)>
+ <./wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_l
+earning_curves.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 517.
+ [23
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 472.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 517.
  (./Inzynierka.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 472.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 472.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 517.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 517.
 Package rerunfilecheck Info: File `Inzynierka.out' has not changed.
 (rerunfilecheck)             Checksum: 355A9554C609E4AE96B20E65B4ABFD5F;1014.
 Package logreq Info: Writing requests to 'Inzynierka.run.xml'.
@@ -2038,10 +2153,10 @@ Package logreq Info: Writing requests to 'Inzynierka.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30457 strings out of 492982
- 555047 string characters out of 6134895
+ 30499 strings out of 492982
+ 558216 string characters out of 6134895
  845741 words of memory out of 5000000
- 33581 multiletter control sequences out of 15000+600000
+ 33613 multiletter control sequences out of 15000+600000
  591927 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,12n,45p,10388b,2655s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2053,10 +2168,10 @@ ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/
 uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
 
-Output written on Inzynierka.pdf (21 pages, 429535 bytes).
+Output written on Inzynierka.pdf (23 pages, 604325 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
- 202 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
- 166 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 266 PDF objects out of 1000 (max. 8388607)
+ 214 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 196 words of extra memory for PDF output out of 10000 (max. 10000000)
 

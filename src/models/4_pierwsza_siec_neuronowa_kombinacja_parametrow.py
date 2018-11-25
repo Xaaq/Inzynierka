@@ -1,7 +1,3 @@
-import itertools
-import os
-from typing import Optional
-
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
@@ -11,24 +7,13 @@ from src.data_operator import DataOperator
 from src.plotter import Plotter
 
 
-def create_model(input_neuron_count: int, layer_count: int, neurons_in_layer: int,
-                 regularization_rate: Optional[int] = None):
-    if regularization_rate:
-        layers = [keras.layers.Dense(neurons_in_layer, activation=keras.activations.relu,
-                                     kernel_regularizer=keras.regularizers.l2(regularization_rate))
-                  for _ in range(layer_count - 1)]
-        layers = ([keras.layers.Dense(neurons_in_layer, input_shape=(input_neuron_count,),
-                                      activation=keras.activations.relu,
-                                      kernel_regularizer=keras.regularizers.l2(regularization_rate))]
-                  + layers
-                  + [keras.layers.Dense(1, kernel_regularizer=keras.regularizers.l2(regularization_rate))])
-    else:
-        layers = [keras.layers.Dense(neurons_in_layer, activation=keras.activations.relu)
-                  for _ in range(layer_count - 1)]
-        layers = ([keras.layers.Dense(neurons_in_layer, input_shape=(input_neuron_count,),
-                                      activation=keras.activations.relu)]
-                  + layers
-                  + [keras.layers.Dense(1)])
+def create_model(input_neuron_count: int, layer_count: int, neurons_in_layer: int):
+    layers = [keras.layers.Dense(neurons_in_layer, activation=keras.activations.relu)
+              for _ in range(layer_count - 1)]
+    layers = ([keras.layers.Dense(neurons_in_layer, input_shape=(input_neuron_count,),
+                                  activation=keras.activations.relu)]
+              + layers
+              + [keras.layers.Dense(1)])
 
     model = keras.Sequential(layers)
 
@@ -44,15 +29,8 @@ if __name__ == "__main__":
     plotter = Plotter()
     data_operator = DataOperator()
 
-    for layer_count, neuron_in_layer_count, regularization_rate, extract_function in itertools.product(
-            [1, 2, 3], [30, 40, 50], [None], [data_files_manager.extract_simulation_all_data]):
-        directory_name = f"{regularization_rate}_{extract_function.__name__}"
-        directory_path = f"/home/xaaq/my-projects/inzynierka/inzynierka_latex/rysunki/{directory_name}"
-
-        if not os.path.exists(directory_path):
-            os.makedirs(directory_path)
-
-        input_data, output_data = extract_function("simulation_output_data", 1)
+    for layer_count, neuron_in_layer_count in [(1, 20), (1, 40), (2, 20), (2, 40)]:
+        input_data, output_data = data_files_manager.extract_simulation_all_data("simulation_output_data", 1)
         input_data, output_data = data_operator.permutate_data(input_data, output_data)
         input_data, _, _ = data_operator.normalize_data(input_data)
 
@@ -79,41 +57,40 @@ if __name__ == "__main__":
             data_count, single_data_dimension = train_input_data.shape
             new_data_count = int(round(data_count * i))
 
-            model = create_model(single_data_dimension, layer_count, neuron_in_layer_count, regularization_rate)
+            model = create_model(single_data_dimension, layer_count, neuron_in_layer_count)
             history = model.fit(train_input_data[:new_data_count], train_output_data[:new_data_count],
                                 epochs=learning_epochs, validation_data=(test_input_data, test_output_data),
                                 verbose=False)
             history_list.append((new_data_count, history))
 
-        figure_name = f"learning_curves_liczba_warstw_{layer_count}_liczba_neuronow_{neuron_in_layer_count}.png"
-        figure_path = f"{directory_path}/{figure_name}"
-
-        plotter.plot_learning_curves(history_list, figure_path)
+        plotter.plot_learning_curves(history_list, max_y=200)
 
         # ===== Normal learning =====
 
         mse_list = []
+        history_mse_list = []
 
         for _ in range(10):
             input_data, output_data = data_operator.permutate_data(input_data, output_data)
 
             _, single_data_dimension = input_data.shape
-            model = create_model(single_data_dimension, layer_count, neuron_in_layer_count, regularization_rate)
+            model = create_model(single_data_dimension, layer_count, neuron_in_layer_count)
             history = model.fit(input_data, output_data, epochs=learning_epochs, validation_split=validation_split,
                                 verbose=False)
 
             output_mse = history.history["mean_squared_error"][-1]
             output_val_mse = history.history["val_mean_squared_error"][-1]
+
             mse_list.append([output_mse, output_val_mse])
+            history_mse_list.append((output_val_mse, history))
 
-        figure_name = f"wykres_uczenia_liczba_warstw_{layer_count}_liczba_neuronow_{neuron_in_layer_count}.png"
-        figure_path = f"{directory_path}/{figure_name}"
-
-        plotter.plot_history(history, figure_path)
+        history_mse_list.sort()
+        _, best_history = history_mse_list[0]
+        plotter.plot_history(best_history, max_y=200)
 
         mean_mse = np.array(mse_list).mean(0)
         mse_std = np.array(mse_list).std(0)
 
-        mean_str = f"{mean_mse[0]:.2f} ($\pm${mean_mse[1]:.2f})".replace(".", ",")
-        std_str = f"{mse_std[0]:.2f} ($\pm${mse_std[1]:.2f})".replace(".", ",")
-        print(extract_function.__name__, regularization_rate, layer_count, neuron_in_layer_count, mean_str, std_str)
+        mean_str = f"{mean_mse[0]:.2f} ($\pm${mse_std[0]:.2f})".replace(".", ",")
+        std_str = f"{mean_mse[1]:.2f} ($\pm${mse_std[1]:.2f})".replace(".", ",")
+        print(layer_count, neuron_in_layer_count, mean_str, std_str)

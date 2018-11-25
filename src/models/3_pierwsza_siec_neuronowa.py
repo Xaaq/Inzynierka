@@ -8,10 +8,10 @@ from src.plotter import Plotter
 
 
 def create_model(input_neuron_count: int):
-    model = keras.Sequential([
-        keras.layers.Dense(30, input_shape=(input_neuron_count,), activation=keras.activations.relu),
-        keras.layers.Dense(1)
-    ])
+    layers = [keras.layers.Dense(20, input_shape=(input_neuron_count,), activation=keras.activations.relu),
+              keras.layers.Dense(1)]
+
+    model = keras.Sequential(layers)
 
     model.compile(loss=keras.losses.mean_squared_error,
                   optimizer=tf.train.AdamOptimizer(0.1),
@@ -47,7 +47,6 @@ if __name__ == "__main__":
     test_output_data = output_data[train_data_count:]
 
     for i in range(number_of_splits)[1:]:
-        print(f"Iteration {i}/{number_of_splits - 1}")
         i /= number_of_splits
 
         data_count, single_data_dimension = train_input_data.shape
@@ -58,11 +57,12 @@ if __name__ == "__main__":
                             epochs=learning_epochs, validation_data=(test_input_data, test_output_data), verbose=False)
         history_list.append((new_data_count, history))
 
-    plotter.plot_learning_curves(history_list)
+    plotter.plot_learning_curves(history_list, max_y=200)
 
     # ===== Normal learning =====
 
     mse_list = []
+    history_mse_list = []
 
     for _ in range(10):
         input_data, output_data = data_operator.permutate_data(input_data, output_data)
@@ -71,16 +71,20 @@ if __name__ == "__main__":
         model = create_model(single_data_dimension)
         history = model.fit(input_data, output_data, epochs=learning_epochs, validation_split=validation_split,
                             verbose=False)
-        plotter.plot_history(history)
 
         output_mse = history.history["mean_squared_error"][-1]
         output_val_mse = history.history["val_mean_squared_error"][-1]
-        print(f"Output MSE: {output_mse}")
-        print(f"Output validation MSE: {output_val_mse}")
 
         mse_list.append([output_mse, output_val_mse])
+        history_mse_list.append((output_val_mse, history))
+
+    history_mse_list.sort()
+    _, best_history = history_mse_list[0]
+    plotter.plot_history(best_history, max_y=200)
 
     mean_mse = np.array(mse_list).mean(0)
     mse_std = np.array(mse_list).std(0)
-    print(f"Mean MSE: {mean_mse[0]}, MSE std dev: {mse_std[0]}")
-    print(f"Mean validation MSE: {mean_mse[1]}, MSE std dev: {mse_std[1]}")
+
+    mean_str = f"{mean_mse[0]:.2f} ($\pm${mse_std[0]:.2f})".replace(".", ",")
+    std_str = f"{mean_mse[1]:.2f} ($\pm${mse_std[1]:.2f})".replace(".", ",")
+    print(mean_str, std_str)
