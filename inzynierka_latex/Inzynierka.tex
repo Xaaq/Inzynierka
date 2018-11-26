@@ -174,7 +174,10 @@ backend=bibtex
 
 \newenvironment{mytabular}{\rowcolors{1}{\ifnumless{\rownum}{2}{table_header_color}{even_row_color}}{}\begin{tightcenter}\tabular}{\endtabular\end{tightcenter}}
 
-%centrowanie nagłówków
+% kolumna z zawijaniem
+\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}}
+
+% centrowanie nagłówków
 \captionsetup{justification=centering}
 
 \begin{document}
@@ -379,7 +382,7 @@ backend=bibtex
 		
 		\begin{table}[t]
 			\caption{Średnie wartości parametrów wejściowych do modelu.}
-			\begin{mytabular}{r c c}
+			\begin{mytabular}{r c}
 					\multicolumn{1}{c}{Nazwa parametru} & Średnia wartość \\
 					Panic spread factor & 1.74 \\
 					Panic cancel zone & 0.53 \\
@@ -484,7 +487,7 @@ backend=bibtex
 		
 		\begin{table}[t]
 			\caption{Średnie wartości \textit{MSE} danych dla różnych kombinacji parametrów sieci.}
-			\begin{mytabular}{c c c c}
+			\begin{mytabular}{L L c c}
 					Ilość warstw & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
 					1 & 20 & 47,47 ($\pm$6,08) & 73,66 ($\pm$25,77) \\
 					1 & 40 & 53,16 ($\pm$4,93) & 47,87 ($\pm$20,13) \\
@@ -555,7 +558,7 @@ backend=bibtex
 
 		\begin{table}[t]
 			\caption{Średnie wartości \textit{MSE} danych przy uśrednionych danych.}
-			\begin{mytabular}{c c c c}
+			\begin{mytabular}{L L c c}
 					Ilość warstw & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
 					1 & 20 & 1,38 ($\pm$0,81) & 189,06 ($\pm$60,12) \\
 					1 & 40 & 2,21 ($\pm$2,02) & 182,91 ($\pm$50,58) \\
@@ -634,9 +637,11 @@ backend=bibtex
 		\item parametr regularyzacji $\lambda$ - \textbf{0,1}; \textbf{0,3}; \textbf{1}; \textbf{3}.
 		\end{itemize}
 		
+		Po przeprowadzeniu eksperymentów ze wszystkimi powyższymi kombinacjami parametrów wysrysowałem wykresy krzywych uczących dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_wykresy_uczenia} i \ref{fig: drugi_model_przy_regularyzacji_l2_wykresy_uczenia} oraz wykresy krzywych uczących dla zmiennej ilości danych na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_learning_curves} i \ref{fig: drugi_model_przy_regularyzacji_l2_learning_curves}. Dodatkowo zestawienie średnich \textit{MSE} dla owych kombinacji umiesciłem w tabeli \ref{srednie_wartosci_mse_przy_regularyzacji}.
+		
 		\begin{table}[t]
 			\caption{Średnie wartości \textit{MSE} danych przy regularyzacji.}
-			\begin{mytabular}{c c c c}
+			\begin{mytabular}{L L c c}
 					Rodzaj regularyzacji & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
 					L1 & 0.1 & 11,65 ($\pm$15,70) & 99,61 ($\pm$43,27) \\
 					L1 & 0.3 & 7,68 ($\pm$1,04) & 82,24 ($\pm$39,32) \\
@@ -741,6 +746,17 @@ backend=bibtex
  			\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L2 w drugim modelu.}
 			\label{fig: drugi_model_przy_regularyzacji_l2_learning_curves}
 		\end{figure}
+		
+		Po przeanalizowaniu wszystkich wykresów oraz wartości z tabeli nasunęły się mi następujące spostrzeżenia:
+		\begin{itemize}
+		\item Bazując na tabeli, najlepsza kombinacja parametrów to funkcja regularyzacji \textit{L1} wraz z parametrem $\lambda$ równym 1. Przy tej kombinacji średni \textit{MSE} danych testowych jest najniższy oraz ma najniższe odchylenie.
+		\item Patrząc na krzywe uczące dla najlepszych przypadków można zauważyć, że im wiekszy współczynnik $\lambda$, tym bardziej krzywa \textit{MSE} danych testowych ma tendencję do schodzenia poniżej krzywej \textit{MSE} danych treningowych. Oznacza to, że problem lepszego przewidywania zbioru testującego niż trenującego nie został wyeliminowany w całości. Widać także na nich, że dla $\lambda$, który w powyższym punkcie wydaje się najlepiej rokującą opcją, zdarzają się takie przypadki.
+		\item Porównując krzywe uczące dla zmiennej ilości danych L1 z krzywymi L2, wśród tych pierwszych widać większą tendencję na zmniejszenie \textit{MSE} danych testowych przy większej ilości danych.
+		\end{itemize}				
+		
+		Podsumowując, badając powyższe dane okazuje się, że uśrednianie danych nie wyeliminowało do końca problemu gorszego przyuczenia sieci do danych treningowych niż do testowych. Jednocześnie wstępnym wnioskiem na obecnych danych jest to, że regularyzacja \textit{L1} pomaga bardziej niż \textit{L2}. Jednakże aby mieć tego pewność, trzeba dokładniej sprawdzić dane oraz ewentualnie zebrać ich więcej, po czym zrobić powyższe testy jeszcze raz.
+		
+		\section{Zbadanie danych}
 		
 		\printbibliography
 \end{document}
