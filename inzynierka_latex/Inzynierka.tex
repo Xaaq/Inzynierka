@@ -279,8 +279,8 @@ backend=bibtex
 	\chapter{Budowa modelu uczenia maszynowego}
 	\textit{W tym rozdziale opisany będzie proces zbierania danych za pomocą symulatora PSP, tworzenie modelu uczenia maszynowego oraz optymalizacji jego wartości wyjściowych.}
 	
-		\section{Zebranie danych}
-		W celu zebrania danych, które miałyby trafić później do modelu uczenia maszynowego, stworzyłem skrypt pythonowy, który wygenerował 200 różnych zestawów parametrów wejściowych do symulatora. Rodzaje danych, które wygenerowałem znajdują się w rozdziale~\ref{dane_do_dalszej_analizy}. Dla każdego zestawu danych ustawiłem parametrowi \textit{Repeat number} wartość 10, dzięki czemu dla każdego zestawu danych wejściowych generowane było 10 zestawów danych wyjściowych. Było to niezwykle cenne z 2 powodów:
+		\section{Zebranie danych} \label{zebranie_danych}
+		W celu zebrania danych, które miałyby trafić później do modelu uczenia maszynowego, stworzyłem skrypt pythonowy, który wygenerował 200 różnych zestawów parametrów wejściowych do symulatora. Rodzaje danych, które wygenerowałem znajdują się w rozdziale~\ref{dane_do_dalszej_analizy}. Dla każdego zestawu danych ustawiłem parametrowi \textit{Repeat number} wartość \textbf{10}, dzięki czemu dla każdego zestawu danych wejściowych generowane było 10 zestawów danych wyjściowych. Było to niezwykle cenne z 2 powodów:
 		\begin{itemize}
 		\item Do symulatora trzeba było ręcznie ładować plik \textit{.xml}, a dzięki temu z jedngo pliku otrzymywałem od razu 10 zestawów plików wyjściowych.
 		\item Ruchy agentów, nawet z takim samym zestawem parametrów, rożnią się między symulacjami, a dzięki powtórzeniom łatwiej było wyeliminować te różnice.
@@ -325,7 +325,7 @@ backend=bibtex
 		\item pojedyncza warstwa składająca się z jednego neuronu,
 		\item \textbf{funkcja aktywacji} - brak,
 		\item \textbf{learning rate} - 0.1,
-		\item \textbf{metryka do optymalizacji} - MSE,
+		\item \textbf{metryka do optymalizacji} - \textit{MSE},
 		\item \textbf{liczba epok uczacych} - 300,
 		\item podział na \textbf{dane treningowe} i \textbf{dane testowe} - 80\% : 20\%.
 		\end{itemize}
@@ -335,11 +335,11 @@ backend=bibtex
 		\item \textbf{średnie MSE danych treningowych} - 147,77 ($\pm$16,04),
 		\item \textbf{średnie MSE danych testowych} - 166,18 ($\pm$50,77).
 		\end{itemize}
-		Zależność \textit{MSE} danych od iteracji uczacej najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczna na wykresie \ref{fig: pierwszy_model_wykres_uczenia}. Analizując go, doszedłem do następujących wniosków:
+		Wykres zależności \textit{MSE} danych od iteracji uczacej najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczna na rysunku \ref{fig: pierwszy_model_wykres_uczenia}. Taki rodzaj wykresów będzie nazywany dalej \textbf{wykresami krzywych uczących dla najlepszego przypadku}. Analizując go, doszedłem do następujących wniosków:
 		\begin{itemize}
 		\item \textit{MSE} danych treningowych jak i testowych jest na wysokim poziomie co oznacza, że model ma \textbf{wysoki bias}. Oznacza to, że użyty model jest zbyt prosty i nie ważne jak dużo danych zostanie do niego podanych i jak długo będzie się on uczył - \textit{MSE} danych nie obniży się poniżej pewnego poziomu.
-		\item Podczas uczenia \textit{MSE} danych jest bardzo niestabilny, co oznacza niestabilność danych lub modelu.
-		\item \textit{MSE} danych testowych jest przez większośc iteracji mniejsze niż treningowych co oznacza, że dla danych których sieć nie widziała, przewiduje ona wartości bliższe prawdzie niż na danych na których się uczyła. Jest to niecodzienne zachowanie co również dowodzi niestabilności modelu lub danych.
+		\item Podczas uczenia \textit{MSE} danych jest obarczony duzym szumem, co oznacza niestabilność danych lub modelu.
+		\item \textit{MSE} danych testowych jest przez większość iteracji mniejsze niż treningowych co oznacza, że dla danych których sieć nie widziała, przewiduje ona wartości bliższe prawdzie niż na danych na których się uczyła. Jest to niecodzienne zachowanie co również dowodzi niestabilności modelu lub danych.
 		\end{itemize}
 		
 		\begin{figure}[h]
@@ -347,18 +347,18 @@ backend=bibtex
 	 			\includegraphics[width = 0.75\linewidth]{wykresy/1_pierwszy_model_tworzenie_i_analiza/wykres_uczenia.png}
 	 		\end{tightcenter}
 	 		
- 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w pierwszym modelu.}
+ 			\caption{Krzywe uczące dla najlepszego przypadku w pierwszym modelu.}
 			\label{fig: pierwszy_model_wykres_uczenia}
 		\end{figure}
 		
-		Aby mieć szerszy pogląd na to jaki wpływ ma ilość danych na których się uczy sieć na \textit{MSE} tych danych postanowiłem	uruchomić proces uczacy kolejne 20 razy dla pojedynczej permutacji danych wejściowych, lecz przy zwiększającej się ilości danych treningowych. Wynik tego badania jest widoczny na wykresie \ref{fig: pierwszy_model_learning_curves}. Informacją jaką można z niego wyciągnąć jest ilość danych potrzebna do tego aby osiągnąć dany pułap \textit{MSE} danych. Widać że podczas gdy przy danych treningowych, większa ich ilość spowodowała spadek ich \textit{MSE} to przy danych testowych nie spowodowało to większej różnicy.
+		Aby mieć szerszy pogląd na to, jaki wpływ ma ilość danych na których się uczy sieć na \textit{MSE} tych danych - postanowiłem uruchomić proces uczacy kolejne 20 razy dla pojedynczej permutacji danych wejściowych, lecz przy zwiększającej się ilości danych treningowych. Wykres obrazujący wynik tych badań jest widoczny na rysunku \ref{fig: pierwszy_model_learning_curves}. Ten rodzaj wykresów dalej nazywany będzie \textbf{wykresami krzywych uczących dla zmiennej ilości danych}. Informacją jaką można z niego wyciągnąć jest ilość danych potrzebna do tego aby osiągnąć dany pułap \textit{MSE} danych. Widać że podczas gdy przy danych treningowych, większa ich ilość spowodowała spadek ich \textit{MSE} to przy danych testowych nie spowodowało to większej różnicy.
 		
 		\begin{figure}[h]
 	 		\begin{tightcenter}
 	 			\includegraphics[width = 0.75\linewidth]{wykresy/1_pierwszy_model_tworzenie_i_analiza/learning_curves.png}
 	 		\end{tightcenter}
 	 		
- 			\caption{Zależność \textit{MSE} danych od ich ilości w pierwszym modelu.}
+ 			\caption{Krzywe uczące dla zmiennej ilości danych w pierwszym modelu.}
 			\label{fig: pierwszy_model_learning_curves}
 		\end{figure}
 		
@@ -405,14 +405,14 @@ backend=bibtex
 		\item \textbf{średnia MSE danych treningowych} - 118,64 ($\pm$6,07),
 		\item \textbf{średnia MSE danych testowych} - 130,70 ($\pm$23,47).
 		\end{itemize}
-		Proces uczenia najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczny na wykresie \ref{fig: pierwszy_model_wykres_uczenia_z_normalizacja}. Dodatkowo na wykresie \ref{fig: pierwszy_model_learning_curves_z_normalizacja} widać zależność \textit{MSE} danych od liczby danych treningowych. 
+		Wykres krzywych uczących dla najlepszego przypadku widoczny jest na rysunku \ref{fig: pierwszy_model_wykres_uczenia_z_normalizacja}. Dodatkowo patrząc na wykres krzywych uczących dla zmiennej ilości danych z rysunku \ref{fig: pierwszy_model_learning_curves_z_normalizacja} - widać zależność \textit{MSE} danych od liczby danych treningowych. 
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
 	 			\includegraphics[width = 0.75\linewidth]{wykresy/2_normalizacja_danych/wykres_uczenia.png}
 	 		\end{tightcenter}
 	 		
- 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w pierwszym modelu ze znormalizowanymi danymi.}
+ 			\caption{Krzywe uczące dla najlepszego przypadku w pierwszym modelu ze znormalizowanymi danymi.}
 			\label{fig: pierwszy_model_wykres_uczenia_z_normalizacja}
 		\end{figure}
 		
@@ -421,11 +421,11 @@ backend=bibtex
 	 			\includegraphics[width = 0.75\linewidth]{wykresy/2_normalizacja_danych/learning_curves.png}
 	 		\end{tightcenter}
 	 		
- 			\caption{Zależność \textit{MSE} danych od ich ilości w pierwszym modelu ze znormalizowanymi danymi.}
+ 			\caption{Krzywe uczące dla zmniennej ilości danych w pierwszym modelu ze znormalizowanymi danymi.}
 			\label{fig: pierwszy_model_learning_curves_z_normalizacja}
 		\end{figure}
 		
-		Pierwszą rzeczą rzucającą się w oczy jest duża stabilność wartości na wykresach - eliminuje to sytuacje w których wynik uczenia był winą przypadku, jako że kilka iteracji wcześniej lub później \textit{Perceptron} dawał zupełnie inny rezultat. Dzięki większej stabilności sieci łatwiej jest także wyciągać wnioski na podstawie wykresów. Lepiej widoczny jest problem zauważony wcześniej - wysoki bias modelu. Objawia się on tym, że na początku \textit{MSE} danych maleje, aż do pewnego momentu gdzie jest stały i żadna ilość danych albo długość uczenia nie spowoduje jego zmniejszenia. Ostatnią rzeczą, która jest taka sama jak w rozdziale \ref{pierwszy_model_tworzenie_i_analiza} - \textit{MSE} danych testowych często jest mniejsze niż danych treningowych.
+		Podsumowując, pierwszą rzeczą rzucającą się w oczy jest duża stabilność wartości na wykresach - eliminuje to sytuacje w których wynik uczenia był winą przypadku, jako że kilka iteracji wcześniej lub później \textit{Perceptron} dawał zupełnie inny rezultat. Dzięki większej stabilności sieci łatwiej jest także wyciągać wnioski na podstawie wykresów. Lepiej widoczny jest problem zauważony wcześniej - wysoki bias modelu. Objawia się on tym, że na początku \textit{MSE} danych maleje, aż do pewnego momentu gdzie jest stały i żadna ilość danych albo długość uczenia nie spowoduje jego zmniejszenia. Ostatnią rzeczą, która jest taka sama jak w rozdziale \ref{pierwszy_model_tworzenie_i_analiza} - \textit{MSE} danych testowych często jest mniejsze niż danych treningowych.
 		
 		\section{Drugi model - tworzenie i analiza} \label{drugi_model_tworzenie_i_analiza}
 		Chcąc rozwiązać główny problem poprzedniego modelu - wysoki bias - potrzebowałem modelu, który potrafi nauczyć się bardziej skomplikowanych funkcji. Takim modelem była sieć neuronowa z kilkoma warstwami. Dzięki każdej następnej warstwie ma ona możliwość uczenia się coraz bardziej skomplikowanych funkcji. Sieć jaką stworzyłem miała 1 \textbf{warstwę ukrytą} - warstwę neuronów pomiędzy wejściami a warstwą wyjść - z 30 neuronami. Jako funkcję aktywacji wybrałem funkcję \textit{ReLU}.
@@ -441,17 +441,17 @@ backend=bibtex
 		
 		Proces uczący przeprowadziłem identycznie jak poprzednio - wykonałem 10 osobnych cykli uczących z różnymi permutacjami danych oraz 20 osobnych cykli uczących na zmieniającej się wielkości zestawu danych traningowych. Średnie \textit{MSE} danych z 10 cykli są następujące:
 		\begin{itemize}
-		\item \textbf{średnia MSE danych treningowych} - 54,07 ($\pm$3,11),
-		\item \textbf{średnia MSE danych testowych} - 48,82 ($\pm$14,69).
+		\item \textbf{średnia MSE danych treningowych} - 47,47 ($\pm$6,08),
+		\item \textbf{średnia MSE danych testowych} - 73,66 ($\pm$25,77).
 		\end{itemize}
-		Proces uczący najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczny na wykresie \ref{fig: drugi_model_wykres_uczenia}. Dane zebrane z cykli ze zmnieniającą się ilością danych treningowych umieszczone są na wykresie \ref{fig: drugi_model_learning_curves}.
+		Wykres krzywych uczacych dla najlepszego przypadku widoczny jest na rysunku \ref{fig: drugi_model_wykres_uczenia} a krzywych uczących dla zmiennej ilości danych - na rysunku \ref{fig: drugi_model_learning_curves}.
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
 	 			\includegraphics[width = 0.75\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png}
 	 		\end{tightcenter}
 	 		
- 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszego przypadku w drugim modelu.}
+ 			\caption{Krzywe uczące dla najlepszego przypadku w drugim modelu.}
 			\label{fig: drugi_model_wykres_uczenia}
 		\end{figure}
 		
@@ -460,13 +460,13 @@ backend=bibtex
 	 			\includegraphics[width = 0.75\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png}
 	 		\end{tightcenter}
 	 		
- 			\caption{Zależność \textit{MSE} danych od ich ilości w drugim modelu.}
+ 			\caption{Krzywe uczące dla zmiennej ilości danych w drugim modelu.}
 			\label{fig: drugi_model_learning_curves}
 		\end{figure}
 		
 		Porównując te dane z tymi z sekcji \ref{normalizacja_danych} widać znaczącą poprawę modelu - trzykrotny spadek średnich \textit{MSE} danych treningowych oraz testowych. Mimo tego widać, \textit{MSE} po osiągnięciu pewnego pułapu przestaje maleć - oznacza to, że model dalej ma duży bias.
 		
-		\section{Zwiększenie stopnia skomplikowania modelu}
+		\section{Zwiększenie stopnia skomplikowania modelu} \label{zwiekszenie_stopnia_skomplikowania_modelu}
 		Próbując zmniejszyć bias sieci neuronowej, postanowiłem przeprowadzić eksperymenty z innymi parametrami sieci, a mianowicie:
 		\begin{itemize}
 		\item liczba warstw ukrytych - \textbf{1}, liczba neuronów w warstwie - \textbf{40};
@@ -474,56 +474,273 @@ backend=bibtex
 		\item liczba warstw ukrytych - \textbf{2}, liczba neuronów w każdej warstwie - \textbf{40};
 		\end{itemize}
 		
-		Zestawienie wynikow z sekcji \ref{drugi_model_tworzenie_i_analiza} oraz powyższych kombinacji parametrów jest widoczne na wykresach \ref{fig: drugi_model_kombinacje_parametrow_wykresy_uczenia} i \ref{fig: drugi_model_kombinacje_parametrow_learning_curves}.
+		Zestawienie wynikow z sekcji \ref{drugi_model_tworzenie_i_analiza} oraz powyższych kombinacji parametrów jest następujące:
+		\begin{itemize}
+		\item krzywe uczące dla najlepszych przypadków są widoczne na rysunku \ref{fig: drugi_model_kombinacje_parametrow_wykresy_uczenia},
+		\item krzywe uczące dla zmiennej ilości danych pokazane są na rysunku \ref{fig: drugi_model_kombinacje_parametrow_learning_curves}.
+		\end{itemize}
 		
-1 20 47,47 ($\pm$6,08) 73,66 ($\pm$25,77)
-1 40 53,16 ($\pm$4,93) 47,87 ($\pm$20,13)
-2 20 59,49 ($\pm$10,81) 89,52 ($\pm$22,04)
-2 40 64,13 ($\pm$7,30) 70,68 ($\pm$20,42)
+		Dodatkowo średnie \textit{MSE} z 10 różnych permutacji danych zestawiłem w tabeli \ref{srednie_wartosci_mse_dla_roznych_kombinacji_parametrow_sieci}.
 		
+		\begin{table}[t]
+			\caption{Średnie wartości \textit{MSE} danych dla różnych kombinacji parametrów sieci.}
+			\begin{mytabular}{c c c c}
+					Ilość warstw & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
+					1 & 20 & 47,47 ($\pm$6,08) & 73,66 ($\pm$25,77) \\
+					1 & 40 & 53,16 ($\pm$4,93) & 47,87 ($\pm$20,13) \\
+					2 & 20 & 59,49 ($\pm$10,81) & 89,52 ($\pm$22,04) \\
+					2 & 40 & 64,13 ($\pm$7,30) & 70,68 ($\pm$20,42)
+			\end{mytabular}
+			\label{srednie_wartosci_mse_dla_roznych_kombinacji_parametrow_sieci}
+		\end{table}
+
 		\begin{figure}[h]
 			\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png}
+		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_wykres_uczenia.png}
+		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_wykres_uczenia.png}
+		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_wykres_uczenia.png}
+		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 	 	
- 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla najlepszych przypadków przy użyciu różnych kombinacji parametrów w drugim modelu.}
+ 			\caption{Krzywe uczące dla najlepszych przypadków przy użyciu różnych kombinacji parametrów w drugim modelu.}
 			\label{fig: drugi_model_kombinacje_parametrow_wykresy_uczenia}
 		\end{figure}
 		
 		\begin{figure}[h]
 			\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png}
+		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_learning_curves.png}
+		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_learning_curves.png}
+		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_learning_curves.png}
+		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 	 	
- 			\caption{Zależność \textit{MSE} danych od iteracji uczącej dla różnych kombinacji parametrów w drugim modelu.}
+ 			\caption{Krzywe uczące dla zmiennej ilosci danych przy różnych kombinacjach parametrów w drugim modelu.}
 			\label{fig: drugi_model_kombinacje_parametrow_learning_curves}
 		\end{figure}
 		
-		\section{Tutaj cos o uśrednianiu}
-1 20 1,38 ($\pm$0,81) 189,06 ($\pm$60,12)
-1 40 2,21 ($\pm$2,02) 182,91 ($\pm$50,58)
-2 20 6,06 ($\pm$8,93) 113,56 ($\pm$55,77)
-2 40 2,02 ($\pm$4,38) 108,03 ($\pm$40,39)
+		Mimo zwiększenia stopnia skomplikowania sieci, \textit{MSE} danych treningowych i testowych nie wykazywały tendencji spadkowej. To co powinno się stać w takim przypadku, to \textit{MSE} danych treningowych powinien osiągać coraz niższe wartości wraz ze skomplikowaniem modelu. Na wykresach również widac, że dane testowe miały czasem \textit{MSE} mniejszych od zestawu treningowego. Wnioskiem tej analizy jest to, że problem z uczeniem sieci leży nie w modelu, a w danych.
+		
+		\section{Uśrednianie danych}
+		Wiedząc że problem leży w danych postanowiłem ulepszyć istniejące dane, uśredniając je. W sekcji \ref{zebranie_danych} napisałem, że dla każdego zbioru parametrów wejściowych wygenerowałem do 10 zbiorów parametrów wyjściowych. Dla każdego zestawu wejściowego obliczyłem średnią zestawów parametrów wyjściowych co zmniejszyło ilość danych prawie 10-krotnie. Ostatecznie mój nowy zbiór zawierał 200 zestawów danych (przy czym, podczas procesu uczenia zostały one podzielone na dane treningowe i testowe).
+		
+		Po przetworzeniu danych postanowiłem powtórzyć badanie z sekcji \ref{zwiekszenie_stopnia_skomplikowania_modelu}, używając kombinacji parametrów:
+		\begin{itemize}
+		\item ilość warstw ukrytych - \textbf{1} i \textbf{2},
+		\item ilość neuronów w każdej warstwie - \textbf{20} i \textbf{40}.
+		\end{itemize}
+		
+		Po powtórzeniu poprzedniego badania na uśrednionych danych, wyniki widać na rysunkach \ref{fig: drugi_model_przy_usrednionych_danych_wykresy_uczenia} i \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves}. Średnie \textit{MSE} danych dla kombinacji parametrów jest umieszczone w tabeli \ref{srednie_wartosci_mse_przy_usrednionych_danych}. 
 
+		\begin{table}[t]
+			\caption{Średnie wartości \textit{MSE} danych przy uśrednionych danych.}
+			\begin{mytabular}{c c c c}
+					Ilość warstw & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
+					1 & 20 & 1,38 ($\pm$0,81) & 189,06 ($\pm$60,12) \\
+					1 & 40 & 2,21 ($\pm$2,02) & 182,91 ($\pm$50,58) \\
+					2 & 20 & 6,06 ($\pm$8,93) & 113,56 ($\pm$55,77) \\
+					2 & 40 & 2,02 ($\pm$4,38) & 108,03 ($\pm$40,39)
+			\end{mytabular}
+			\label{srednie_wartosci_mse_przy_usrednionych_danych}
+		\end{table}
+
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/1_warstwa_20_neuronow_wykres_uczenia.png}
+		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/1_warstwa_40_neuronow_wykres_uczenia.png}
+		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/2_warstwy_20_neuronow_wykres_uczenia.png}
+		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/2_warstwy_40_neuronow_wykres_uczenia.png}
+		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
+		 	\end{subfigure}
+	 	
+ 			\caption{Krzywe uczące dla najlepszych przypadków przy uśrednionych danych w drugim modelu.}
+			\label{fig: drugi_model_przy_usrednionych_danych_wykresy_uczenia}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/1_warstwa_20_neuronow_learning_curves.png}
+		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/1_warstwa_40_neuronow_learning_curves.png}
+		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/2_warstwy_20_neuronow_learning_curves.png}
+		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/2_warstwy_40_neuronow_learning_curves.png}
+		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
+		 	\end{subfigure}
+	 	
+ 			\caption{Krzywe uczące dla zmniennej ilości uśrednionych danych w drugim modelu.}
+			\label{fig: drugi_model_przy_usrednionych_danych_learning_curves}
+		\end{figure}
+		
+		Analizując dane, można zauważyć że po uśrednieniu zachowują się one zgodnie z przewidywaniami - większe skomplikowanie sieci neuronowej zmniejszyło dramatycznie \textit{MSE} danych treningowych. Co było również spodziewane - \textit{MSE} danych testowych pozostał wysoki; jednakże na wykresach \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves} (c) i (d) widać ciekawą tendencję - wygląda na to, że przy większych rozmiarach zbioru danych nawet \textit{MSE} zbioru testowego zaczyna się obniżać. Podobną tendencję, lecz słabszą można też zauwazyć na wykresach \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves} (a) i (b) po przekroczeniu pułapu 140 zestawów danych uczących. Gdy model jest zbyt dobrze przyuczony do danych treningowych i źle generalizuje na danych testowych, mówi się że posiada on \textbf{wysoką wariancję}.
+		
+		Ze względu na duży czas oczekiwania oraz potrzebę ciągłego nadzoru nad symulatorem, postanowiłem w pirewszej kolejności poszukać innych sposobów na zwiększenie efektowności modelu.
+		
+		\section{Regularyzacja modelu}
+		Chcąc obnizyć wariancję modelu uczenia maszynowego stosuje się techniki zwane regularyzacją. Najprostsze z nich czyli regularyzacja \textbf{L1} i \textbf{L2} polegają na dodaniu współczynnika kary do funkcji kosztu. Karze ona model za posiadanie wysokich wag na połączeniach pomiędzy neuronami. Dla porównania mając funkcję kosztu \ref{loss_function}, używając regularyzacji \textit{L1} będzie ona wyglądać jak na równaniu \ref{loss_function_l1} a regularyzacji \textit{L2} - tak jak na równaniu \ref{loss_function_l2}. Współczynnik $\lambda$ to tak zwany \textbf{współczynnik regularyzacji} - odpowiada on za siłę, z jaką wagi będa zmniejszane.
+		
+		\begin{equation} \label{loss_function}
+		S = \sum_{i = 1}^n (y_i - f(x_i))^2
+		\end{equation}
+		\begin{equation} \label{loss_function_l1}
+		S = \sum_{i = 1}^n (y_i - f(x_i))^2 + \lambda \sum_{i = 1}^k |w_i|
+		\end{equation}
+		\begin{equation} \label{loss_function_l2}
+		S = \sum_{i = 1}^n (y_i - f(x_i))^2 + \lambda \sum_{i = 1}^k w_i^2
+		\end{equation}
+		
+		Bazując na badaniach z poprzedniego rozdziału, wybrałem model z jedną 20-neuronową warstwą ukrytą aby przeprowadzić na nim eksperymenty z regularyzacją. Mój wybór był umotywowany tym, że był to najprostszy z 4 modeli, a jednocześnie miał możliwość prawie idealnego nauczenia się danych treningowych. Parametry regularyzacji jakie wybrałem do badań to:
+		\begin{itemize}
+		\item funkcje regularyzujące - \textbf{L1} i \textbf{L2},
+		\item parametr regularyzacji $\lambda$ - \textbf{0,1}; \textbf{0,3}; \textbf{1}; \textbf{3}.
+		\end{itemize}
+		
+		\begin{table}[t]
+			\caption{Średnie wartości \textit{MSE} danych przy regularyzacji.}
+			\begin{mytabular}{c c c c}
+					Rodzaj regularyzacji & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
+					L1 & 0.1 & 11,65 ($\pm$15,70) & 99,61 ($\pm$43,27) \\
+					L1 & 0.3 & 7,68 ($\pm$1,04) & 82,24 ($\pm$39,32) \\
+					L1 & 1 & 15,89 ($\pm$3,44) & 36,21 ($\pm$24,35) \\
+					L1 & 3 & 40,44 ($\pm$21,46) & 64,26 ($\pm$39,62) \\
+					L2 & 0.1 & 7,42 ($\pm$1,74) & 102,93 ($\pm$47,46) \\
+					L2 & 0.3 & 20,04 ($\pm$3,16) & 76,49 ($\pm$36,76) \\
+					L2 & 1 & 53,44 ($\pm$4,77) & 81,18 ($\pm$43,06) \\
+					L2 & 3 & 103,04 ($\pm$7,29) & 62,86 ($\pm$34,93)
+			\end{mytabular}
+			\label{srednie_wartosci_mse_przy_regularyzacji}
+		\end{table}
+
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_0_1_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 0.1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_0_3_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 0.3}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_1_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_3_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 3}
+		 	\end{subfigure}
+		  	
+		  	\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L1 w drugim modelu.}
+			\label{fig: drugi_model_przy_regularyzacji_l1_wykresy_uczenia}
+		\end{figure}
+		 	
+		 \begin{figure}[h]
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_0_1_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 0.1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_0_3_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 0.3}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_1_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_3_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 3}
+		 	\end{subfigure}
+	 	
+ 			\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L2 w drugim modelu.}
+			\label{fig: drugi_model_przy_regularyzacji_l2_wykresy_uczenia}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_0_1_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 0.1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_0_3_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 0.3}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_1_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_3_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 3}
+		 	\end{subfigure}
+		  	
+		  	\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L1 w drugim modelu.}
+			\label{fig: drugi_model_przy_regularyzacji_l1_learning_curves}
+		\end{figure}
+		 	
+		 \begin{figure}[h]
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_0_1_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 0.1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_0_3_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 0.3}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_1_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_3_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 3}
+		 	\end{subfigure}
+	 	
+ 			\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L2 w drugim modelu.}
+			\label{fig: drugi_model_przy_regularyzacji_l2_learning_curves}
+		\end{figure}
+		
 		\printbibliography
 \end{document}
