@@ -180,6 +180,9 @@ backend=bibtex
 % centrowanie nagłówków
 \captionsetup{justification=centering}
 
+% wykresy w sekcjach w których sie je zdefiniowało
+\usepackage[section]{placeins}
+
 \begin{document}
 	\titlepages
 	
@@ -291,7 +294,7 @@ backend=bibtex
 		
 		Dla części symulacji, symulator niespodziewanie wyłączył się podczas pracy, przez co niektórym zestawom danych wejściwych odpowiada mniej niż 10 zestawów danych wyjściowych. Ostatecznie z 200 zestawów parametrów wejściowych uzyskałem 1888 zestawów parametrów wyjsciowych. Oznacza to, że 5,6\% z symulacji, które miały zostać przeprowadzone nie udały się.	
 		
-		W pierwszym podejściu, aby móc przetestować model w prostych warunkach, wybrałem z kazdego zestawu danych: wszystkie dane wejściowe, jedną daną wyjściową. Daną wyjściową, którą wybrałem był czas ewakuacji ostatniego agenta. Każdy zestaw danych zawierał więc \textbf{15} parametrów wejściowych oraz \textbf{1} parametr wyjściowy. Z tak przygotowanymi danymi miałem możliwość wybrania pierwszego modelu.
+		W pierwszym podejściu, aby móc przetestować model w prostych warunkach, wybrałem z kazdego zestawu danych: wszystkie dane wejściowe, jedną daną wyjściową. Wybraną daną wyjściową był czas ewakuacji ostatniego agenta. Każdy zestaw danych zawierał więc \textbf{15} parametrów wejściowych oraz \textbf{1} parametr wyjściowy. Z tak przygotowanymi danymi miałem możliwość stworzenia pierwszego modelu.
 		
 		\section{Opis modelu Perceptron}		
 		Na poczatek, wybrałem prosty model uczenia maszynowego - regresję liniową. Stworzyłem go wykorzystując \textbf{Perceptron}. Jest to prosta sieć neuronowa, która posiada zestaw neuronów wejściowych, kazdy odpowiadający pojedynczej danej wejsciowej. Składa się on także z jednego lub wielu niezależnych neuronów wyjściowych. Każdy z nich jest połączony ze wszystkimi neuronami wejściowymi za pomocą krawędzi posiadających wagi - definiują one jak duży wpływ na wyjście ma każda dana wejściowa. Jeśli wyrazimy:
@@ -335,8 +338,8 @@ backend=bibtex
 				
 		Proces uczący został wykonany 10 razy od nowa na nienauczonym modelu, za kazdym razem wykonując permutację danych. Średnie \textit{MSE} danych wyglądają następująco:
 		\begin{itemize}
-		\item \textbf{średnie MSE danych treningowych} - 147,77 ($\pm$16,04),
-		\item \textbf{średnie MSE danych testowych} - 166,18 ($\pm$50,77).
+		\item \textbf{średni MSE danych treningowych} - 147,77 ($\pm$16,04),
+		\item \textbf{średni MSE danych testowych} - 166,18 ($\pm$50,77).
 		\end{itemize}
 		Wykres zależności \textit{MSE} danych od iteracji uczacej najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczna na rysunku \ref{fig: pierwszy_model_wykres_uczenia}. Taki rodzaj wykresów będzie nazywany dalej \textbf{wykresami krzywych uczących dla najlepszego przypadku}. Analizując go, doszedłem do następujących wniosków:
 		\begin{itemize}
@@ -405,8 +408,8 @@ backend=bibtex
 		
 		Posiadając tak przygotowane dane wykonałem - tak jak w punkcie \ref{pierwszy_model_tworzenie_i_analiza} - 10 cykli nauczania z różnymi permutacjami danych oraz 20 cykli z jedną permutacją, lecz zmieniającym się rozmiarem zestawu danych treningowych. Średnie \textit{MSE} danych są następujące:
 		\begin{itemize}
-		\item \textbf{średnia MSE danych treningowych} - 118,64 ($\pm$6,07),
-		\item \textbf{średnia MSE danych testowych} - 130,70 ($\pm$23,47).
+		\item \textbf{średni MSE danych treningowych} - 118,64 ($\pm$6,07),
+		\item \textbf{średni MSE danych testowych} - 130,70 ($\pm$23,47).
 		\end{itemize}
 		Wykres krzywych uczących dla najlepszego przypadku widoczny jest na rysunku \ref{fig: pierwszy_model_wykres_uczenia_z_normalizacja}. Dodatkowo patrząc na wykres krzywych uczących dla zmiennej ilości danych z rysunku \ref{fig: pierwszy_model_learning_curves_z_normalizacja} - widać zależność \textit{MSE} danych od liczby danych treningowych. 
 		
@@ -444,8 +447,8 @@ backend=bibtex
 		
 		Proces uczący przeprowadziłem identycznie jak poprzednio - wykonałem 10 osobnych cykli uczących z różnymi permutacjami danych oraz 20 osobnych cykli uczących na zmieniającej się wielkości zestawu danych traningowych. Średnie \textit{MSE} danych z 10 cykli są następujące:
 		\begin{itemize}
-		\item \textbf{średnia MSE danych treningowych} - 47,47 ($\pm$6,08),
-		\item \textbf{średnia MSE danych testowych} - 73,66 ($\pm$25,77).
+		\item \textbf{średni MSE danych treningowych} - 47,47 ($\pm$6,08),
+		\item \textbf{średni MSE danych testowych} - 73,66 ($\pm$25,77).
 		\end{itemize}
 		Wykres krzywych uczacych dla najlepszego przypadku widoczny jest na rysunku \ref{fig: drugi_model_wykres_uczenia} a krzywych uczących dla zmiennej ilości danych - na rysunku \ref{fig: drugi_model_learning_curves}.
 		
@@ -618,7 +621,7 @@ backend=bibtex
 		
 		Ze względu na duży czas oczekiwania oraz potrzebę ciągłego nadzoru nad symulatorem, postanowiłem w pirewszej kolejności poszukać innych sposobów na zwiększenie efektowności modelu.
 		
-		\section{Regularyzacja modelu}
+		\section{Regularyzacja modelu} \label{regularyzacja_modelu}
 		Chcąc obnizyć wariancję modelu uczenia maszynowego stosuje się techniki zwane regularyzacją. Najprostsze z nich czyli regularyzacja \textbf{L1} i \textbf{L2} polegają na dodaniu współczynnika kary do funkcji kosztu. Karze ona model za posiadanie wysokich wag na połączeniach pomiędzy neuronami. Dla porównania mając funkcję kosztu \ref{loss_function}, używając regularyzacji \textit{L1} będzie ona wyglądać jak na równaniu \ref{loss_function_l1} a regularyzacji \textit{L2} - tak jak na równaniu \ref{loss_function_l2}. Współczynnik $\lambda$ to tak zwany \textbf{współczynnik regularyzacji} - odpowiada on za siłę, z jaką wagi będa zmniejszane.
 		
 		\begin{equation} \label{loss_function}
@@ -643,12 +646,12 @@ backend=bibtex
 			\caption{Średnie wartości \textit{MSE} danych przy regularyzacji.}
 			\begin{mytabular}{L L c c}
 					Rodzaj regularyzacji & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
-					L1 & 0.1 & 11,65 ($\pm$15,70) & 99,61 ($\pm$43,27) \\
-					L1 & 0.3 & 7,68 ($\pm$1,04) & 82,24 ($\pm$39,32) \\
+					L1 & 0,1 & 11,65 ($\pm$15,70) & 99,61 ($\pm$43,27) \\
+					L1 & 0,3 & 7,68 ($\pm$1,04) & 82,24 ($\pm$39,32) \\
 					L1 & 1 & 15,89 ($\pm$3,44) & 36,21 ($\pm$24,35) \\
 					L1 & 3 & 40,44 ($\pm$21,46) & 64,26 ($\pm$39,62) \\
-					L2 & 0.1 & 7,42 ($\pm$1,74) & 102,93 ($\pm$47,46) \\
-					L2 & 0.3 & 20,04 ($\pm$3,16) & 76,49 ($\pm$36,76) \\
+					L2 & 0,1 & 7,42 ($\pm$1,74) & 102,93 ($\pm$47,46) \\
+					L2 & 0,3 & 20,04 ($\pm$3,16) & 76,49 ($\pm$36,76) \\
 					L2 & 1 & 53,44 ($\pm$4,77) & 81,18 ($\pm$43,06) \\
 					L2 & 3 & 103,04 ($\pm$7,29) & 62,86 ($\pm$34,93)
 			\end{mytabular}
@@ -658,11 +661,11 @@ backend=bibtex
 		\begin{figure}[h]
 			\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_0_1_wykres_uczenia.png}
-		 		\caption{parametr $\lambda$ - 0.1}
+		 		\caption{parametr $\lambda$ - 0,1}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_0_3_wykres_uczenia.png}
-		 		\caption{parametr $\lambda$ - 0.3}
+		 		\caption{parametr $\lambda$ - 0,3}
 		 	\end{subfigure}
 		 	
 		 	\begin{subfigure}{.5\linewidth}
@@ -681,11 +684,11 @@ backend=bibtex
 		 \begin{figure}[h]
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_0_1_wykres_uczenia.png}
-		 		\caption{parametr $\lambda$ - 0.1}
+		 		\caption{parametr $\lambda$ - 0,1}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_0_3_wykres_uczenia.png}
-		 		\caption{parametr $\lambda$ - 0.3}
+		 		\caption{parametr $\lambda$ - 0,3}
 		 	\end{subfigure}
 		 	
 		 	\begin{subfigure}{.5\linewidth}
@@ -704,11 +707,11 @@ backend=bibtex
 		\begin{figure}[h]
 			\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_0_1_learning_curves.png}
-		 		\caption{parametr $\lambda$ - 0.1}
+		 		\caption{parametr $\lambda$ - 0,1}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l1/regularyzacja_0_3_learning_curves.png}
-		 		\caption{parametr $\lambda$ - 0.3}
+		 		\caption{parametr $\lambda$ - 0,3}
 		 	\end{subfigure}
 		 	
 		 	\begin{subfigure}{.5\linewidth}
@@ -727,11 +730,11 @@ backend=bibtex
 		 \begin{figure}[h]
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_0_1_learning_curves.png}
-		 		\caption{parametr $\lambda$ - 0.1}
+		 		\caption{parametr $\lambda$ - 0,1}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.5\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/6_regularyzacja/l2/regularyzacja_0_3_learning_curves.png}
-		 		\caption{parametr $\lambda$ - 0.3}
+		 		\caption{parametr $\lambda$ - 0,3}
 		 	\end{subfigure}
 		 	
 		 	\begin{subfigure}{.5\linewidth}
@@ -756,7 +759,138 @@ backend=bibtex
 		
 		Podsumowując, badając powyższe dane okazuje się, że uśrednianie danych nie wyeliminowało do końca problemu gorszego przyuczenia sieci do danych treningowych niż do testowych. Jednocześnie wstępnym wnioskiem na obecnych danych jest to, że regularyzacja \textit{L1} pomaga bardziej niż \textit{L2}. Jednakże aby mieć tego pewność, trzeba dokładniej sprawdzić dane oraz ewentualnie zebrać ich więcej, po czym zrobić powyższe testy jeszcze raz.
 		
-		\section{Zbadanie danych}
+		\section{Badanie danych}
+		Zastanawiającym problemem pojawiającym się w poprzednich rozdziałach było to, że często po nauczeniu sieci neuronowej, przewiduje ona dane testujące lepiej niż treningowe. Zwiększając poziom skomplikowania sieci neuronowej sytuacja się nie zmieniała, co dowiodło że problem leży nie po stronie modelu, a po stronie danych. Z tego powodu postanowiłem sprawdzić jakie wartości przyjmują dane wyjściowe w moim zbiorze danych. Wyrysowałem więc histogram obrazujący zależność ilości danych od czasu ewakuacji widoczny na rysunku \ref{fig: zaleznosc_ilosci_danych_od_czasu_ewakuacji}.
+		
+		\begin{figure}[h]
+			\begin{tightcenter}
+		 		\includegraphics[width = 0.75\linewidth]{/home/xaaq/my-projects/inzynierka/inzynierka_latex/wykresy/7_badanie_danych/histogram_danych_czasu_ewakuacji.png}
+		 	\end{tightcenter}
+		 	
+		  	\caption{Zależność ilości danych od czasu ewakuacji.}
+			\label{fig: zaleznosc_ilosci_danych_od_czasu_ewakuacji}
+		\end{figure}
+		
+		Analizując powyższy histogram widać, że większośc danych wyjściowych jest skupiona poniżej 40 sekund czasu ewakuacji, a jedynie nieliczne wyniki przekraczają górną granicę. Taki rozrzut części danych może powodować, że będą one trudne do nauczenia przez model - postanowiłem więc odrzucić wszystkie zestawy danych, których dana wyjściowa - czas ewakuacji - jest równe lub większe 40 sekund. Po takiej operacji zostało wektorów danych wejściowych i wyjsciowych. Na nich wykonałem badanie identyczne jak w sekcji \ref{regularyzacja_modelu}. Średnie wyniki umieściłem w tabeli \ref{srednie_wartosci_mse_po_odrzuceniu_czesci_danych} oraz w tabelach, krzywe uczenia dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia} oraz krzywe uczenia przy zmiennej ilości danych - na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves}.
+		
+		\begin{table}[t]
+			\caption{Średnie wartości \textit{MSE} danych po odrzuceniu części danych.}
+			\begin{mytabular}{L L c c}
+					Rodzaj regularyzacji & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
+					L1 & 0,1 & 4,13 ($\pm$0,65) & 15,63 ($\pm$3,32) \\
+					L1 & 0,3 & 7,21 ($\pm$0,64) & 10,82 ($\pm$3,16) \\
+					L1 & 1 & 10,45 ($\pm$0,49) & 9,35 ($\pm$2,73) \\
+					L1 & 3 & 12,87 ($\pm$0,92) & 13,87 ($\pm$2,46) \\
+					L2 & 0,1 & 4,31 ($\pm$1,58) & 12,97 ($\pm$3,42) \\
+					L2 & 0,3 & 8,08 ($\pm$0,72) & 12,63 ($\pm$2,36) \\
+					L2 & 1 & 11,63 ($\pm$0,76) & 12,97 ($\pm$3,12) \\
+					L2 & 3 & 16,90 ($\pm$1,17) & 16,43 ($\pm$2,89)
+			\end{mytabular}
+			\label{srednie_wartosci_mse_po_odrzuceniu_czesci_danych}
+		\end{table}
+
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l1/regularyzacja_0_1_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 0,1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l1/regularyzacja_0_3_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l1/regularyzacja_1_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l1/regularyzacja_3_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 3}
+		 	\end{subfigure}
+		  	
+		  	\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L1 w drugim modelu po odrzuceniu częsci danych.}
+			\label{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia}
+		\end{figure}
+		 	
+		\begin{figure}[h]
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l2/regularyzacja_0_1_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 0,1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l2/regularyzacja_0_3_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l2/regularyzacja_1_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l2/regularyzacja_3_wykres_uczenia.png}
+		 		\caption{parametr $\lambda$ - 3}
+		 	\end{subfigure}
+	 	
+ 			\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L2 w drugim modelu po odrzuceniu częsci danych.}
+			\label{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l1/regularyzacja_0_1_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 0,1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l1/regularyzacja_0_3_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l1/regularyzacja_1_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l1/regularyzacja_3_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 3}
+		 	\end{subfigure}
+		  	
+		  	\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L1 w drugim modelu po odrzuceniu częsci danych.}
+			\label{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves}
+		\end{figure}
+		 	
+		\begin{figure}[h]
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l2/regularyzacja_0_1_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 0,1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l2/regularyzacja_0_3_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l2/regularyzacja_1_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/7_badanie_danych/l2/regularyzacja_3_learning_curves.png}
+		 		\caption{parametr $\lambda$ - 3}
+		 	\end{subfigure}
+	 	
+ 			\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L2 w drugim modelu po odrzuceniu częsci danych.}
+			\label{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves}
+		\end{figure}		
+		
+		Badając powyższe wykresy nasuwają się następujące wnioski:
+		\begin{itemize}
+		\item Odrzucenie przypadków skrajnie odstających od reszty obniżyło \textit{MSE} danych co najmniej 3-krotnie (a w dotychczzas najgorszych przypadkach nawet 10-krotnie), co daje jednoznaczną odpowiedź gdzie leżał problem z lepszym przyuczeniem sieci do danych testowych.
+		\item Analizując tabelę \ref{srednie_wartosci_mse_po_odrzuceniu_czesci_danych} wygląda na to, że tak jak poprzednio - funkcja regularyzacji \textit{L1} z parametrem $\lambda$ równym \textbf{1} daje najlepsze rezultaty. Jeznakże nie wiele gorszym zestawem parametrów, ze zbliżonym \textit{MSE} danych testowych odznacza się ta sama funkcja z parametrem $\lambda$ równym \textbf{0,3}.
+		\item Patrząc na wykresy krzywych uczących dla najlepszych przypadków widać, że niezależnie czy użyta została funkcja regularyzacji \textit{L1} czy \textit{L2}, przy parametrze $\lambda$ równym \textbf{1} sieć przyucza się minimalnie lepiej do danych treningowych. Pamiętając co było źródłe dotychczasowego problemu można wywnioskować, że takie zachowanie może być spowodowane przez szumy zbioru danych, a sposobem ich wyeliminowania było by zebranie danych z większej ilości symulacji przeprowadzonych z wyższym parametrem \textit{Repeat number}. Mając na uwadze powyższą informację wydaje się, że parametr $\lambda$ równy \textbf{0,3} będzie najlepszym wyborem do dalszej nauki przy obecnych danych.
+		\end{itemize}
+		
+		Podsumowując, wynikiem badań w tym rozdziale jest znaleziona najlepsza kombinacja parametrów regularyzacji dla obecnych danych - funkcja \textit{L1} z parametrem $\lambda$ równym \textbf{0,3}. Jednakże ze względu na podejrzenie, że przez niską ilość powtórzeń pojedynczej symulacji, w zbiorze danych wyjściowych istnieją szumy, których eliminacja podniosłaby efektowność sieci przy parametrze $\lambda$ równym \textbf{1}, postanowiłem ponownie zebrać większą ilość danych symulacyjnych.
+		
+		\section{Zebranie większej ilości danych}	
 		
 		\printbibliography
 \end{document}

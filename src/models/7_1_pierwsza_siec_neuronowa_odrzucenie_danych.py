@@ -27,11 +27,14 @@ if __name__ == "__main__":
     data_operator = DataOperator()
 
     input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data", 1)
+    filtered_data_indices = (output_data < 40).reshape((200,))
+    input_data, output_data = input_data[filtered_data_indices], output_data[output_data < 40]
     input_data, output_data = data_operator.permutate_data(input_data, output_data)
     input_data, _, _ = data_operator.normalize_data(input_data)
 
     for regularization_function in [keras.regularizers.l1, keras.regularizers.l2]:
         for regularization_rate in [0.1, 0.3, 1, 3]:
+
             learning_epochs = 300
             validation_split = 0.2
 
@@ -61,7 +64,7 @@ if __name__ == "__main__":
                                     verbose=False)
                 history_list.append((new_data_count, history))
 
-            plotter.plot_learning_curves(history_list, max_y=200)
+            plotter.plot_learning_curves(history_list, max_y=50)
 
             # ===== Normal learning =====
 
@@ -84,11 +87,12 @@ if __name__ == "__main__":
 
             history_mse_list.sort()
             _, best_history = history_mse_list[0]
-            plotter.plot_history(best_history, max_y=200)
+            plotter.plot_history(best_history, max_y=50)
 
             mean_mse = np.array(mse_list).mean(0)
             mse_std = np.array(mse_list).std(0)
 
             mean_str = f"{mean_mse[0]:.2f} ($\pm${mse_std[0]:.2f})".replace(".", ",")
             std_str = f"{mean_mse[1]:.2f} ($\pm${mse_std[1]:.2f})".replace(".", ",")
-            print(regularization_function.__name__, regularization_rate, mean_str, std_str)
+            print(f"{regularization_function.__name__} & {regularization_rate} & {mean_str} & {std_str} \\f")
+
