@@ -324,7 +324,7 @@ backend=bibtex
 		Podczas procesu uczenia \textit{Perceptronu} ważne jest aby określić \textbf{loss function} - metrykę którą chcemy optymalizować. Dla problemów regresji najczęściej uzywaną funkcją kosztu jest \textbf{MSE} (Mean Squared Error). Kolejnym parametrem sieci \textit{Perceptron} jest parametr \textbf{learning rate}, który określa jak bardzo będzie się zmieniać macierz/wektor wag na podstawie gradientu podczas każdej iteracji uczącej. Zbyt duży współczynnik \textit{learning rate} może spowodować, że zamiast optymalizować funkcję kosztu będzie wręcz przeciwnie - będzie ona osiągała coraz większe wartości. Gdy jest on zbyt mały, jest on mniej niebezpieczny gdyż nie doprowadzi on do wzrostu wartości funkcji kosztu; problemem jest jednak wolniejszy proces uczący sieci co wymaga więcej epok uczących. Nie ma jednak uniwersalnej metody regulującej sposób dobierania \textit{learning rate} - trzeba to robić eksperymentalnie.
 		
 		\section{Pierwszy model - tworzenie i analiza} \label{pierwszy_model_tworzenie_i_analiza}
-		Dla powyższych zastosowań stworzyłem więc \textit{Perceptron} posiadający pojdeyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. Zestawy danych podzieliłem w stosunku 80\% : 20\% na \textbf{dane treningowe} i \textbf{dane testowe}, pozwala to na trenowanie sieci na danych treningowych oraz sprawdzanie jej efektowności na tanych testowych co daje możliwość walidacji tego, jak dobrze sieć radzi sobie z danymi, z którymi nie miała styczności.
+		Dla powyższych zastosowań stworzyłem więc \textit{Perceptron} posiadający pojdeyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. Zestawy danych podzieliłem w stosunku 80\% : 20\% na \textbf{dane treningowe} i \textbf{dane testowe}, pozwala to na trenowanie sieci na danych treningowych oraz sprawdzanie jej efektywności na danych testowych co daje możliwość walidacji tego, jak dobrze sieć radzi sobie z danymi, z którymi nie miała styczności.
 		
 		Podsumowując, parametry pierwszego modelu były następujące:
 		\begin{itemize}
@@ -371,7 +371,7 @@ backend=bibtex
 		Podsumowując, obecny model ma wysoki bias - jest zbyt prosty dla danych, przez co większa ich ilość oraz dłuższy proces uczący nie dają żadnych efektów. Na wykresach widać niestabilność modelu lub danych, co powoduje bardzo duże szumy na wykresach \textit{MSE}. Co więcej - niepokojący jest fakt, że \textit{MSE} danych testowych był często niższy niż \textit{MSE} danych treningowych.
 		
 		\section{Normalizacja danych} \label{normalizacja_danych}
-		Mając na uwadze problemy stworzonego modelu, w pierwszej kolejności postanowiłem przejrzeć dane wejściowe do modelu. Ze wszystkich zestawów danych obliczyłem więc średnią każdego z parametrów wejściowych do sieci neuronowej. Wyniki są widoczne w tabeli \ref{srednie_wartosci_i_odchylenia_parametrow_wejsciowych_modelu}. Widać w niej, że niektóre parametry mają wartości 2 rzędy wielkości większe niż inne. Takie różnice pomiędzy różnymi parametrami wejściowymi powodują faworyzowanie przez sieć jednych parametrów ponad drugie. Postanowiłem więc zastosować normalizację danych według wzoru:
+		Mając na uwadze problemy stworzonego modelu, w pierwszej kolejności postanowiłem przejrzeć dane wejściowe do modelu. Ze wszystkich zestawów danych obliczyłem więc średnią każdego z parametrów wejściowych do sieci neuronowej. Wyniki są widoczne w tabeli \ref{porownanie_srednich_wartosci_i_odchylen_parametrow_wejsciowych_modelu}. Widać w niej, że niektóre parametry mają wartości 2 rzędy wielkości większe niż inne. Takie różnice pomiędzy różnymi parametrami wejściowymi powodują faworyzowanie przez sieć jednych parametrów ponad drugie. Postanowiłem więc zastosować normalizację danych według wzoru:
 		
 		\begin{equation}
 		X_{new} = \frac{X_{old} - \mu}{\sigma}
@@ -384,7 +384,7 @@ backend=bibtex
 		\end{itemize}
 		
 		\begin{table}[t]
-			\caption{Średnie wartości parametrów wejściowych do modelu.}
+			\caption{Porównanie średnich wartości parametrów wejściowych do modelu.}
 			\begin{mytabular}{r c}
 					\multicolumn{1}{c}{Nazwa parametru} & Średnia wartość \\
 					Panic spread factor & 1.74 \\
@@ -403,7 +403,7 @@ backend=bibtex
 					Speed distribution mean value & 5.62 \\
 					Speed distribution standard deviation & 0.54
 			\end{mytabular}
-			\label{srednie_wartosci_i_odchylenia_parametrow_wejsciowych_modelu}
+			\label{porownanie_srednich_wartosci_i_odchylen_parametrow_wejsciowych_modelu}
 		\end{table}
 		
 		Posiadając tak przygotowane dane wykonałem - tak jak w punkcie \ref{pierwszy_model_tworzenie_i_analiza} - 10 cykli nauczania z różnymi permutacjami danych oraz 20 cykli z jedną permutacją, lecz zmieniającym się rozmiarem zestawu danych treningowych. Średnie \textit{MSE} danych są następujące:
@@ -486,10 +486,10 @@ backend=bibtex
 		\item krzywe uczące dla zmiennej ilości danych pokazane są na rysunku \ref{fig: drugi_model_kombinacje_parametrow_learning_curves}.
 		\end{itemize}
 		
-		Dodatkowo średnie \textit{MSE} z 10 różnych permutacji danych zestawiłem w tabeli \ref{srednie_wartosci_mse_dla_roznych_kombinacji_parametrow_sieci}.
+		Dodatkowo średnie \textit{MSE} z 10 różnych permutacji danych zestawiłem w tabeli \ref{porownanie_srednich_wartosci_mse_dla_roznych_kombinacji_parametrow_sieci}.
 		
 		\begin{table}[t]
-			\caption{Średnie wartości \textit{MSE} danych dla różnych kombinacji parametrów sieci.}
+			\caption{Porównanie średnich wartości \textit{MSE} danych dla różnych kombinacji parametrów sieci.}
 			\begin{mytabular}{L L c c}
 					Ilość warstw & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
 					1 & 20 & 47,47 ($\pm$6,08) & 73,66 ($\pm$25,77) \\
@@ -497,7 +497,7 @@ backend=bibtex
 					2 & 20 & 59,49 ($\pm$10,81) & 89,52 ($\pm$22,04) \\
 					2 & 40 & 64,13 ($\pm$7,30) & 70,68 ($\pm$20,42)
 			\end{mytabular}
-			\label{srednie_wartosci_mse_dla_roznych_kombinacji_parametrow_sieci}
+			\label{porownanie_srednich_wartosci_mse_dla_roznych_kombinacji_parametrow_sieci}
 		\end{table}
 
 		\begin{figure}[h]
@@ -548,7 +548,7 @@ backend=bibtex
 		
 		Mimo zwiększenia stopnia skomplikowania sieci, \textit{MSE} danych treningowych i testowych nie wykazywały tendencji spadkowej. To co powinno się stać w takim przypadku, to \textit{MSE} danych treningowych powinien osiągać coraz niższe wartości wraz ze skomplikowaniem modelu. Na wykresach również widac, że dane testowe miały czasem \textit{MSE} mniejszych od zestawu treningowego. Wnioskiem tej analizy jest to, że problem z uczeniem sieci leży nie w modelu, a w danych.
 		
-		\section{Uśrednianie danych}
+		\section{Uśrednianie danych} \label{usrednianie_danych}
 		Wiedząc że problem leży w danych postanowiłem ulepszyć istniejące dane, uśredniając je. W sekcji \ref{zebranie_danych} napisałem, że dla każdego zbioru parametrów wejściowych wygenerowałem do 10 zbiorów parametrów wyjściowych. Dla każdego zestawu wejściowego obliczyłem średnią zestawów parametrów wyjściowych co zmniejszyło ilość danych prawie 10-krotnie. Ostatecznie mój nowy zbiór zawierał 200 zestawów danych (przy czym, podczas procesu uczenia zostały one podzielone na dane treningowe i testowe).
 		
 		Po przetworzeniu danych postanowiłem powtórzyć badanie z sekcji \ref{zwiekszenie_stopnia_skomplikowania_modelu}, używając kombinacji parametrów:
@@ -557,10 +557,10 @@ backend=bibtex
 		\item ilość neuronów w każdej warstwie - \textbf{20} i \textbf{40}.
 		\end{itemize}
 		
-		Po powtórzeniu poprzedniego badania na uśrednionych danych, wyniki widać na rysunkach \ref{fig: drugi_model_przy_usrednionych_danych_wykresy_uczenia} i \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves}. Średnie \textit{MSE} danych dla kombinacji parametrów jest umieszczone w tabeli \ref{srednie_wartosci_mse_przy_usrednionych_danych}. 
+		Po powtórzeniu poprzedniego badania na uśrednionych danych, wyniki widać na rysunkach \ref{fig: drugi_model_przy_usrednionych_danych_wykresy_uczenia} i \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves}. Średnie \textit{MSE} danych dla kombinacji parametrów jest umieszczone w tabeli \ref{porownanie_srednich_wartosci_mse_przy_usrednionych_danych}. 
 
 		\begin{table}[t]
-			\caption{Średnie wartości \textit{MSE} danych przy uśrednionych danych.}
+			\caption{Porównanie średnich wartości \textit{MSE} danych przy uśrednionych danych.}
 			\begin{mytabular}{L L c c}
 					Ilość warstw & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
 					1 & 20 & 1,38 ($\pm$0,81) & 189,06 ($\pm$60,12) \\
@@ -568,7 +568,7 @@ backend=bibtex
 					2 & 20 & 6,06 ($\pm$8,93) & 113,56 ($\pm$55,77) \\
 					2 & 40 & 2,02 ($\pm$4,38) & 108,03 ($\pm$40,39)
 			\end{mytabular}
-			\label{srednie_wartosci_mse_przy_usrednionych_danych}
+			\label{porownanie_srednich_wartosci_mse_przy_usrednionych_danych}
 		\end{table}
 
 		\begin{figure}[h]
@@ -619,7 +619,7 @@ backend=bibtex
 		
 		Analizując dane, można zauważyć że po uśrednieniu zachowują się one zgodnie z przewidywaniami - większe skomplikowanie sieci neuronowej zmniejszyło dramatycznie \textit{MSE} danych treningowych. Co było również spodziewane - \textit{MSE} danych testowych pozostał wysoki; jednakże na wykresach \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves} (c) i (d) widać ciekawą tendencję - wygląda na to, że przy większych rozmiarach zbioru danych nawet \textit{MSE} zbioru testowego zaczyna się obniżać. Podobną tendencję, lecz słabszą można też zauwazyć na wykresach \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves} (a) i (b) po przekroczeniu pułapu 140 zestawów danych uczących. Gdy model jest zbyt dobrze przyuczony do danych treningowych i źle generalizuje na danych testowych, mówi się że posiada on \textbf{wysoką wariancję}.
 		
-		Ze względu na duży czas oczekiwania oraz potrzebę ciągłego nadzoru nad symulatorem, postanowiłem w pirewszej kolejności poszukać innych sposobów na zwiększenie efektowności modelu.
+		Ze względu na duży czas oczekiwania oraz potrzebę ciągłego nadzoru nad symulatorem, postanowiłem w pirewszej kolejności poszukać innych sposobów na zwiększenie efektywności modelu.
 		
 		\section{Regularyzacja modelu} \label{regularyzacja_modelu}
 		Chcąc obnizyć wariancję modelu uczenia maszynowego stosuje się techniki zwane regularyzacją. Najprostsze z nich czyli regularyzacja \textbf{L1} i \textbf{L2} polegają na dodaniu współczynnika kary do funkcji kosztu. Karze ona model za posiadanie wysokich wag na połączeniach pomiędzy neuronami. Dla porównania mając funkcję kosztu \ref{loss_function}, używając regularyzacji \textit{L1} będzie ona wyglądać jak na równaniu \ref{loss_function_l1} a regularyzacji \textit{L2} - tak jak na równaniu \ref{loss_function_l2}. Współczynnik $\lambda$ to tak zwany \textbf{współczynnik regularyzacji} - odpowiada on za siłę, z jaką wagi będa zmniejszane.
@@ -640,10 +640,10 @@ backend=bibtex
 		\item parametr regularyzacji $\lambda$ - \textbf{0,1}; \textbf{0,3}; \textbf{1}; \textbf{3}.
 		\end{itemize}
 		
-		Po przeprowadzeniu eksperymentów ze wszystkimi powyższymi kombinacjami parametrów wysrysowałem wykresy krzywych uczących dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_wykresy_uczenia} i \ref{fig: drugi_model_przy_regularyzacji_l2_wykresy_uczenia} oraz wykresy krzywych uczących dla zmiennej ilości danych na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_learning_curves} i \ref{fig: drugi_model_przy_regularyzacji_l2_learning_curves}. Dodatkowo zestawienie średnich \textit{MSE} dla owych kombinacji umiesciłem w tabeli \ref{srednie_wartosci_mse_przy_regularyzacji}.
+		Po przeprowadzeniu eksperymentów ze wszystkimi powyższymi kombinacjami parametrów wysrysowałem wykresy krzywych uczących dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_wykresy_uczenia} i \ref{fig: drugi_model_przy_regularyzacji_l2_wykresy_uczenia} oraz wykresy krzywych uczących dla zmiennej ilości danych na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_learning_curves} i \ref{fig: drugi_model_przy_regularyzacji_l2_learning_curves}. Dodatkowo zestawienie średnich \textit{MSE} dla owych kombinacji umiesciłem w tabeli \ref{porownanie_srednich_wartosci_mse_przy_regularyzacji}.
 		
 		\begin{table}[t]
-			\caption{Średnie wartości \textit{MSE} danych przy regularyzacji.}
+			\caption{Porównanie średnich wartości \textit{MSE} danych przy regularyzacji.}
 			\begin{mytabular}{L L c c}
 					Rodzaj regularyzacji & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
 					L1 & 0,1 & 11,65 ($\pm$15,70) & 99,61 ($\pm$43,27) \\
@@ -655,7 +655,7 @@ backend=bibtex
 					L2 & 1 & 53,44 ($\pm$4,77) & 81,18 ($\pm$43,06) \\
 					L2 & 3 & 103,04 ($\pm$7,29) & 62,86 ($\pm$34,93)
 			\end{mytabular}
-			\label{srednie_wartosci_mse_przy_regularyzacji}
+			\label{porownanie_srednich_wartosci_mse_przy_regularyzacji}
 		\end{table}
 
 		\begin{figure}[h]
@@ -771,10 +771,10 @@ backend=bibtex
 			\label{fig: zaleznosc_ilosci_danych_od_czasu_ewakuacji}
 		\end{figure}
 		
-		Analizując powyższy histogram widać, że większośc danych wyjściowych jest skupiona poniżej 40 sekund czasu ewakuacji, a jedynie nieliczne wyniki przekraczają górną granicę. Taki rozrzut części danych może powodować, że będą one trudne do nauczenia przez model - postanowiłem więc odrzucić wszystkie zestawy danych, których dana wyjściowa - czas ewakuacji - jest równe lub większe 40 sekund. Po takiej operacji zostało wektorów danych wejściowych i wyjsciowych. Na nich wykonałem badanie identyczne jak w sekcji \ref{regularyzacja_modelu}. Średnie wyniki umieściłem w tabeli \ref{srednie_wartosci_mse_po_odrzuceniu_czesci_danych} oraz w tabelach, krzywe uczenia dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia} oraz krzywe uczenia przy zmiennej ilości danych - na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves}.
+		Analizując powyższy histogram widać, że większośc danych wyjściowych jest skupiona poniżej 40 sekund czasu ewakuacji, a jedynie nieliczne wyniki przekraczają górną granicę. Taki rozrzut części danych może powodować, że będą one trudne do nauczenia przez model - postanowiłem więc odrzucić wszystkie zestawy danych, których dana wyjściowa - czas ewakuacji - jest równe lub większe 40 sekund. Po takiej operacji zostało wektorów danych wejściowych i wyjsciowych. Na nich wykonałem badanie identyczne jak w sekcji \ref{regularyzacja_modelu}. Średnie wyniki umieściłem w tabeli \ref{porownanie_srednich_wartosci_mse_po_odrzuceniu_czesci_danych} oraz w tabelach, krzywe uczenia dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia} oraz krzywe uczenia przy zmiennej ilości danych - na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves}.
 		
 		\begin{table}[t]
-			\caption{Średnie wartości \textit{MSE} danych po odrzuceniu części danych.}
+			\caption{Porównanie średnich wartości \textit{MSE} danych po odrzuceniu części danych.}
 			\begin{mytabular}{L L c c}
 					Rodzaj regularyzacji & Ilość neuronów w warstwie & MSE danych treningowych & MSE danych testowych \\
 					L1 & 0,1 & 4,13 ($\pm$0,65) & 15,63 ($\pm$3,32) \\
@@ -786,7 +786,7 @@ backend=bibtex
 					L2 & 1 & 11,63 ($\pm$0,76) & 12,97 ($\pm$3,12) \\
 					L2 & 3 & 16,90 ($\pm$1,17) & 16,43 ($\pm$2,89)
 			\end{mytabular}
-			\label{srednie_wartosci_mse_po_odrzuceniu_czesci_danych}
+			\label{porownanie_srednich_wartosci_mse_po_odrzuceniu_czesci_danych}
 		\end{table}
 
 		\begin{figure}[h]
@@ -884,13 +884,131 @@ backend=bibtex
 		Badając powyższe wykresy nasuwają się następujące wnioski:
 		\begin{itemize}
 		\item Odrzucenie przypadków skrajnie odstających od reszty obniżyło \textit{MSE} danych co najmniej 3-krotnie (a w dotychczzas najgorszych przypadkach nawet 10-krotnie), co daje jednoznaczną odpowiedź gdzie leżał problem z lepszym przyuczeniem sieci do danych testowych.
-		\item Analizując tabelę \ref{srednie_wartosci_mse_po_odrzuceniu_czesci_danych} wygląda na to, że tak jak poprzednio - funkcja regularyzacji \textit{L1} z parametrem $\lambda$ równym \textbf{1} daje najlepsze rezultaty. Jeznakże nie wiele gorszym zestawem parametrów, ze zbliżonym \textit{MSE} danych testowych odznacza się ta sama funkcja z parametrem $\lambda$ równym \textbf{0,3}.
-		\item Patrząc na wykresy krzywych uczących dla najlepszych przypadków widać, że niezależnie czy użyta została funkcja regularyzacji \textit{L1} czy \textit{L2}, przy parametrze $\lambda$ równym \textbf{1} sieć przyucza się minimalnie lepiej do danych treningowych. Pamiętając co było źródłe dotychczasowego problemu można wywnioskować, że takie zachowanie może być spowodowane przez szumy zbioru danych, a sposobem ich wyeliminowania było by zebranie danych z większej ilości symulacji przeprowadzonych z wyższym parametrem \textit{Repeat number}. Mając na uwadze powyższą informację wydaje się, że parametr $\lambda$ równy \textbf{0,3} będzie najlepszym wyborem do dalszej nauki przy obecnych danych.
+		\item Analizując tabelę \ref{porownanie_srednich_wartosci_mse_po_odrzuceniu_czesci_danych} wygląda na to, że tak jak poprzednio - funkcja regularyzacji \textit{L1} z parametrem $\lambda$ równym \textbf{1} daje najlepsze rezultaty. Jeznakże nie wiele gorszym zestawem parametrów, ze zbliżonym \textit{MSE} danych testowych odznacza się ta sama funkcja z parametrem $\lambda$ równym \textbf{0,3}.
+		\item Patrząc na wykresy krzywych uczących dla najlepszych przypadków widać, że niezależnie czy użyta została funkcja regularyzacji \textit{L1} czy \textit{L2}, przy parametrze $\lambda$ równym \textbf{1} sieć przyucza się minimalnie lepiej do danych testowych. Pamiętając co było źródłem dotychczasowego problemu można wywnioskować, że takie zachowanie może być spowodowane przez szumy zbioru danych, a sposobem ich wyeliminowania było by zebranie danych z większej ilości symulacji przeprowadzonych z wyższym parametrem \textit{Repeat number}.
 		\end{itemize}
 		
-		Podsumowując, wynikiem badań w tym rozdziale jest znaleziona najlepsza kombinacja parametrów regularyzacji dla obecnych danych - funkcja \textit{L1} z parametrem $\lambda$ równym \textbf{0,3}. Jednakże ze względu na podejrzenie, że przez niską ilość powtórzeń pojedynczej symulacji, w zbiorze danych wyjściowych istnieją szumy, których eliminacja podniosłaby efektowność sieci przy parametrze $\lambda$ równym \textbf{1}, postanowiłem ponownie zebrać większą ilość danych symulacyjnych.
+		Podsumowując, w wyniku przeprowadzonych badań została znaleziony najlepsze kombinacje parametrów regularyzacji dla obecnych danych - funkcja \textit{L1} z parametrem $\lambda$ równym \textbf{0,3} lub \textbf{1}. Jednakże istnieje podejrzenie, że przez niską ilość powtórzeń symulacji dla danego zestawu parametrów wejściowych, w zbiorze danych wyjściowych istnieją szumy, których eliminacja podniosłaby efektywność sieci przy parametrze $\lambda$ równym \textbf{1}.
 		
 		\section{Zebranie większej ilości danych}	
+		Chcąc zbadać hipotezę, że przy parametrze regularyzacji $\lambda$ równym 1 model będzie się uczył lepiej na wiekszej ilości danych, postanowiłem powtórzyć proces generacji danych symulacyjnych. Zrobilem to podobnie jak w sekcji \ref{zebranie_danych} z tym, że parametr \textit{Repeat number} w wygenerowanych plikach ustawiłem na 50. Dzięki temu każda dana wyjściowa powinna być stabilniejsza ze względu na obliczanie średniej na 5 razy wiekszej liczbie przypadków niż dotychczas.
+		
+		Po zebraniu danych oraz uśrednieniu ich w taki sam sposób jak w sekcji \ref{usrednianie_danych} powiększyłem zbiór uczący o kolejne 200 przypadków. Postanowiłem przeprowadzić badanie, jak wpłynie na model nauka na:
+		\begin{itemize}
+		\item \textbf{starym zestawie danych} - danych zebranych w sekcji \ref{zebranie_danych},
+		\item \textbf{nowym zestawie danych} - danych zebranych w tej sekcji,
+		\item \textbf{wszystkich zestawach danych} - połączonym starym i nowym zestawie danych.
+		\end{itemize}
+		W eksperymencie nauczyłem sieć osobno na każdej kombinacji wielkości zbioru danych uczących oraz parametrów uczenia $\lambda$ - \textbf{0,3} i \textbf{1}.
+		
+		Wyniki eksperymentów są następujące:
+		\begin{itemize}
+		\item porównanie średnich wartości \textit{MSE} danych w tabeli \ref{porownanie_srednich_wartosci_mse_po_zebraniu_wiekszej_ich_ilosci},
+		\item krzywe uczące dla najlepszych przypadków na rysunku \ref{fig: drugi_model_po_zebraniu_wiekszej_ilosci_danych_wykresy_uczenia},
+		\item krzywe uczące dla zmiennej ilości danych na rysunku \ref{fig: drugi_model_po_zebraniu_wiekszej_ilosci_danych_learning_curves}.
+		\end{itemize}						
+		
+		\begin{table}[t]
+			\caption{Porównanie średnich wartości \textit{MSE} danych po zebraniu większej ich ilości.}
+			\begin{mytabular}{L L c c}
+					Zestaw danych & Parametr regularyzacji L1 & MSE danych treningowych & MSE danych testowych \\
+					stary & 0,3 & 7,02 ($\pm$0,56) & 11,58 ($\pm$4,83) \\
+					stary & 1 & 10,51 ($\pm$0,85) & 9,50 ($\pm$2,87) \\
+					nowy & 0,3 & 10,76 ($\pm$0,88) & 19,48 ($\pm$3,95) \\
+					nowy & 1 & 14,53 ($\pm$1,10) & 14,90 ($\pm$5,51) \\
+					stary + nowy & 0,3 & 14,72 ($\pm$0,65) & 14,23 ($\pm$2,16) \\
+					stary + nowy & 1 & 14,80 ($\pm$0,98) & 15,94 ($\pm$3,00) \\
+			\end{mytabular}
+			\label{porownanie_srednich_wartosci_mse_po_zebraniu_wiekszej_ich_ilosci}
+		\end{table}	
+		
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/0-200/regularyzacja_0_3_wykres_uczenia.png}
+		 		\caption{stary zestaw danych, parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/0-200/regularyzacja_1_wykres_uczenia.png}
+		 		\caption{stary zestaw danych, parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/200-400/regularyzacja_0_3_wykres_uczenia.png}
+		 		\caption{nowy zestaw danych, parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/200-400/regularyzacja_1_wykres_uczenia.png}
+		 		\caption{nowy zestaw danych, parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/0-400/regularyzacja_0_3_wykres_uczenia.png}
+		 		\caption{oba zestawy danych, parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/0-400/regularyzacja_1_wykres_uczenia.png}
+		 		\caption{oba zestawy danych, parametr $\lambda$ - 1}
+		 	\end{subfigure}
+	 	
+ 			\caption{Krzywe uczące dla najlepszych przypadków w drugim modelu po zebraniu większej ilości danych.}
+			\label{fig: drugi_model_po_zebraniu_wiekszej_ilosci_danych_wykresy_uczenia}
+		\end{figure}
+		
+		\begin{figure}[h]
+			\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/0-200/regularyzacja_0_3_learning_curves.png}
+		 		\caption{stary zestaw danych, parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/0-200/regularyzacja_1_learning_curves.png}
+		 		\caption{stary zestaw danych, parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/200-400/regularyzacja_0_3_learning_curves.png}
+		 		\caption{nowy zestaw danych, parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/200-400/regularyzacja_1_learning_curves.png}
+		 		\caption{nowy zestaw danych, parametr $\lambda$ - 1}
+		 	\end{subfigure}
+		 	
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/0-400/regularyzacja_0_3_learning_curves.png}
+		 		\caption{oba zestawy danych, parametr $\lambda$ - 0,3}
+		 	\end{subfigure}
+		 	\begin{subfigure}{.5\linewidth}
+		 		\includegraphics[width =\linewidth]{wykresy/8_zebranie_wiekszej_ilosci_danych/0-400/regularyzacja_1_learning_curves.png}
+		 		\caption{oba zestawy danych, parametr $\lambda$ - 1}
+		 	\end{subfigure}
+	 	
+ 			\caption{Krzywe uczące dla zmiennej ilości danych w drugim modelu po zebraniu większej ich ilości.}
+			\label{fig: drugi_model_po_zebraniu_wiekszej_ilosci_danych_learning_curves}
+		\end{figure}
+		
+		Po analizie danych doszedłem do następujących wniosków:
+		\begin{itemize}
+		\item Wbrew oczekiwaniom - na starym zbiorze danych sieć neuronowa dawała lepsze rezultaty, w najlepszym przypadku - mniejsze o około 5 sekund kwadratowych od wyników na pozostałych zbiorach.
+		\item Co jest niespodziewane - na nowych, stabilniejszych danych sieć miała największe problemy z nauką osiągając nawet dwukrotnie wyższe średnie lub odchylenia \textit{MSE} danych testowych w stosunku do najlepszych przypadków.
+		\item Na wykresach krzywych uczących dla najlepszych przypadków widać, że nie ważne z jakiego zbioru danych sieć korzystała, to i tak czasami pojawiają się szumy powodujące lepsze przyuczenie sieci do danych testowych.
+		\item Analiza wykresów krzywych uczących dla zmiennej ilości danych obrazują jak ilość danych wpłynęła na \textit{MSE} danych - dopiero większa ilość danych sprawiła, że krzywe danych treningowych i testowych zetknęły się ze sobą - oznacza to większą stabilność przewidywania danych co jest cechą bardzo porządaną.
+		\end{itemize}
+		
+		Podsumowując, zbiór nowych danych w pojedynkę tylko pogorszył ich \textit{MSE}; podobny efekt dał zbiór połączonych danych. Obaliło to tezę, jako że większy zestaw danych miałby zmniejszyć ich \textit{MSE}. Jednakże zestaw wszystkich danych wprowadził do modelu większą stabilność, co przełożyło się na bardziej do siebie zbliżony średni \textit{MSE} danych testowych oraz danych treningowych. Szczególnie jest to prawdą dla parametru $\lambda$ równego \textbf{0,3} - oznacza to, że do osiągnięcia największej stabilności modelu o akceptowalnym poziomie \textit{MSE} właśnie on będzie dalej używany. Jeśli chodzi o zbiór uczący - do dalszego użytku zostanie wybrany pełny zbiór uczący, składający się z nowych oraz starych danych.
+				
+		\newpage
+		\newpage
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
+		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?)
 		
 		\printbibliography
 \end{document}

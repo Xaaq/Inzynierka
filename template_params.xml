@@ -14,7 +14,7 @@
             <percentToEvac>100</percentToEvac>
             <generateStats>true</generateStats>
             <nonGui>false</nonGui>
-            <repeatNo>10</repeatNo>
+            <repeatNo>50</repeatNo>
         </globalConfiguration>
         <level id="990000000">
             <numOfPeds>400</numOfPeds>

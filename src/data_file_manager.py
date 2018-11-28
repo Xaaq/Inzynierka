@@ -7,7 +7,6 @@ from random import randint, random
 
 import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
 
 np.set_printoptions(linewidth=400, precision=2, threshold=np.nan, suppress=True)
 pd.set_option("display.max_rows", 500)
@@ -107,11 +106,12 @@ class DataFilesManager:
         ET.ElementTree(xml_root).write(file_path)
 
     @classmethod
-    def extract_simulation_means_data(cls, all_simulations_path: str, output_parameters_count: int):
+    def extract_simulation_means_data(cls, all_simulations_path: str, output_parameters_count: int,
+                                      start_stop_slices: slice = slice(None, 200)):
         input_data_list = []
         output_data_list = []
 
-        for simulation_dir in listdir(all_simulations_path):
+        for simulation_dir in sorted(listdir(all_simulations_path))[start_stop_slices]:
             input_data = cls.extract_params_from_xml(f"{all_simulations_path}/{simulation_dir}/input_param.xml")
 
             output_data = [
@@ -129,11 +129,12 @@ class DataFilesManager:
         return np.array(input_data_list), np.array(output_data_list)
 
     @classmethod
-    def extract_simulation_all_data(cls, all_simulations_path: str, output_parameters_count: int):
+    def extract_simulation_all_data(cls, all_simulations_path: str, output_parameters_count: int,
+                                    start_stop_slices: slice = slice(None, 200)):
         input_data_list = []
         output_data_list = []
 
-        for simulation_dir in listdir(all_simulations_path):
+        for simulation_dir in sorted(listdir(all_simulations_path))[start_stop_slices]:
             input_data = cls.extract_params_from_xml(f"{all_simulations_path}/{simulation_dir}/input_param.xml")
 
             for single_simulation_dir in listdir(f"{all_simulations_path}/{simulation_dir}"):
@@ -150,11 +151,6 @@ class DataFilesManager:
 
 if __name__ == "__main__":
     data_files_manager = DataFilesManager()
-    plt.hist(data_files_manager.extract_simulation_means_data("simulation_output_data", 1)[1], 30)
-    plt.show()
-    plt.hist(data_files_manager.extract_simulation_all_data("simulation_output_data", 1)[1], 30)
-    plt.show()
-    # print(data_files_manager.extract_simulation_all_data("simulation_output_data", 1)[1])
-    # print(data_files_manager.extract_params_from_xml("simulation_output_data/15.11.2018-19.02.55/input_param.xml"))
-    # for i in range(10):
-    #     create_random_parameters_file(f"generated_parameters/params_{i}.xml")
+
+    for i in range(20):
+        data_files_manager.create_random_parameters_file(f"generated_parameters/params_{i:0>3}.xml")
