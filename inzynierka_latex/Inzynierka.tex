@@ -189,8 +189,15 @@ backend=bibtex
 	\chapter{Wstęp}
 	\textit{W tym rozdziale zostanie opisane podłoże historyczne, cel i jego założenia projektu. Zaprezentowane zostanie proponowane rozwiązanie postawionego problemu oraz technologie do tego użyte.}
 	
+		\section{Geneza projektu}	
+		W dzisiejszym świecie kładziony jest nacisk na projektowanie budynków użytku publicznego tak, aby zapewnić możliwie największe bezpieczeństwo ludzi, którzy będą z nich korzystali. Jednakże, jednocześnie wymagane jest aby takie budynki były także funkcjonalne - na przykład podział przestrzeni na pomieszczenia. Z tego powodu konieczne jest wyznaczenie ścieżek oraz wyjść ewakuacyjnych przewidzianych w taki sposób, aby ewakuacja ludzi odbyła się w sposób sprawny.
+		
+		Dziedzina informatyki, jaką jest uczenie maszynowe przez kilka ostatnich lat zyskała sporą popularność. Metody z tej dziedziny potrafią rozwiązywać problemy, które dotychczas były nierozwiązywalne za pomocą innych metod. Jednym z takich problemów jest nauczenie się wzorca na podstawie zbioru danych oraz jego generalizacja. Daje to duże możliwości w takich zadaniach, gdzie potrzebujemy narzędzia potrafiącego symulować ruch ludzi na podstawie wczesniej nauczonych wzorców.
+		
+		Rozwiązanie problemu optymalnego wyboru ścieżki lub wyjścia ewakuacyjnego dałoby odpowiedź jaki jest najkrótszy czas ewakuacji całego budynku, co dało by informacje o tym, czy budynek jest dobrze zaprojektowany.
+	
 		\section{Cel projektu}	
-		W wielu miastach miastach, gdzie istnieją duże skupiska ludzi prędzej czy później pojawia się problem alokacji przestrzeni na zabudowę. W tym celu nowoczesne budynki uzytku publicznego są projektowane pod kątem wykorzystania jak największej przestrzeni dla celów użytkowych, ale i z drugiej strony - dla zapewnienia jak największego bezpieczeństwa ludziom w nich przebywających. Jednym z czynników określających wchodzącym w skład szeroko pojętego bezpieczeństwa, jest zapewnienie ludziom ścieżek ewakuacyjnych w razie pożaru lub innych wypadków. Z tego powodu celu postawiłem następujący problem - rozwiązanie problemu optymalizacji wyboru ścieżki lub wyjścia ewakuacyjnego ludzi w budynku. Co więcej, w związku z moim wcześniejszym doświadczeniem z tematem uczenia maszynowego, postanowiłem rozwiązać ten problem za pomocą technik machine learning.
+		 Z tego powodu celu postawiłem następujący problem - rozwiązanie problemu optymalizacji wyboru ścieżki lub wyjścia ewakuacyjnego ludzi w budynku. Co więcej, w związku z moim wcześniejszym doświadczeniem z tematem uczenia maszynowego, postanowiłem rozwiązać ten problem za pomocą technik machine learning.
 		
 		\section{Użyte technologie oraz programy}
 		Wszystkie obliczenia oraz rysowanie wykresów zostało zrealizowane w języku programowania \textbf{Python} w wersji 3.6 przy użyciu bibliotek:
@@ -203,16 +210,133 @@ backend=bibtex
 		
 		Aby mieć możliwość symulacji ruchu pieszych w budynku, użyłem symulatora \textbf{PSP} \textit{(Pederastian Simulation Project)} autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec - opisany szerzej w rozdziale~\ref{sekcja_psp}.
 		
-		\section{Proponowane rozwiązanie}
-		Rozwiązanie proponowane przeze mnie zostało podzielone na kilka kroków:
-		\begin{enumerate}
-		\item\label{proponowane_rozwiazanie_generacja_danych} Wygenerowanie \textit{n} zestawów parametrów wejściowych do symulatora \textit{PSP} w celu pozyskania jego danych wyjściowych.
-		\item Stworzenie modelu uczenia maszynowego na podstawie wygenerowanych zestawów danych wejściowych oraz wyjściowych symulatora i nauczenie go na danych z punktu~\ref{proponowane_rozwiazanie_generacja_danych}. Daje to możliwość generowania nowych danych wyjściowych bez używania symulatora.
-		\item Optymalizacja zestawu danych wyjściowych modelu na podstawie jego danych wejściowych używając metod optymalizacji.
-		\end{enumerate}
+	\chapter{Wstęp teoretyczny}
+	\textit{W tym rozdziale rozróżniono typy algorytmów uczenia maszynowego. Omówiono koncepcję Perceptronu. Przedstawiono także jedną z metod optymalizacji jaką jest Gradient descent. Ukazano w jaki sposób za pomocą tej metody można zoptymalizować wyjścia modelu uczenia maszynowego na podstawie jej wejść.}
 	
-	\newpage
-	\chapter{PSP - Pederastian Simulator Project}\label{sekcja_psp}
+		\section{Typy modeli uczenia maszynowego}
+		Uczenie maszynowe jest to termin określający całą gamę sposobów rozwiązywania problemów, które przy tradycyjnych metodach byłyby niemożliwe do rozwiązania lub skrajnie niewydajne obliczeniowo. Wyróżniane są 4 typy algorytmów uczenia maszynowego ze względu na sposób rozwiązywania przez nie problemu 	\cite{types_of_machine_learning_algorithms}:
+		\begin{itemize}
+		\item \textbf{Supervised learning} - algorytmy, do których danymi wejściowymi są dane - zestaw cech i ich etykiety oznaczające jakiej kategorii jest dana próbka. Tak nauczony model potrafi przewidzieć etykiety dal nowych zestawów cech.
+		\item \textbf{Unsupervised learning} - typ algorytmów, do których dostarczane są tylko dane w postaci zbioru cech. Algorytm ma za zadanie sklasteryzować dane na podstawie podobieństw między nimi.
+		\item \textbf{Semi-supervised learning} - te algorytmy są połączeniem algorytmów \textit{Supervised learning} oraz \textit{Unsupervised learning}. Przyjmują one dane, których tylko część jest oznaczona etykietami - na nich uczą się klasyfikacji, a na pozostałych (nieoznaczonych) - klasteryzacji.
+		\item \textbf{Reinforcement learning} - są zupełnie odmienne od pozostałych typów algorytmów, gdyż nie uczą się na podstawie wcześniej przygotowanych danych wejściowych. Służą one do takich zadań, gdzie na podstawie obserwacji interakcji z pewnym środowiskiem, algorytm się uczy podejmowania najbardziej opłacalnych akcji. Algorytmy te zbierają one dane na bieżąco, cały czas się na nich ucząc.
+		\end{itemize}
+		
+		\section{Perceptron - model regresji}
+		Głównymi zadaniami, do których używane są algorytmy \textit{Supervised learning} są regresja i klasyfikacja - mając dane wejściowe i ich etykiety, algorytmy te dają możliwość nauczenia modelu powiązań pomiędzy nimi z czego regresja przewiduje etykiety, które są wartościami ciągłymi a klasyfikacja - etykiety binarne (\textit{czy to jest pies?}, \textit{czy to jest kot?} i tym podobne).
+		
+			\subsection{Opis Perceptronu}
+			Najprostszym modelem pozwalającym na regresję oraz na klasyfikację jest \textbf{Perceptron} \cite{perceptron_1}\cite{perceptron_2}. Jest on przykładem jednowarstwowej sieci neuronowej. Posiada on zestaw neuronów wejściowych, każdy odpowiadający pojedynczej danej wejsciowej. Składa się on także z jednego lub wielu niezależnych neuronów wyjściowych. Każdy z nich jest połączony ze wszystkimi neuronami wejściowymi za pomocą krawędzi posiadających wagi - definiują one jak duży wpływ na wyjście ma każda dana wejściowa. Jeśli wyrazimy:
+			\begin{itemize}
+			\item wektor wejść jako \textit{X},
+			\item wektor wyjść jako \textit{Y},
+			\item macierz wag jako \textit{N},
+			\item \textbf{funkcję aktywacji} jako $\sigma$ - szerzej opisana w sekcji \ref{parametry_perceptronu}
+			\end{itemize}
+			to zachodzi równanie:
+			
+			\begin{equation}
+			Y=\sigma(NX)
+			\end{equation}
+		
+			Budowa Perceptronu z jednym neuronem wyjściowym (oznaczonym jako \textit{a}) jest widoczna na rysunku \ref{fig: budowa_perceptronu}\footnote{\url{https://pythonmachinelearning.pro/perceptrons-the-first-neural-networks/}}.
+	
+			\begin{figure}[h]
+		 		\begin{tightcenter}
+		 			\includegraphics[width = 0.75\linewidth]{rysunki/perceptron.png}
+				\end{tightcenter}	 			
+		 			
+	 			\caption{Budowa Perceptronu z jednym neuronem wyjściowym.}
+				\label{fig: budowa_perceptronu}
+			\end{figure}
+
+			\subsection{Parametry Perceptronu} \label{parametry_perceptronu}
+			Modele \textit{Perceptron} mają pewien zestaw parametrów, które wpływają na proces uczenia w różny sposób. Nie ma uniwersalnego sposobu ich wyboru co oznacza, że proces ich doboru jest najczęściej serią testów z różnymi ich kombinacjami. Wszystkie parametry opisane w tej sekcji tyczą się modelu \textit{Perceptron} jak i sieci neuronowych.
+			
+			Pierwszym z parametrów jest funkcja aktywacji - wprowadza ona nieliniowość danych w sieci \cite{activation_functions_1}\cite{activation_functions_2}. Służą one także do ograniczania zakresu danych, najczęściej do przedziału (-1, 1). Wybrane z nich to:
+			\begin{itemize}
+			
+			\item\textbf{Sigmoid} - stosowana często przy klasyfikacji, mająca wzór widoczny na równaniu \ref{rownanie_sigmoid},
+			\begin{equation} \label{rownanie_sigmoid}
+			\sigma(x) = \frac{1}{1 + e^{-x}}
+			\end{equation}
+			
+			\item\textbf{ReLU (Rectified linear unit)} - ze wzorem widocznym na równaniu \ref{rownanie_relu},
+			\begin{equation} \label{rownanie_relu}
+			\sigma(x) = 
+				\begin{cases}
+					x, & \text{dla } x >= 0. \\
+					0, & \text{dla } x < 0.
+				\end{cases}
+			\end{equation}
+			
+			\item\textbf{Softmax} -	stosowana często w ostatniej warstwie modelu przy klasyfikacji ponieważ normalizuje normą \textit{L1} wektor neuronów obarczonych tą funkcją do 1, ma ona wzór widoczny na równaniu \ref{rownanie_softmax}, gdzie \textit{K} to ilość neuronów w warstwie.
+			\begin{equation} \label{rownanie_softmax}
+			\sigma(x)_j = \frac{e^{x_j}}{\sum_{k = 1}^K e^{x_k}}\text{ dla } j = 1, ..., K
+			\end{equation}
+			\end{itemize}
+			
+			Kolejnym ważnym parametrem modeli \textit{Supervised learning} jest \textbf{funkcja kosztu} \textit{(ang. loss function)} - metryka optymalizowana przez sieć \cite{cost_function_and_gradient_descent}. Im ma ona mniejszą wartość, tym bardziej etykiety danych przewidziane przez sieć są bliższe etykietom rzeczywistym. Dla problemów regresji najczęściej uzywaną funkcją kosztu jest \textbf{MSE} (Mean Squared Error). Ma ona wzór widoczny na równaniu \ref{mse_wzor} gdzie:
+			\begin{itemize}
+			\item $m$ - ilość zestawów \textbf{danych uczących} (na podstawie których odbywa się proces uczący sieci),
+			\item $h_\theta$ - sieć neuronowa przedstawiona jako funkcja,
+			\item $x^{(i)}$ - i-ty wektor wejść do sieci,
+			\item $y^{(i)}$ - i-ty wektor wyjść z sieci,
+			\item $\theta$ - macierz wag.
+			\end{itemize}
+			
+			\begin{equation} \label{mse_wzor}
+			J(\theta) = \frac{1}{2m} \sum_{i = 1}^m (h_\theta(x^{(i)}) - y^{(i)})^2
+			\end{equation} 
+			
+			Następnym parametrem sieci neuronowych jest parametr \textbf{learning rate}, który określa jak bardzo będzie się zmieniać macierz/wektor wag na podstawie gradientu podczas każdej iteracji uczącej \cite{learning_rate}. Wzór przedstawiający udział tego współczynnika jest widoczny na równaniu \ref{learning_rate_in_action} gdzie:
+			\begin{itemize}
+			\item $\theta_i$ - i-ta waga z macierzy wag,
+			\item $\alpha$ - \textit{learning rate},
+			\item $J(\theta_i)$ - funkcja kosztu.
+			\end{itemize}
+			
+			\begin{equation} \label{learning_rate_in_action}
+			\theta_i := \theta_i - \alpha \frac{\partial}{\partial\theta_i} J(\theta_i)
+			\end{equation}
+			
+			 Zbyt duży współczynnik \textit{learning rate} może spowodować, że zamiast optymalizować funkcję kosztu będzie wręcz przeciwnie - będzie ona osiągała coraz większe wartości. Gdy jest on zbyt mały, jest on mniej niebezpieczny gdyż nie doprowadzi on do wzrostu wartości funkcji kosztu; problemem może być jednak wolniejszy proces uczący sieci co wymaga więcej epok uczących.
+			 
+			 Kolejnym parametrem mającym wpływ na sposób uczenia sieci jest \textbf{metoda minimalizacji}. Definiuje ona sposób, w jaki na podstawie \textit{funkcji kosztu} będą dostrajane wagi w sieci podczas kazdej iteracji procesu uczenia. Najpopularniejszą metodą minimalizacji jest \textbf{Metoda gradientów prostych} \textit{(ang. Gradient descent)}, szerzej opisana w sekcji \ref{optymalizacja_wyjsc_modelu}.
+			 
+		\section{Optymalizacja wyjść modelu} \label{optymalizacja_wyjsc_modelu}
+		Metodę minimalizacji jaką jest wspomniany wcześniej \textit{Gradient descent} można zastosować do znalezienia minimum funkcji \cite{cost_function_and_gradient_descent}. Przyjmując, że sieć neuronowa jest funkcją oznaczoną $h(x)$, gdzie \textit{x} to wektor danych wejściowych, to możliwe jest obliczenie pochodnej cząstkowej \cite{pochodna_czastkowa} tej funkcji po jej wektorze wejść w sposób pokazany w równaniu \ref{rownanie_pochodna}, gdzie:
+		\begin{itemize}
+		\item $\epsilon$ - pewien mały współczynnik, np. $1 * 10^{-6}$,
+		\item \textit{n} - długość wektora danych wejściowych.
+		\end{itemize}
+		
+		\begin{equation} \label{rownanie_pochodna}
+		\frac{\partial}{\partial x_i}h(x_0, ..., x_n) 
+		  = \frac{h(x_0, ..., x_i + \epsilon, ..., x_n) 
+		  		  - h(x_0, ..., x_i - \epsilon, ..., x_n)}
+			{2 \epsilon}
+		\end{equation}
+		
+		Tak obliczone pochodne cząstkowe funkcji następnie zostają pomnożone przez współczynnik $\lambda$ (odpowiadający za siłę pochodnej) i odjęte od wektora wejściowego \textit{x} w sposób pokazany na równaniu \ref{odjecie_gradientu_od_wektora_wejsciowego}, gdzie \textit{n} to długość tego wektora.
+		
+		\begin{equation} \label{odjecie_gradientu_od_wektora_wejsciowego}
+		x_i := x_i - \lambda \frac{\partial}{\partial x_i}h(x_0, ..., x_n)
+		\end{equation}
+		
+		Proces jest powtarzany przez pewną liczbę iteracji, co prowadzi do optymalizacji funkcji $h(x)$.
+		
+		Gdy metoda \textit{Gradient descent} jest używana do minimalizacji \textit{funkcji kosztu} sieci neuronowej, proces jest ten sam - tylko zamiast liczyć pochodne po wektorze wejściowym i później je od niego odejmować, są one liczone po macierzy wag, i to od niej są one odejmowane.
+			
+	\chapter{Proponowane rozwiązanie}
+	Rozwiązanie proponowane przeze mnie zostało podzielone na kilka kroków:
+	\begin{enumerate}
+	\item\label{proponowane_rozwiazanie_generacja_danych} Wygenerowanie \textit{n} zestawów parametrów wejściowych do symulatora \textit{PSP} w celu pozyskania jego danych wyjściowych.
+	\item Stworzenie modelu uczenia maszynowego na podstawie wygenerowanych zestawów danych wejściowych oraz wyjściowych symulatora i nauczenie go na danych z punktu~\ref{proponowane_rozwiazanie_generacja_danych}. Daje to możliwość generowania nowych danych wyjściowych bez używania symulatora.
+	\item Optymalizacja zestawu danych wyjściowych modelu na podstawie jego danych wejściowych używając metod optymalizacji \textit{Gradient descent}.
+	\end{enumerate}
+	
+	\chapter{PSP - Pederastian Simulator Project} \label{sekcja_psp}
 	\textit{W tym rozdziale opisany zostanie symutalor ruchu pieszych użyty w projekcie i jego sposób użycia wraz z potrzebnymi dodatkowymi plikami. Opisane zostaną użyte w projekcie parametry wejściowe do symulatora oraz metryki stworzone na podstawie jego danych wyjściowych.}
 	
 		\section{Opis}
@@ -281,7 +405,6 @@ backend=bibtex
 		\item \textbf{Sim stat directory} - określa ścieżkę do folderu, do którego zostaną zapisane dane wyjściowe symulacji (pliki \textit{.csv}).
 		\end{itemize}
 		
-	\newpage
 	\chapter{Budowa modelu uczenia maszynowego}
 	\textit{W tym rozdziale opisany będzie proces zbierania danych za pomocą symulatora PSP, tworzenie modelu uczenia maszynowego oraz optymalizacji jego wartości wyjściowych.}
 	
@@ -760,7 +883,7 @@ backend=bibtex
 		Podsumowując, badając powyższe dane okazuje się, że uśrednianie danych nie wyeliminowało do końca problemu gorszego przyuczenia sieci do danych treningowych niż do testowych. Jednocześnie wstępnym wnioskiem na obecnych danych jest to, że regularyzacja \textit{L1} pomaga bardziej niż \textit{L2}. Jednakże aby mieć tego pewność, trzeba dokładniej sprawdzić dane oraz ewentualnie zebrać ich więcej, po czym zrobić powyższe testy jeszcze raz.
 		
 		\section{Badanie danych}
-		Zastanawiającym problemem pojawiającym się w poprzednich rozdziałach było to, że często po nauczeniu sieci neuronowej, przewiduje ona dane testujące lepiej niż treningowe. Zwiększając poziom skomplikowania sieci neuronowej sytuacja się nie zmieniała, co dowiodło że problem leży nie po stronie modelu, a po stronie danych. Z tego powodu postanowiłem sprawdzić jakie wartości przyjmują dane wyjściowe w moim zbiorze danych. Wyrysowałem więc histogram obrazujący zależność ilości danych od czasu ewakuacji widoczny na rysunku \ref{fig: zaleznosc_ilosci_danych_od_czasu_ewakuacji}.
+		Zastanawiającym problemem pojawiającym się w poprzednich rozdziałach było to, że często po nauczeniu sieci neuronowej, przewiduje ona dane testujące lepiej niż treningowe. Zwiększając poziom skomplikowania sieci neuronowej sytuacja się nie zmieniała, co dowiodło że problem leży nie po stronie modelu, a po stronie danych. Z tego powodu postanowiłem sprawdzić jakie wartości przyjmują dane wyjściowe w moim zbiorze danych. Wyrysowałem więc histogram obrazujący ilość danych dla danego czasu ewakuacji widoczny na rysunku \ref{fig: zaleznosc_ilosci_danych_od_czasu_ewakuacji}.
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
@@ -1010,5 +1133,5 @@ backend=bibtex
 		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?) \\
 		DODAĆ JEDNOSTKI DO WYKRESÓW (I CZY DO TABEL TEŻ?)
 		
-		\printbibliography
+	\printbibliography
 \end{document}

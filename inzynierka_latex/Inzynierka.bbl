@@ -16,5 +16,132 @@
   {}
 \endgroup
 
-\datalist[entry]{none/global//global/global}\enddatalist
+\datalist[entry]{none/global//global/global}
+  \entry{types_of_machine_learning_algorithms}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FD}{%
+         family={Fumo},
+         familyi={F\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FD1}
+    \strng{fullhash}{FD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{note}{\newline\url{https://towardsdatascience.com/types-of-machine-learning-algorithms-you-should-know-953a08248861}}
+    \field{title}{Types of Machine Learning Algorithms You Should Know}
+  \endentry
+
+  \entry{perceptron_1}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=SS}{%
+         family={Sharma},
+         familyi={S\bibinitperiod},
+         given={Sagar},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SS1}
+    \strng{fullhash}{SS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{note}{\newline\url{https://towardsdatascience.com/what-the-hell-is-perceptron-626217814f53}}
+    \field{title}{What the Hell is Perceptron?}
+  \endentry
+
+  \entry{perceptron_2}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=DB}{%
+         family={Dolhansky},
+         familyi={D\bibinitperiod},
+         given={Brian},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DB1}
+    \strng{fullhash}{DB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{note}{\newline\url{http://www.briandolhansky.com/blog/artificial-neural-networks-linear-regression-part-1}}
+    \field{title}{Artificial Neural Networks: Linear Regression (Part 1)}
+  \endentry
+
+  \entry{activation_functions_1}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=SA}{%
+         family={Sharma},
+         familyi={S\bibinitperiod},
+         given={Avinash},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SA1}
+    \strng{fullhash}{SA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{note}{\newline\url{https://medium.com/the-theory-of-everything/understanding-activation-functions-in-neural-networks-9491262884e0}}
+    \field{title}{Understanding Activation Functions in Neural Networks}
+  \endentry
+
+  \entry{activation_functions_2}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=PS}{%
+         family={Polamuri},
+         familyi={P\bibinitperiod},
+         given={Saimadhu},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PS1}
+    \strng{fullhash}{PS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{note}{\newline\url{http://dataaspirant.com/2017/03/07/difference-between-softmax-function-and-sigmoid-function}}
+    \field{title}{Difference between softmax function and sigmoid function}
+  \endentry
+
+  \entry{cost_function_and_gradient_descent}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=ML}{%
+         family={Miller},
+         familyi={M\bibinitperiod},
+         given={Lachlan},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ML1}
+    \strng{fullhash}{ML1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{note}{\newline\url{https://medium.com/@lachlanmiller_52885/machine-learning-week-1-cost-function-gradient-descent-and-univariate-linear-regression-8f5fe69815fd}}
+    \field{title}{Machine Learning week 1: Cost Function, Gradient Descent and
+  Univariate Linear Regression}
+  \endentry
+
+  \entry{learning_rate}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=ZH}{%
+         family={Zulkifli},
+         familyi={Z\bibinitperiod},
+         given={Hafidz},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZH1}
+    \strng{fullhash}{ZH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{note}{\newline\url{https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10}}
+    \field{title}{Understanding Learning Rates and How It Improves Performance
+  in Deep Learning}
+  \endentry
+
+  \entry{pochodna_czastkowa}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{note}{\newline\url{https://en.wikipedia.org/wiki/Partial_derivative}}
+    \field{title}{Partial derivative}
+  \endentry
+\enddatalist
 \endinput
