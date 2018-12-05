@@ -48,7 +48,7 @@ if __name__ == "__main__":
         data_mean, data_std = pickle.load(file_handler)
 
     random_index = randint(0, 399)
-    input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data",  slice(None, 1),
+    input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data", slice(None, 1),
                                                                                slice(random_index, random_index + 1))
     input_data = (input_data - data_mean) / data_std
 

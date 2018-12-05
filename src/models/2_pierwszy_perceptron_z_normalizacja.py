@@ -24,7 +24,7 @@ if __name__ == "__main__":
     plotter = Plotter()
     data_operator = DataOperator()
 
-    input_data, output_data = data_files_manager.extract_simulation_all_data("simulation_output_data",  slice(None, 1))
+    input_data, output_data = data_files_manager.extract_simulation_all_data("simulation_output_data", slice(None, 1))
     input_data, output_data = data_operator.permutate_data(input_data, output_data)
     input_data, _, _ = data_operator.normalize_data(input_data)
 

@@ -9,7 +9,7 @@ if __name__ == "__main__":
     plotter = Plotter()
     data_operator = DataOperator()
 
-    input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data",  slice(None, 1))
+    input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data", slice(None, 1))
     plt.hist(output_data, bins=40)
     plt.ylabel("Ilość przypadków")
     plt.xlabel("Czas ewakuacji [s]")
