@@ -26,7 +26,7 @@ if __name__ == "__main__":
     plotter = Plotter()
     data_operator = DataOperator()
 
-    input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data", 1)
+    input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data",  slice(None, 1))
     filtered_data_indices = (output_data < 40).reshape((200,))
     input_data, output_data = input_data[filtered_data_indices], output_data[output_data < 40]
     input_data, output_data = data_operator.permutate_data(input_data, output_data)
@@ -95,4 +95,3 @@ if __name__ == "__main__":
             mean_str = f"{mean_mse[0]:.2f} ($\pm${mse_std[0]:.2f})".replace(".", ",")
             std_str = f"{mean_mse[1]:.2f} ($\pm${mse_std[1]:.2f})".replace(".", ",")
             print(f"{regularization_function.__name__} & {regularization_rate} & {mean_str} & {std_str} \\f")
-

@@ -27,7 +27,7 @@ if __name__ == "__main__":
     data_operator = DataOperator()
 
     for slices in [slice(None, 200), slice(200, None), slice(None, None)]:
-        input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data", 1,
+        input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data",  slice(None, 1),
                                                                                    slices)
         filtered_data_indices = (output_data < 40).reshape((output_data.shape[0],))
         input_data, output_data = input_data[filtered_data_indices], output_data[output_data < 40]

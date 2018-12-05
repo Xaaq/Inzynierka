@@ -30,7 +30,7 @@ if __name__ == "__main__":
     data_operator = DataOperator()
 
     for layer_count, neuron_in_layer_count in [(1, 20), (1, 40), (2, 20), (2, 40)]:
-        input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data", 1)
+        input_data, output_data = data_files_manager.extract_simulation_means_data("simulation_output_data",  slice(None, 1))
         input_data, output_data = data_operator.permutate_data(input_data, output_data)
         input_data, _, _ = data_operator.normalize_data(input_data)
 

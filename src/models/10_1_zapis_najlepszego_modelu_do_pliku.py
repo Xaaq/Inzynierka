@@ -35,35 +35,35 @@ if __name__ == "__main__":
     input_data, output_data = data_operator.permutate_data(input_data, output_data)
     input_data, data_mean, data_std = data_operator.normalize_data(input_data)
 
-    with open("data_mean_std.dat", "wb") as file_handler:
-        pickle.dump((data_mean, data_std), file_handler)
-
-    regularization_rate = 0.3
-    learning_epochs = 300
-    validation_split = 0.2
-
-    # ===== Normal learning =====
-
-    mse_model_list = []
-
-    for _ in range(20):
-        input_data, output_data = data_operator.permutate_data(input_data, output_data)
-
-        _, single_data_dimension = input_data.shape
-        model = create_model(single_data_dimension, regularization_rate)
-        history = model.fit(input_data, output_data, epochs=learning_epochs, validation_split=validation_split,
-                            verbose=False)
-
-        output_mse = history.history["mean_squared_error"][-1]
-        output_val_mse = history.history["val_mean_squared_error"][-1]
-
-        mse_difference = abs(output_mse - output_val_mse)
-
-        mse_model_list.append((mse_difference, model))
-        print(output_mse, output_val_mse, mse_difference)
-
-    mse_model_list.sort()
-    difference, model = mse_model_list[0]
-    model.save("saved_model_evacuation_time.hdf5")
-
-    print(f"Saved model with {difference} difference")
+    # with open("data_mean_std.dat", "wb") as file_handler:
+    #     pickle.dump((data_mean, data_std), file_handler)
+    #
+    # regularization_rate = 0.3
+    # learning_epochs = 300
+    # validation_split = 0.2
+    #
+    # # ===== Normal learning =====
+    #
+    # mse_model_list = []
+    #
+    # for _ in range(20):
+    #     input_data, output_data = data_operator.permutate_data(input_data, output_data)
+    #
+    #     _, single_data_dimension = input_data.shape
+    #     model = create_model(single_data_dimension, regularization_rate)
+    #     history = model.fit(input_data, output_data, epochs=learning_epochs, validation_split=validation_split,
+    #                         verbose=False)
+    #
+    #     output_mse = history.history["mean_squared_error"][-1]
+    #     output_val_mse = history.history["val_mean_squared_error"][-1]
+    #
+    #     mse_difference = abs(output_mse - output_val_mse)
+    #
+    #     mse_model_list.append((mse_difference, model))
+    #     print(output_mse, output_val_mse, mse_difference)
+    #
+    # mse_model_list.sort()
+    # difference, model = mse_model_list[0]
+    # model.save("saved_model_aaaa.hdf5")
+    #
+    # print(f"Saved model with {difference} difference")

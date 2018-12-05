@@ -74,7 +74,7 @@ class DataFilesManager:
         return np.array(value_vector)
 
     @staticmethod
-    def extract_params_from_agent_csv(file_path: str, output_parameters_count: int) -> np.ndarray:
+    def extract_params_from_agent_csv(file_path: str, output_parameters_count: slice) -> np.ndarray:
         parameter_functions = [
             lambda data_frame: data_frame["EvacTime[s]"].max(),
             lambda data_frame: ((data_frame["AverageSpeed[m/s]"]
@@ -84,7 +84,7 @@ class DataFilesManager:
         ]
 
         agent_data_frame = pd.read_csv(file_path, decimal=",")
-        value_vector = [function(agent_data_frame) for function in parameter_functions[:output_parameters_count]]
+        value_vector = [function(agent_data_frame) for function in parameter_functions[output_parameters_count]]
         return np.array(value_vector)
 
     @classmethod
@@ -106,7 +106,7 @@ class DataFilesManager:
         ET.ElementTree(xml_root).write(file_path)
 
     @classmethod
-    def extract_simulation_means_data(cls, all_simulations_path: str, output_parameters_count: int,
+    def extract_simulation_means_data(cls, all_simulations_path: str, output_parameters_count: slice,
                                       start_stop_slices: slice = slice(None, 200)):
         input_data_list = []
         output_data_list = []
@@ -129,7 +129,7 @@ class DataFilesManager:
         return np.array(input_data_list), np.array(output_data_list)
 
     @classmethod
-    def extract_simulation_all_data(cls, all_simulations_path: str, output_parameters_count: int,
+    def extract_simulation_all_data(cls, all_simulations_path: str, output_parameters_count: slice,
                                     start_stop_slices: slice = slice(None, 200)):
         input_data_list = []
         output_data_list = []
