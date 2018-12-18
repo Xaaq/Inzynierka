@@ -77,10 +77,10 @@ class DataFilesManager:
     def extract_params_from_agent_csv(file_path: str, output_parameters_count: slice) -> np.ndarray:
         parameter_functions = [
             lambda data_frame: data_frame["EvacTime[s]"].max(),
-            lambda data_frame: ((data_frame["AverageSpeed[m/s]"]
-                                 - np.ones_like(data_frame["AverageSpeed[m/s]"])
-                                 * data_frame["AverageSpeed[m/s]"].max()) ** 2).sum()
-                               / data_frame["AverageSpeed[m/s]"].count()
+            # lambda data_frame: ((data_frame["AverageSpeed[m/s]"]
+            #                      - np.ones_like(data_frame["AverageSpeed[m/s]"])
+            #                      * data_frame["AverageSpeed[m/s]"].max()) ** 2).sum()
+            #                    / data_frame["AverageSpeed[m/s]"].count()
         ]
 
         agent_data_frame = pd.read_csv(file_path, decimal=",")
