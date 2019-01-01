@@ -130,7 +130,7 @@ backend=bibtex
 \faculty{Wydział Fizyki i Informatyki}
 %\faculty{Faculty of Electrical Engineering, Automatics, Computer Science and Biomedical Engineering}
 
-\acknowledgements{Serdecznie dziękuję \dots tu ciąg dalszych podziękowań np. dla promotora, żony, sąsiada itp.}
+\acknowledgements{}
 
 \setlength{\cftsecnumwidth}{10mm}
 
@@ -190,14 +190,14 @@ backend=bibtex
 	\textit{W tym rozdziale zostanie opisane podłoże historyczne, cel i jego założenia projektu. Zaprezentowane zostanie proponowane rozwiązanie postawionego problemu oraz technologie do tego użyte.}
 	
 		\section{Geneza projektu}	
-		W dzisiejszym świecie kładziony jest nacisk na projektowanie budynków użytku publicznego tak, aby zapewnić możliwie największe bezpieczeństwo ludzi, którzy będą z nich korzystali. Jednakże, jednocześnie wymagane jest aby takie budynki były także funkcjonalne - na przykład podział przestrzeni na pomieszczenia. Z tego powodu konieczne jest wyznaczenie ścieżek oraz wyjść ewakuacyjnych przewidzianych w taki sposób, aby ewakuacja ludzi odbyła się w sposób sprawny.
+		W dzisiejszym świecie kładziony jest nacisk na projektowanie budynków użytku publicznego tak, aby zapewnić możliwie największe bezpieczeństwo ludzi, którzy będą z nich korzystali. Jednakże, jednocześnie wymagane jest aby takie budynki były także funkcjonalne - na przykład zaplanowanie odpowiednie podział przestrzeni na pomieszczenia. Z tych powodów konieczne jest wyznaczenie ścieżek oraz wyjść ewakuacyjnych przewidzianych w taki sposób, aby ewakuacja ludzi odbyła się w sposób sprawny a jednocześnie, aby zachować wysoką funkcjonalność budynku.
 		
-		Dziedzina informatyki, jaką jest uczenie maszynowe przez kilka ostatnich lat zyskała sporą popularność. Metody z tej dziedziny potrafią rozwiązywać problemy, które dotychczas były nierozwiązywalne za pomocą innych metod. Jednym z takich problemów jest nauczenie się wzorca na podstawie zbioru danych oraz jego generalizacja. Daje to duże możliwości w takich zadaniach, gdzie potrzebujemy narzędzia potrafiącego symulować ruch ludzi na podstawie wczesniej nauczonych wzorców.
+		Dziedzina informatyki, jaką jest uczenie maszynowe przez kilka ostatnich lat zyskała sporą popularność. Metody z tej dziedziny potrafią rozwiązywać problemy, które dotychczas były nierozwiązywalne za pomocą innych metod. Jednym z takich problemów jest uczenie się wzorca na podstawie zbioru danych oraz jego generalizacja. Daje to duże możliwości w takich zadaniach, gdzie potrzebujemy narzędzia potrafiącego symulować ruch ludzi na podstawie wczesniej nauczonych wzorców.
 		
-		Rozwiązanie problemu optymalnego wyboru ścieżki lub wyjścia ewakuacyjnego dałoby odpowiedź jaki jest najkrótszy czas ewakuacji całego budynku, co dało by informacje o tym, czy budynek jest dobrze zaprojektowany.
+		Rozwiązanie problemu optymalnego wyboru ścieżki lub wyjścia ewakuacyjnego dałoby odpowiedź jaki jest najkrótszy czas ewakuacji całego budynku, co daje informacje o tym, czy budynek jest dobrze zaprojektowany.
 	
 		\section{Cel projektu}	
-		 Z tego powodu celu postawiłem następujący problem - rozwiązanie problemu optymalizacji wyboru ścieżki lub wyjścia ewakuacyjnego ludzi w budynku. Co więcej, w związku z moim wcześniejszym doświadczeniem z tematem uczenia maszynowego, postanowiłem rozwiązać ten problem za pomocą technik machine learning.
+		 W ramach pracy postawiłem sobie następujący problem - rozwiązanie problemu optymalizacji wyboru ścieżki lub wyjścia ewakuacyjnego ludzi w budynku. Co więcej, w związku z moim wcześniejszym doświadczeniem z tematem uczenia maszynowego, postanowiłem rozwiązać ten problem za pomocą technik machine learning.
 		
 		\section{Użyte technologie oraz programy}
 		Wszystkie obliczenia oraz rysowanie wykresów zostało zrealizowane w języku programowania \textbf{Python} w wersji 3.6 przy użyciu bibliotek:
@@ -216,7 +216,7 @@ backend=bibtex
 		\section{Typy modeli uczenia maszynowego}
 		Uczenie maszynowe jest to termin określający całą gamę sposobów rozwiązywania problemów, które przy tradycyjnych metodach byłyby niemożliwe do rozwiązania lub skrajnie niewydajne obliczeniowo. Wyróżniane są 4 typy algorytmów uczenia maszynowego ze względu na sposób rozwiązywania przez nie problemu 	\cite{types_of_machine_learning_algorithms}:
 		\begin{itemize}
-		\item \textbf{Supervised learning} - algorytmy, do których danymi wejściowymi są dane - zestaw cech i ich etykiety oznaczające jakiej kategorii jest dana próbka. Tak nauczony model potrafi przewidzieć etykiety dal nowych zestawów cech.
+		\item \textbf{Supervised learning} - algorytmy, do których danymi wejściowymi są zestawy cech i ich etykiety oznaczające do jakiej kategorii przynależy dana próbka. Tak nauczony model potrafi przewidzieć etykiety dla nowych zestawów cech.
 		\item \textbf{Unsupervised learning} - typ algorytmów, do których dostarczane są tylko dane w postaci zbioru cech. Algorytm ma za zadanie sklasteryzować dane na podstawie podobieństw między nimi.
 		\item \textbf{Semi-supervised learning} - te algorytmy są połączeniem algorytmów \textit{Supervised learning} oraz \textit{Unsupervised learning}. Przyjmują one dane, których tylko część jest oznaczona etykietami - na nich uczą się klasyfikacji, a na pozostałych (nieoznaczonych) - klasteryzacji.
 		\item \textbf{Reinforcement learning} - są zupełnie odmienne od pozostałych typów algorytmów, gdyż nie uczą się na podstawie wcześniej przygotowanych danych wejściowych. Służą one do takich zadań, gdzie na podstawie obserwacji interakcji z pewnym środowiskiem, algorytm się uczy podejmowania najbardziej opłacalnych akcji. Algorytmy te zbierają one dane na bieżąco, cały czas się na nich ucząc.
@@ -251,9 +251,9 @@ backend=bibtex
 			\end{figure}
 
 			\subsection{Parametry Perceptronu} \label{parametry_perceptronu}
-			Modele \textit{Perceptron} mają pewien zestaw parametrów, które wpływają na proces uczenia w różny sposób. Nie ma uniwersalnego sposobu ich wyboru co oznacza, że proces ich doboru jest najczęściej serią testów z różnymi ich kombinacjami. Wszystkie parametry opisane w tej sekcji tyczą się modelu \textit{Perceptron} jak i sieci neuronowych.
+			Modele \textit{Perceptron} posiadają pewien zestaw parametrów, który wpływa na proces uczenia w różny sposób. Nie ma uniwersalnego sposobu ich wyboru co oznacza, że proces ich doboru jest najczęściej serią testów z różnymi ich kombinacjami. Wszystkie parametry opisane w tej sekcji tyczą się modelu \textit{Perceptron} jak i wielowarstwowych sieci neuronowych.
 			
-			Pierwszym z parametrów jest funkcja aktywacji - wprowadza ona nieliniowość danych w sieci \cite{activation_functions_1}\cite{activation_functions_2}. Służą one także do ograniczania zakresu danych, najczęściej do przedziału (-1, 1). Wybrane z nich to:
+			Pierwszym z parametrów jest funkcja aktywacji - wprowadza ona nieliniowość danych w sieci \cite{activation_functions_1}\cite{activation_functions_2}. Służy ona także do ograniczania zakresu danych, najczęściej do przedziału (-1, 1). Wybrane z nich to:
 			\begin{itemize}
 			
 			\item\textbf{Sigmoid} - stosowana często przy klasyfikacji, mająca wzór widoczny na równaniu \ref{rownanie_sigmoid},
@@ -270,7 +270,7 @@ backend=bibtex
 				\end{cases}
 			\end{equation}
 			
-			\item\textbf{Softmax} -	stosowana często w ostatniej warstwie modelu przy klasyfikacji ponieważ normalizuje normą \textit{L1} wektor neuronów obarczonych tą funkcją do 1, ma ona wzór widoczny na równaniu \ref{rownanie_softmax}, gdzie \textit{K} to ilość neuronów w warstwie.
+			\item\textbf{Softmax} -	stosowana często w ostatniej warstwie modelu przy klasyfikacji ponieważ normalizuje normą \textit{L1} wektor neuronów obarczonych tą funkcją do 1; ma ona wzór widoczny na równaniu \ref{rownanie_softmax}, gdzie \textit{K} to ilość neuronów w warstwie.
 			\begin{equation} \label{rownanie_softmax}
 			\sigma(x)_j = \frac{e^{x_j}}{\sum_{k = 1}^K e^{x_k}}\text{ dla } j = 1, ..., K
 			\end{equation}
@@ -280,8 +280,8 @@ backend=bibtex
 			\begin{itemize}
 			\item $m$ - ilość zestawów \textbf{danych uczących} (na podstawie których odbywa się proces uczący sieci),
 			\item $h_\theta$ - sieć neuronowa przedstawiona jako funkcja,
-			\item $x^{(i)}$ - i-ty wektor wejść do sieci,
-			\item $y^{(i)}$ - i-ty wektor wyjść z sieci,
+			\item $x^{(i)}$ - i-ty wektor danych wejściowych sieci,
+			\item $y^{(i)}$ - i-ty wektor etykiet danych,
 			\item $\theta$ - macierz wag.
 			\end{itemize}
 			
@@ -305,7 +305,7 @@ backend=bibtex
 			 Kolejnym parametrem mającym wpływ na sposób uczenia sieci jest \textbf{metoda minimalizacji}. Definiuje ona sposób, w jaki na podstawie \textit{funkcji kosztu} będą dostrajane wagi w sieci podczas kazdej iteracji procesu uczenia. Najpopularniejszą metodą minimalizacji jest \textbf{Metoda gradientów prostych} \textit{(ang. Gradient descent)}, szerzej opisana w sekcji \ref{optymalizacja_wyjsc_modelu}.
 			 
 		\section{Optymalizacja wyjść modelu} \label{optymalizacja_wyjsc_modelu}
-		Metodę minimalizacji jaką jest wspomniany wcześniej \textit{Gradient descent} można zastosować do znalezienia minimum funkcji \cite{cost_function_and_gradient_descent}. Przyjmując, że sieć neuronowa jest funkcją oznaczoną $h(x)$, gdzie \textit{x} to wektor danych wejściowych, to możliwe jest obliczenie pochodnej cząstkowej \cite{pochodna_czastkowa} tej funkcji po jej wektorze wejść w sposób pokazany w równaniu \ref{rownanie_pochodna}, gdzie:
+		Metoda minimalizacji jaką jest wspomniany wcześniej \textit{Gradient descent} jest stosowana do znalezienia minimum funkcji \cite{cost_function_and_gradient_descent}. Przyjmując, że sieć neuronowa jest funkcją oznaczoną $h(x)$, gdzie \textit{x} to wektor danych wejściowych, to możliwe jest obliczenie pochodnej cząstkowej \cite{pochodna_czastkowa} tej funkcji po jej wektorze wejść w sposób pokazany w równaniu \ref{rownanie_pochodna}, gdzie:
 		\begin{itemize}
 		\item $\epsilon$ - pewien mały współczynnik, np. $1 * 10^{-6}$,
 		\item \textit{n} - długość wektora danych wejściowych.
@@ -318,7 +318,7 @@ backend=bibtex
 			{2 \epsilon}
 		\end{equation}
 		
-		Tak obliczone pochodne cząstkowe funkcji następnie zostają pomnożone przez współczynnik $\lambda$ (odpowiadający za siłę pochodnej) i odjęte od wektora wejściowego \textit{x} w sposób pokazany na równaniu \ref{odjecie_gradientu_od_wektora_wejsciowego}, gdzie \textit{n} to długość tego wektora.
+		Tak obliczone pochodne cząstkowe funkcji następnie zostają pomnożone przez współczynnik $\lambda$ (odpowiadający za siłę pochodnej) i odjęte od wektora wejściowego \textit{x} w sposób pokazany na równaniu \ref{odjecie_gradientu_od_wektora_wejsciowego}.
 		
 		\begin{equation} \label{odjecie_gradientu_od_wektora_wejsciowego}
 		x_i := x_i - \lambda \frac{\partial}{\partial x_i}h(x_0, ..., x_n)
