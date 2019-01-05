@@ -15,20 +15,19 @@
 \BOOKMARK [1][-]{section.4.3}{Dane wejsciowe i wyjsciowe}{chapter.4}% 15
 \BOOKMARK [0][-]{chapter.5}{Budowa modelu uczenia maszynowego}{}% 16
 \BOOKMARK [1][-]{section.5.1}{Zebranie danych}{chapter.5}% 17
-\BOOKMARK [1][-]{section.5.2}{Opis modelu Perceptron}{chapter.5}% 18
-\BOOKMARK [1][-]{section.5.3}{Pierwszy model - tworzenie i analiza}{chapter.5}% 19
-\BOOKMARK [1][-]{section.5.4}{Normalizacja danych}{chapter.5}% 20
-\BOOKMARK [1][-]{section.5.5}{Drugi model - tworzenie i analiza}{chapter.5}% 21
-\BOOKMARK [1][-]{section.5.6}{Zwiekszenie stopnia skomplikowania modelu}{chapter.5}% 22
-\BOOKMARK [1][-]{section.5.7}{Usrednianie danych}{chapter.5}% 23
-\BOOKMARK [1][-]{section.5.8}{Regularyzacja modelu}{chapter.5}% 24
-\BOOKMARK [1][-]{section.5.9}{Badanie danych}{chapter.5}% 25
-\BOOKMARK [1][-]{section.5.10}{Zebranie wiekszej ilosci danych}{chapter.5}% 26
-\BOOKMARK [1][-]{section.5.11}{Podsumowanie}{chapter.5}% 27
-\BOOKMARK [0][-]{chapter.6}{Optymalizacja modelu}{}% 28
-\BOOKMARK [1][-]{section.6.1}{Proces optymalizacji modelu}{chapter.6}% 29
-\BOOKMARK [1][-]{section.6.2}{Podsumowanie}{chapter.6}% 30
-\BOOKMARK [0][-]{chapter.7}{Podsumowanie projektu}{}% 31
-\BOOKMARK [1][-]{section.7.1}{Podsumowanie procesu zbierania danych}{chapter.7}% 32
-\BOOKMARK [1][-]{section.7.2}{Podsumowanie budowy modelu}{chapter.7}% 33
-\BOOKMARK [1][-]{section.7.3}{Optymalizacja wyjsc modelu}{chapter.7}% 34
+\BOOKMARK [1][-]{section.5.2}{Pierwszy model - tworzenie i analiza}{chapter.5}% 18
+\BOOKMARK [1][-]{section.5.3}{Normalizacja danych}{chapter.5}% 19
+\BOOKMARK [1][-]{section.5.4}{Drugi model - tworzenie i analiza}{chapter.5}% 20
+\BOOKMARK [1][-]{section.5.5}{Zwiekszenie stopnia skomplikowania modelu}{chapter.5}% 21
+\BOOKMARK [1][-]{section.5.6}{Usrednianie danych}{chapter.5}% 22
+\BOOKMARK [1][-]{section.5.7}{Regularyzacja modelu}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.8}{Badanie danych}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.9}{Zebranie wiekszej ilosci danych}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.10}{Podsumowanie}{chapter.5}% 26
+\BOOKMARK [0][-]{chapter.6}{Optymalizacja modelu}{}% 27
+\BOOKMARK [1][-]{section.6.1}{Proces optymalizacji modelu}{chapter.6}% 28
+\BOOKMARK [1][-]{section.6.2}{Podsumowanie}{chapter.6}% 29
+\BOOKMARK [0][-]{chapter.7}{Podsumowanie projektu}{}% 30
+\BOOKMARK [1][-]{section.7.1}{Podsumowanie procesu zbierania danych}{chapter.7}% 31
+\BOOKMARK [1][-]{section.7.2}{Podsumowanie budowy modelu}{chapter.7}% 32
+\BOOKMARK [1][-]{section.7.3}{Optymalizacja wyjsc modelu}{chapter.7}% 33
