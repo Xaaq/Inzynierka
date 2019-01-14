@@ -446,6 +446,9 @@ backend=bibtex
 		\item \textbf{średni MSE danych treningowych} - 147,77 ($\pm$16,04),
 		\item \textbf{średni MSE danych testowych} - 166,18 ($\pm$50,77).
 		\end{itemize}
+		
+		\textbf{Wykresy w pracy mają ustalony zakres na osi pionowej (400, 200 lub 50); może to prowadzić do sytuacji, gdy część wykresu będzie niewidoczna. Jest to działanie celowe, spowodowane doborem zakresów w taki sposób, aby wykresy można było łatwo porównywać, a zarazem żeby widoczne były tylko dane znaczące.}
+		
 		Wykres zależności \textit{MSE} danych od iteracji uczacej najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczna na rysunku \ref{fig: pierwszy_model_wykres_uczenia}. Taki rodzaj wykresów będzie nazywany dalej \textbf{wykresami krzywych uczących dla najlepszego przypadku}. Analizując go, autor doszedł do następujących wniosków:
 		\begin{itemize}
 		\item \textit{MSE} danych treningowych jak i testowych jest na wysokim poziomie co oznacza, że model ma \textbf{wysoki bias}. Oznacza to, że użyty model jest zbyt prosty i nie ważne jak dużo danych zostanie do niego podanych i jak długo będzie się on uczył - \textit{MSE} danych nie obniży się poniżej pewnego poziomu.
@@ -516,7 +519,7 @@ backend=bibtex
 		\item \textbf{średni MSE danych treningowych} - 118,64 ($\pm$6,07),
 		\item \textbf{średni MSE danych testowych} - 130,70 ($\pm$23,47).
 		\end{itemize}
-		Wykres krzywych uczących dla najlepszego przypadku widoczny jest na rysunku \ref{fig: pierwszy_model_wykres_uczenia_z_normalizacja}. Dodatkowo patrząc na wykres krzywych uczących dla zmiennej ilości danych z rysunku \ref{fig: pierwszy_model_learning_curves_z_normalizacja} - widać zależność \textit{MSE} danych od liczby danych treningowych. 
+		Wykres krzywych uczących dla najlepszego przypadku widoczny jest na rysunku \ref{fig: pierwszy_model_wykres_uczenia_z_normalizacja}. Dodatkowo patrząc na wykres krzywych uczących dla zmiennej ilości danych z rysunku \ref{fig: pierwszy_model_learning_curves_z_normalizacja} - widać zależność \textit{MSE} danych od liczby danych treningowych. \textbf{•}
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
@@ -529,7 +532,7 @@ backend=bibtex
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
-	 			\includegraphics[width = 0.75\linewidth]{wykresy/2_normalizacja_danych/learning_curves.png}
+	 			\includegraphics[width = \linewidth]{wykresy/2_normalizacja_danych/learning_curves.png}
 	 		\end{tightcenter}
 	 		
  			\caption{Krzywe uczące dla zmniennej ilości danych w pierwszym modelu ze znormalizowanymi danymi.}
