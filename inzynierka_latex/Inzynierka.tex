@@ -411,7 +411,7 @@ backend=bibtex
 		\section{Zebranie danych} \label{zebranie_danych}
 		W celu zebrania danych, które miałyby trafić później do modelu uczenia maszynowego, został stworzony skrypt pythonowy, który wygenerował 200 różnych zestawów parametrów wejściowych do symulatora. Rodzaje danych, które zostały wygenerowane znajdują się w rozdziale~\ref{dane_do_dalszej_analizy}. Dla każdego zestawu danych autor ustawił parametr \textit{Repeat number} na wartość \textbf{10}, dzięki czemu dla każdego zestawu danych wejściowych generowane było 10 zestawów danych wyjściowych. Było to niezwykle cenne z 2 powodów:
 		\begin{itemize}
-		\item Do symulatora trzeba było ręcznie ładować plik \textit{.xml}, a dzięki temu z jedngo pliku otrzymywałem od razu 10 zestawów plików wyjściowych.
+		\item Do symulatora trzeba było ręcznie ładować plik \textit{.xml}, a dzięki temu z jedngo pliku otrzymywano od razu 10 zestawów plików wyjściowych.
 		\item Ruchy agentów, z takim samym zestawem parametrów, rożnią się między symulacjami, a dzięki powtórzeniom można było łatwiej odczytać ich trend.
 		\end{itemize}
 		
@@ -542,7 +542,7 @@ backend=bibtex
 		Podsumowując, pierwszą rzeczą rzucającą się w oczy jest duża stabilność wartości na wykresach - eliminuje to sytuacje w których wynik uczenia był winą przypadku, jako że kilka iteracji wcześniej lub później \textit{Perceptron} dawał zupełnie inny rezultat. Dzięki większej stabilności sieci łatwiej jest także wyciągać wnioski na podstawie wykresów. Lepiej widoczny jest problem zauważony wcześniej - wysoki bias modelu. Objawia się on tym, że na początku \textit{MSE} danych maleje, aż do pewnego momentu gdzie jest stały i żadna ilość danych albo długość uczenia nie spowoduje jego zmniejszenia. Ostatnią rzeczą, która jest taka sama jak w rozdziale \ref{pierwszy_model_tworzenie_i_analiza} - \textit{MSE} danych testowych często jest mniejsze niż danych treningowych.
 		
 		\section{Drugi model - tworzenie i analiza} \label{drugi_model_tworzenie_i_analiza}
-		Chcąc rozwiązać główny problem poprzedniego modelu - wysoki bias - autor potrzebował modelu, który potrafi nauczyć się bardziej skomplikowanych funkcji. Takim modelem była sieć neuronowa z kilkoma warstwami. Dzięki każdej następnej warstwie ma ona możliwość uczenia się coraz bardziej skomplikowanych funkcji. Stworzona sieć miała 1 \textbf{warstwę ukrytą} - warstwę neuronów pomiędzy wejściami a warstwą wyjść - z 30 neuronami. Jako funkcję aktywacji wybrałem funkcję \textit{ReLU}.
+		Chcąc rozwiązać główny problem poprzedniego modelu - wysoki bias - autor potrzebował modelu, który potrafi nauczyć się bardziej skomplikowanych funkcji. Takim modelem była sieć neuronowa z kilkoma warstwami. Dzięki każdej następnej warstwie ma ona możliwość uczenia się coraz bardziej skomplikowanych funkcji. Stworzona sieć miała 1 \textbf{warstwę ukrytą} - warstwę neuronów pomiędzy wejściami a warstwą wyjść - z 30 neuronami. Jako funkcję aktywacji wybrano funkcję \textit{ReLU}.
 		Podsumowując, parametry drugiego modelu były następujące:
 		\begin{itemize}
 			\item 1 warstwa ukryta z 30 neuronami i funkcją aktywacji \textit{ReLU},
@@ -609,23 +609,25 @@ backend=bibtex
 		\end{table}
 
 		\begin{figure}[h]
-			\begin{subfigure}{.5\linewidth}
+			\begin{center}
+			\begin{subfigure}{.8\textwidth}
 		 		\includegraphics[width =\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png}
 		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
-		 	\begin{subfigure}{.5\linewidth}
+		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_wykres_uczenia.png}
 		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	
-		 	\begin{subfigure}{.5\linewidth}
+		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_wykres_uczenia.png}
 		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
-		 	\begin{subfigure}{.5\linewidth}
+		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_wykres_uczenia.png}
 		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
+		 	\end{center}
 	 	
  			\caption{Krzywe uczące dla najlepszych przypadków przy użyciu różnych kombinacji parametrów w drugim modelu.}
 			\label{fig: drugi_model_kombinacje_parametrow_wykresy_uczenia}
@@ -746,7 +748,7 @@ backend=bibtex
 		\item parametr regularyzacji $\lambda$ - \textbf{0,1}; \textbf{0,3}; \textbf{1}; \textbf{3}.
 		\end{itemize}
 		
-		Po przeprowadzeniu eksperymentów ze wszystkimi powyższymi kombinacjami parametrów wyrysowane zostały wykresy krzywych uczących dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_wykresy_uczenia} i \ref{fig: drugi_model_przy_regularyzacji_l2_wykresy_uczenia} oraz wykresy krzywych uczących dla zmiennej ilości danych na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_learning_curves} i \ref{fig: drugi_model_przy_regularyzacji_l2_learning_curves}. Dodatkowo zestawienie średnich \textit{MSE} dla owych kombinacji umieściłem w tabeli \ref{porownanie_srednich_wartosci_mse_przy_regularyzacji}.
+		Po przeprowadzeniu eksperymentów ze wszystkimi powyższymi kombinacjami parametrów wyrysowane zostały wykresy krzywych uczących dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_wykresy_uczenia} i \ref{fig: drugi_model_przy_regularyzacji_l2_wykresy_uczenia} oraz wykresy krzywych uczących dla zmiennej ilości danych na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_learning_curves} i \ref{fig: drugi_model_przy_regularyzacji_l2_learning_curves}. Dodatkowo zestawienie średnich \textit{MSE} dla owych kombinacji umieszczono w tabeli \ref{porownanie_srednich_wartosci_mse_przy_regularyzacji}.
 		
 		\begin{table}[t]
 			\caption{Porównanie średnich wartości \textit{MSE} danych przy regularyzacji.}
@@ -999,7 +1001,7 @@ backend=bibtex
 		\section{Zebranie większej ilości danych}	
 		Chcąc zbadać hipotezę, że przy parametrze regularyzacji $\lambda$ równym 1 model będzie się uczył lepiej na wiekszej ilości danych, autor postanowił powtórzyć proces generacji danych symulacyjnych. Zrobione zostało to podobnie jak w sekcji \ref{zebranie_danych} z tym, że parametr \textit{Repeat number} w wygenerowanych plikach ustawiony na 50. Dzięki temu każda dana wyjściowa powinna być stabilniejsza ze względu na obliczanie średniej na 5 razy wiekszej liczbie przypadków niż dotychczas.
 		
-		Po zebraniu danych oraz uśrednieniu ich w taki sam sposób jak w sekcji \ref{usrednianie_danych} powiększyłem zbiór uczący o kolejne 200 przypadków. Postanowiłem przeprowadzić badanie, jak wpłynie na model nauka na:
+		Po zebraniu danych oraz uśrednieniu ich w taki sam sposób jak w sekcji \ref{usrednianie_danych} powiększono zbiór uczący o kolejne 200 przypadków. Autor postanowił przeprowadzić badanie, jak wpłynie na model nauka na:
 		\begin{itemize}
 		\item \textbf{zestawie danych numer 1} - danych zebranych w sekcji \ref{zebranie_danych},
 		\item \textbf{zestawie danych numer 2} - danych zebranych w tej sekcji,
