@@ -203,7 +203,7 @@ backend=bibtex
 		Wszystkie obliczenia oraz rysowanie wykresów zostały zrealizowane w języku programowania \textbf{Python} w wersji 3.6 przy użyciu bibliotek:
 		\begin{itemize}
 			\item \textbf{NumPy} - służąca do obliczeń numerycznych,
-			\item \textbf{Pandas} - służąca łatwiejszemu zarządzaniu dużą ilością danych,
+			\item \textbf{Pandas} - służąca łatwiejszemu zarządzaniu duzą ilością danych,
 			\item \textbf{Matplotlib} - służąca do rysowania wykresów,
 			\item \textbf{Tensorflow} - używana do głębokiego uczenia maszynowego.
 		\end{itemize}
@@ -342,7 +342,7 @@ backend=bibtex
 	\end{enumerate}
 	
 	\chapter{PSP - Pederastian Simulator Project} \label{sekcja_psp}
-	\textit{W tym rozdziale opisany zostanie symulator ruchu pieszych użyty w projekcie i jego sposób użycia wraz z potrzebnymi dodatkowymi plikami. Opisane zostaną użyte w projekcie parametry wejściowe do symulatora oraz metryki stworzone na podstawie jego danych wyjściowych.}
+	\textit{W tym rozdziale opisany zostanie symutalor ruchu pieszych użyty w projekcie i jego sposób użycia wraz z potrzebnymi dodatkowymi plikami. Opisane zostaną użyte w projekcie parametry wejściowe do symulatora oraz metryki stworzone na podstawie jego danych wyjściowych.}
 	
 		\section{Opis}
 		Symulator \textit{Pederastian Simulator Project} jest programem napisanym w języku C++ autorstwa Roberta Lubaś oraz Wojciecha Myśliwiec. Służy on do modelowania ruchu agentów (ludzi) podczas ewakuacji w danej przestrzeni. Symulowana przestrzeń jest dwuwymiarowa, z możliwością dodania wielu poziomów odpowiadających kolejnym piętrom budynku. Główne okno programu jest widoczne na rysunku~\ref{fig: glowne_okno_symulatora}.
@@ -372,7 +372,7 @@ backend=bibtex
 		\item dane wyjściowe - pliki \textit{.csv}.
 		\end{itemize}
 		
-		Danymi wejściowymi wybranymi przez autora - na podstawie łatwości modyfikacji - do dalszej analizy były:\label{dane_do_dalszej_analizy}
+		Danymi wejściowymi wybranymi prez autora - na podstawie łatwości modyfikacji - do dalszej analizy były:\label{dane_do_dalszej_analizy}
 		
 		\begin{itemize}
 		\item \textbf{Panic spread factor} - współczynnik, który decyduje jak duży wpływ ma \textbf{tryb paniki} (tryb, w którym agenci zwracają mniejszą uwagę na otoczenie oraz charakteryzują się bardziej chaotycznym ruchem) na agentów.
@@ -411,11 +411,11 @@ backend=bibtex
 		\section{Zebranie danych} \label{zebranie_danych}
 		W celu zebrania danych, które miałyby trafić później do modelu uczenia maszynowego, został stworzony skrypt pythonowy, który wygenerował 200 różnych zestawów parametrów wejściowych do symulatora. Rodzaje danych, które zostały wygenerowane znajdują się w rozdziale~\ref{dane_do_dalszej_analizy}. Dla każdego zestawu danych autor ustawił parametr \textit{Repeat number} na wartość \textbf{10}, dzięki czemu dla każdego zestawu danych wejściowych generowane było 10 zestawów danych wyjściowych. Było to niezwykle cenne z 2 powodów:
 		\begin{itemize}
-		\item Do symulatora trzeba było ręcznie ładować plik \textit{.xml}, a dzięki temu z jednego pliku otrzymywano od razu 10 zestawów plików wyjściowych.
-		\item Ruchy agentów, z takim samym zestawem parametrów, różnią się między symulacjami, a dzięki powtórzeniom można było łatwiej odczytać ich trend.
+		\item Do symulatora trzeba było ręcznie ładować plik \textit{.xml}, a dzięki temu z jedngo pliku otrzymywano od razu 10 zestawów plików wyjściowych.
+		\item Ruchy agentów, z takim samym zestawem parametrów, rożnią się między symulacjami, a dzięki powtórzeniom można było łatwiej odczytać ich trend.
 		\end{itemize}
 		
-		Symulowaną przestrzenią był budynek należący do kompleksu AGH - Centrum Dydaktyki U2. Jest ona widoczna na rysunku~\ref{fig: agh_u2_centrum_dydaktyki}.
+		Symulowaną przestrzenią był bydunek należący do kompleksu AGH - Centrum Dydaktyki U2. Jest ona widoczna na rysunku~\ref{fig: agh_u2_centrum_dydaktyki}.
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
@@ -429,7 +429,7 @@ backend=bibtex
 		Każdy zestaw danych zawierał \textbf{15} parametrów wejściowych oraz \textbf{1} parametr wyjściowy. Z tak przygotowanymi danymi autor miał możliwość stworzenia pierwszego modelu.
 		
 		\section{Pierwszy model - tworzenie i analiza} \label{pierwszy_model_tworzenie_i_analiza}
-		Dla powyższych zastosowań stworzony został model \textit{Perceptron} posiadający pojedyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. Zestawy danych zostały podzielone w stosunku 80\% : 20\% na \textbf{dane treningowe} i \textbf{dane testowe}, pozwala to na trenowanie sieci na danych treningowych oraz sprawdzanie jej efektywności na danych testowych co daje możliwość walidacji tego, jak dobrze sieć radzi sobie z danymi, z którymi nie miała styczności.
+		Dla powyższych zastosowań swtorzony został model \textit{Perceptron} posiadający pojedyncze wyjście oraz nie posiadający funkcji aktywacji - jako że model miał służyć do regresji a nie klasyfikacji. Zestawy danych zostały podzielone w stosunku 80\% : 20\% na \textbf{dane treningowe} i \textbf{dane testowe}, pozwala to na trenowanie sieci na danych treningowych oraz sprawdzanie jej efektywności na danych testowych co daje możliwość walidacji tego, jak dobrze sieć radzi sobie z danymi, z którymi nie miała styczności.
 		
 		Podsumowując, parametry pierwszego modelu były następujące:
 		\begin{itemize}
@@ -437,11 +437,11 @@ backend=bibtex
 		\item \textbf{funkcja aktywacji} - brak,
 		\item \textbf{współczynnik uczący} - 0.1,
 		\item \textbf{metryka do optymalizacji} - \textit{MSE},
-		\item \textbf{liczba epok uczących} - 300,
+		\item \textbf{liczba epok uczacych} - 300,
 		\item podział na \textbf{dane treningowe} i \textbf{dane testowe} - 80\% : 20\%.
 		\end{itemize}
 				
-		Proces uczący został wykonany 10 razy od nowa na nienauczonym modelu, za każdym razem wykonując permutację danych. Średnie \textit{MSE} danych wyglądają następująco:
+		Proces uczący został wykonany 10 razy od nowa na nienauczonym modelu, za kazdym razem wykonując permutację danych. Średnie \textit{MSE} danych wyglądają następująco:
 		\begin{itemize}
 		\item \textbf{średni MSE danych treningowych} - 147,77 ($\pm$16,04),
 		\item \textbf{średni MSE danych testowych} - 166,18 ($\pm$50,77).
@@ -449,7 +449,7 @@ backend=bibtex
 		
 		\textbf{Wykresy w pracy mają ustalony zakres na osi pionowej (400, 200 lub 50); może to prowadzić do sytuacji, gdy część wykresu będzie niewidoczna. Jest to działanie celowe, spowodowane doborem zakresów w taki sposób, aby wykresy można było łatwo porównywać, a zarazem żeby widoczne były tylko dane znaczące.}
 		
-		Wykres zależności \textit{MSE} danych od iteracji uczącej najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczna na rysunku \ref{fig: pierwszy_model_wykres_uczenia}. Taki rodzaj wykresów będzie nazywany dalej \textbf{wykresami krzywych uczących dla najlepszego przypadku}. Analizując go, autor doszedł do następujących wniosków:
+		Wykres zależności \textit{MSE} danych od iteracji uczacej najlepszego przypadku (biorąc pod uwagę \textit{MSE} danych testowych) jest widoczna na rysunku \ref{fig: pierwszy_model_wykres_uczenia}. Taki rodzaj wykresów będzie nazywany dalej \textbf{wykresami krzywych uczących dla najlepszego przypadku}. Analizując go, autor doszedł do następujących wniosków:
 		\begin{itemize}
 		\item \textit{MSE} danych treningowych jak i testowych jest na wysokim poziomie co oznacza, że model ma \textbf{wysoki bias}. Oznacza to, że użyty model jest zbyt prosty i nie ważne jak dużo danych zostanie do niego podanych i jak długo będzie się on uczył - \textit{MSE} danych nie obniży się poniżej pewnego poziomu.
 		\item Podczas uczenia \textit{MSE} danych jest obarczony dużym szumem, co oznacza niestabilność danych lub modelu.
@@ -535,7 +535,7 @@ backend=bibtex
 	 			\includegraphics[width = \linewidth]{wykresy/2_normalizacja_danych/learning_curves.png}
 	 		\end{tightcenter}
 	 		
- 			\caption{Krzywe uczące dla zmiennej ilości danych w pierwszym modelu ze znormalizowanymi danymi.}
+ 			\caption{Krzywe uczące dla zmniennej ilości danych w pierwszym modelu ze znormalizowanymi danymi.}
 			\label{fig: pierwszy_model_learning_curves_z_normalizacja}
 		\end{figure}
 		
@@ -549,16 +549,16 @@ backend=bibtex
 			\item warstwa wyjściowa składająca się z jednego neuronu bez funkcji aktywacji,
 			\item \textbf{współczynnik uczący} - 0.1,
 			\item \textbf{metryka do optymalizacji} - MSE,
-			\item \textbf{liczba epok uczących} - 300,
+			\item \textbf{liczba epok uczacych} - 300,
 			\item podział na \textbf{dane treningowe} i \textbf{dane testowe} - 80\% : 20\%.
 		\end{itemize}
 		
-		Proces uczący przeprowadzony został identycznie jak poprzednio - autor wykonał 10 osobnych cykli uczących z różnymi permutacjami danych oraz 20 osobnych cykli uczących na zmieniającej się wielkości zestawu danych treningowych. Średnie \textit{MSE} danych z 10 cykli są następujące:
+		Proces uczący przeprowadzony został identycznie jak poprzednio - autor wykonał 10 osobnych cykli uczących z różnymi permutacjami danych oraz 20 osobnych cykli uczących na zmieniającej się wielkości zestawu danych traningowych. Średnie \textit{MSE} danych z 10 cykli są następujące:
 		\begin{itemize}
 		\item \textbf{średni MSE danych treningowych} - 47,47 ($\pm$6,08),
 		\item \textbf{średni MSE danych testowych} - 73,66 ($\pm$25,77).
 		\end{itemize}
-		Wykres krzywych uczących dla najlepszego przypadku widoczny jest na rysunku \ref{fig: drugi_model_wykres_uczenia} a krzywych uczących dla zmiennej ilości danych - na rysunku \ref{fig: drugi_model_learning_curves}.
+		Wykres krzywych uczacych dla najlepszego przypadku widoczny jest na rysunku \ref{fig: drugi_model_wykres_uczenia} a krzywych uczących dla zmiennej ilości danych - na rysunku \ref{fig: drugi_model_learning_curves}.
 		
 		\begin{figure}[h]
 			\begin{tightcenter}
@@ -588,7 +588,7 @@ backend=bibtex
 		\item liczba warstw ukrytych - \textbf{2}, liczba neuronów w każdej warstwie - \textbf{40};
 		\end{itemize}
 		
-		Zestawienie wyników z sekcji \ref{drugi_model_tworzenie_i_analiza} oraz powyższych kombinacji parametrów jest następujące:
+		Zestawienie wynikow z sekcji \ref{drugi_model_tworzenie_i_analiza} oraz powyższych kombinacji parametrów jest następujące:
 		\begin{itemize}
 		\item krzywe uczące dla najlepszych przypadków są widoczne na rysunkach \ref{fig: drugi_model_kombinacje_parametrow_wykresy_uczenia_1} i \ref{fig: drugi_model_kombinacje_parametrow_wykresy_uczenia_2},
 		\item krzywe uczące dla zmiennej ilości danych pokazane są na rysunkach \ref{fig: drugi_model_kombinacje_parametrow_learning_curves_1} i \ref{fig: drugi_model_kombinacje_parametrow_learning_curves_2}.
@@ -612,11 +612,11 @@ backend=bibtex
 			\centering
 			\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/wykres_uczenia.png}
-		 		\caption{1 warstwa ukryta, 20 neuronów w każdej warstwie}
+		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_wykres_uczenia.png}
-		 		\caption{1 warstwa ukryta, 40 neuronów w każdej warstwie}
+		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	
 		 	\caption{Krzywe uczące dla najlepszych przypadków przy użyciu różnych kombinacji parametrów w drugim modelu część 1.}
@@ -627,11 +627,11 @@ backend=bibtex
 			\centering
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_wykres_uczenia.png}
-		 		\caption{2 warstwy ukryte, 20 neuronów w każdej warstwie}
+		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_wykres_uczenia.png}
-		 		\caption{2 warstwy ukryte, 40 neuronów w każdej warstwie}
+		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 	 	
  			\caption{Krzywe uczące dla najlepszych przypadków przy użyciu różnych kombinacji parametrów w drugim modelu część 2.}
@@ -642,14 +642,14 @@ backend=bibtex
 			\centering
 			\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/3_drugi_model_tworzenie_i_analiza/learning_curves.png}
-		 		\caption{1 warstwa ukryta, 20 neuronów w każdej warstwie}
+		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/1_warstwa_40_neuronow_learning_curves.png}
-		 		\caption{1 warstwa ukryta, 40 neuronów w każdej warstwie}
+		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	
-		 	\caption{Krzywe uczące dla zmiennej ilości danych przy różnych kombinacjach parametrów w drugim modelu część 1.}
+		 	\caption{Krzywe uczące dla zmiennej ilosci danych przy różnych kombinacjach parametrów w drugim modelu część 1.}
 			\label{fig: drugi_model_kombinacje_parametrow_learning_curves_1}
 		\end{figure}
 		
@@ -657,18 +657,18 @@ backend=bibtex
 			\centering
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_20_neuronow_learning_curves.png}
-		 		\caption{2 warstwy ukryte, 20 neuronów w każdej warstwie}
+		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/4_zwiekszenie_stopnia_skomplikowania_modelu/2_warstwy_40_neuronow_learning_curves.png}
-		 		\caption{2 warstwy ukryte, 40 neuronów w każdej warstwie}
+		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 	 	
- 			\caption{Krzywe uczące dla zmiennej ilości danych przy różnych kombinacjach parametrów w drugim modelu część 2.}
+ 			\caption{Krzywe uczące dla zmiennej ilosci danych przy różnych kombinacjach parametrów w drugim modelu część 2.}
 			\label{fig: drugi_model_kombinacje_parametrow_learning_curves_2}
 		\end{figure}
 		
-		Mimo zwiększenia stopnia skomplikowania sieci, \textit{MSE} danych treningowych i testowych nie wykazywały tendencji spadkowej. To co powinno się stać w takim przypadku, to \textit{MSE} danych treningowych powinien osiągać coraz niższe wartości wraz ze skomplikowaniem modelu. Na wykresach również widać, że dane testowe miały czasem \textit{MSE} mniejszych od zestawu treningowego. Wnioskiem tej analizy jest to, że problem z uczeniem sieci leży nie w modelu, a w danych.
+		Mimo zwiększenia stopnia skomplikowania sieci, \textit{MSE} danych treningowych i testowych nie wykazywały tendencji spadkowej. To co powinno się stać w takim przypadku, to \textit{MSE} danych treningowych powinien osiągać coraz niższe wartości wraz ze skomplikowaniem modelu. Na wykresach również widac, że dane testowe miały czasem \textit{MSE} mniejszych od zestawu treningowego. Wnioskiem tej analizy jest to, że problem z uczeniem sieci leży nie w modelu, a w danych.
 		
 		\section{Uśrednianie danych} \label{usrednianie_danych}
 		Wiedząc że problem leży w danych autor postanowił ulepszyć istniejące dane, uśredniając je. W sekcji \ref{zebranie_danych} autor napisał, że dla każdego zbioru parametrów wejściowych wygenerowane zostało 10 zbiorów parametrów wyjściowych. Dla każdego zestawu wejściowego obliczona została średnia zestawów parametrów wyjściowych co zmniejszyło ilość danych 10-krotnie. Ostatecznie nowy zbiór zawierał 200 zestawów danych (przy czym, podczas procesu uczenia zostały one podzielone na dane treningowe i testowe).
@@ -697,11 +697,11 @@ backend=bibtex
 			\centering
 			\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/1_warstwa_20_neuronow_wykres_uczenia.png}
-		 		\caption{1 warstwa ukryta, 20 neuronów w każdej warstwie}
+		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/1_warstwa_40_neuronow_wykres_uczenia.png}
-		 		\caption{1 warstwa ukryta, 40 neuronów w każdej warstwie}
+		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 
 		 	\caption{Krzywe uczące dla najlepszych przypadków przy uśrednionych danych w drugim modelu część 1.}
@@ -712,11 +712,11 @@ backend=bibtex
 			\centering
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/2_warstwy_20_neuronow_wykres_uczenia.png}
-		 		\caption{2 warstwy ukryte, 20 neuronów w każdej warstwie}
+		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/2_warstwy_40_neuronow_wykres_uczenia.png}
-		 		\caption{2 warstwy ukryte, 40 neuronów w każdej warstwie}
+		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 	 	
  			\caption{Krzywe uczące dla najlepszych przypadków przy uśrednionych danych w drugim modelu część 2.}
@@ -727,14 +727,14 @@ backend=bibtex
 			\centering
 			\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/1_warstwa_20_neuronow_learning_curves.png}
-		 		\caption{1 warstwa ukryta, 20 neuronów w każdej warstwie}
+		 		\caption{1 warstwa ukryta, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/1_warstwa_40_neuronow_learning_curves.png}
-		 		\caption{1 warstwa ukryta, 40 neuronów w każdej warstwie}
+		 		\caption{1 warstwa ukryta, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	
-		 	 \caption{Krzywe uczące dla zmiennej ilości uśrednionych danych w drugim modelu część 1.}
+		 	 \caption{Krzywe uczące dla zmniennej ilości uśrednionych danych w drugim modelu część 1.}
 			\label{fig: drugi_model_przy_usrednionych_danych_learning_curves_1}
 		\end{figure}
 		 	
@@ -742,21 +742,21 @@ backend=bibtex
 			\centering
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/2_warstwy_20_neuronow_learning_curves.png}
-		 		\caption{2 warstwy ukryte, 20 neuronów w każdej warstwie}
+		 		\caption{2 warstwy ukryte, 20 neuronow w każdej warstwie}
 		 	\end{subfigure}
 		 	\begin{subfigure}{.8\linewidth}
 		 		\includegraphics[width =\linewidth]{wykresy/5_usrednianie_danych/2_warstwy_40_neuronow_learning_curves.png}
-		 		\caption{2 warstwy ukryte, 40 neuronów w każdej warstwie}
+		 		\caption{2 warstwy ukryte, 40 neuronow w każdej warstwie}
 		 	\end{subfigure}
 	 	
- 			\caption{Krzywe uczące dla zmiennej ilości uśrednionych danych w drugim modelu część 2.}
+ 			\caption{Krzywe uczące dla zmniennej ilości uśrednionych danych w drugim modelu część 2.}
 			\label{fig: drugi_model_przy_usrednionych_danych_learning_curves_2}
 		\end{figure}
 		
-		Analizując dane, można zauważyć że po uśrednieniu zachowują się one zgodnie z przewidywaniami - większe skomplikowanie sieci neuronowej zmniejszyło dramatycznie \textit{MSE} danych treningowych. Co było również spodziewane - \textit{MSE} danych testowych pozostał wysoki; jednakże na wykresach \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves} (c) i (d) widać ciekawą tendencję - wygląda na to, że przy większych rozmiarach zbioru danych nawet \textit{MSE} zbioru testowego zaczyna się obniżać. Podobną tendencję, lecz słabszą można też zauważyć na wykresach \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves} (a) i (b) po przekroczeniu pułapu 140 zestawów danych uczących. Gdy model jest zbyt dobrze przyuczony do danych treningowych i źle generalizuje na danych testowych, mówi się że posiada on \textbf{wysoką wariancję}.
+		Analizując dane, można zauważyć że po uśrednieniu zachowują się one zgodnie z przewidywaniami - większe skomplikowanie sieci neuronowej zmniejszyło dramatycznie \textit{MSE} danych treningowych. Co było również spodziewane - \textit{MSE} danych testowych pozostał wysoki; jednakże na wykresach \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves} (c) i (d) widać ciekawą tendencję - wygląda na to, że przy większych rozmiarach zbioru danych nawet \textit{MSE} zbioru testowego zaczyna się obniżać. Podobną tendencję, lecz słabszą można też zauwazyć na wykresach \ref{fig: drugi_model_przy_usrednionych_danych_learning_curves} (a) i (b) po przekroczeniu pułapu 140 zestawów danych uczących. Gdy model jest zbyt dobrze przyuczony do danych treningowych i źle generalizuje na danych testowych, mówi się że posiada on \textbf{wysoką wariancję}.
 		
 		\section{Regularyzacja modelu} \label{regularyzacja_modelu}
-		Chcąc obniżyć wariancję modelu uczenia maszynowego stosuje się techniki zwane regularyzacją. Najprostsze z nich czyli regularyzacja \textbf{L1} i \textbf{L2} polegają na dodaniu współczynnika kary do funkcji kosztu. Karze ona model za posiadanie wysokich wag na połączeniach pomiędzy neuronami. Dla porównania mając funkcję kosztu \ref{loss_function}, używając regularyzacji \textit{L1} będzie ona wyglądać jak na równaniu \ref{loss_function_l1} a regularyzacji \textit{L2} - tak jak na równaniu \ref{loss_function_l2}. Współczynnik $\lambda$ to tak zwany \textbf{współczynnik regularyzacji} - odpowiada on za siłę, z jaką wagi będą zmniejszane.
+		Chcąc obnizyć wariancję modelu uczenia maszynowego stosuje się techniki zwane regularyzacją. Najprostsze z nich czyli regularyzacja \textbf{L1} i \textbf{L2} polegają na dodaniu współczynnika kary do funkcji kosztu. Karze ona model za posiadanie wysokich wag na połączeniach pomiędzy neuronami. Dla porównania mając funkcję kosztu \ref{loss_function}, używając regularyzacji \textit{L1} będzie ona wyglądać jak na równaniu \ref{loss_function_l1} a regularyzacji \textit{L2} - tak jak na równaniu \ref{loss_function_l2}. Współczynnik $\lambda$ to tak zwany \textbf{współczynnik regularyzacji} - odpowiada on za siłę, z jaką wagi będa zmniejszane.
 		
 		\begin{equation} \label{loss_function}
 		S = \sum_{i = 1}^n (y_i - f(x_i))^2
@@ -915,7 +915,7 @@ backend=bibtex
 		Po przeanalizowaniu wszystkich wykresów oraz wartości z tabeli nasunęły autor zanotował następujące spostrzeżenia:
 		\begin{itemize}
 		\item Bazując na tabeli, najlepsza kombinacja parametrów to funkcja regularyzacji \textit{L1} wraz z parametrem $\lambda$ równym 1. Przy tej kombinacji średni \textit{MSE} danych testowych jest najniższy oraz ma najniższe odchylenie.
-		\item Patrząc na krzywe uczące dla najlepszych przypadków można zauważyć, że im większy współczynnik $\lambda$, tym bardziej krzywa \textit{MSE} danych testowych ma tendencję do schodzenia poniżej krzywej \textit{MSE} danych treningowych. Oznacza to, że problem lepszego przewidywania danych ze zbioru testującego niż trenującego nie został wyeliminowany w całości. Widać także na nich, że dla $\lambda$, który w powyższym punkcie wydaje się najlepiej rokującą opcją, zdarzają się takie przypadki.
+		\item Patrząc na krzywe uczące dla najlepszych przypadków można zauważyć, że im wiekszy współczynnik $\lambda$, tym bardziej krzywa \textit{MSE} danych testowych ma tendencję do schodzenia poniżej krzywej \textit{MSE} danych treningowych. Oznacza to, że problem lepszego przewidywania danych ze zbioru testującego niż trenującego nie został wyeliminowany w całości. Widać także na nich, że dla $\lambda$, który w powyższym punkcie wydaje się najlepiej rokującą opcją, zdarzają się takie przypadki.
 		\item Porównując krzywe uczące dla zmiennej ilości danych L1 z krzywymi L2, wśród tych pierwszych widać większą tendencję na zmniejszenie \textit{MSE} danych testowych przy większej ilości danych.
 		\end{itemize}				
 		
@@ -933,7 +933,7 @@ backend=bibtex
 			\label{fig: zaleznosc_ilosci_danych_od_czasu_ewakuacji}
 		\end{figure}
 		
-		Analizując powyższy histogram widać, że większość danych wyjściowych jest skupiona poniżej 40 sekund czasu ewakuacji, a jedynie nieliczne wyniki przekraczają górną granicę. Taki rozrzut części danych może powodować, że będą one trudne do nauczenia przez model - autor postanowił więc odrzucić wszystkie zestawy danych, których dana wyjściowa - czas ewakuacji - jest równe lub większe 40 sekund. Po takiej operacji zostało 185 wektorów danych wejściowych i wyjściowych. Na nich wykonane zostało badanie identyczne jak w sekcji \ref{regularyzacja_modelu}. Średnie wyniki autor umieścił w tabeli \ref{porownanie_srednich_wartosci_mse_po_odrzuceniu_czesci_danych}, krzywe uczenia dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia_1}, \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia_2}, \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia_1} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia_2} oraz krzywe uczenia przy zmiennej ilości danych - na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves_1}, \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves_2}, \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves_1} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves_2}.
+		Analizując powyższy histogram widać, że większość danych wyjściowych jest skupiona poniżej 40 sekund czasu ewakuacji, a jedynie nieliczne wyniki przekraczają górną granicę. Taki rozrzut części danych może powodować, że będą one trudne do nauczenia przez model - autor postanowił więc odrzucić wszystkie zestawy danych, których dana wyjściowa - czas ewakuacji - jest równe lub większe 40 sekund. Po takiej operacji zostało 185 wektorów danych wejściowych i wyjsciowych. Na nich wykonane zostało badanie identyczne jak w sekcji \ref{regularyzacja_modelu}. Średnie wyniki autor umieścił w tabeli \ref{porownanie_srednich_wartosci_mse_po_odrzuceniu_czesci_danych}, krzywe uczenia dla najlepszych przypadków na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia_1}, \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia_2}, \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia_1} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia_2} oraz krzywe uczenia przy zmiennej ilości danych - na rysunkach \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves_1}, \ref{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves_2}, \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves_1} i \ref{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves_2}.
 		
 		\begin{table}[t]
 			\caption{Porównanie średnich wartości \textit{MSE} danych po odrzuceniu części danych.}
@@ -962,7 +962,7 @@ backend=bibtex
 		 		\caption{parametr $\lambda$ - 0,3}
 		 	\end{subfigure}
 		 	
-		 	\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L1 w drugim modelu po odrzuceniu części danych część 1.}
+		 	\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L1 w drugim modelu po odrzuceniu częsci danych część 1.}
 			\label{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia_1}
 		\end{figure}
 		
@@ -977,7 +977,7 @@ backend=bibtex
 		 		\caption{parametr $\lambda$ - 3}
 		 	\end{subfigure}
 		  	
-		  	\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L1 w drugim modelu po odrzuceniu części danych część 2.}
+		  	\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L1 w drugim modelu po odrzuceniu częsci danych część 2.}
 			\label{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_wykresy_uczenia_2}
 		\end{figure}
 		 	
@@ -992,7 +992,7 @@ backend=bibtex
 		 		\caption{parametr $\lambda$ - 0,3}
 		 	\end{subfigure}
 		 	
-		 	\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L2 w drugim modelu po odrzuceniu części danych część 1.}
+		 	\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L2 w drugim modelu po odrzuceniu częsci danych część 1.}
 			\label{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia_1}
 		\end{figure}
 		
@@ -1007,7 +1007,7 @@ backend=bibtex
 		 		\caption{parametr $\lambda$ - 3}
 		 	\end{subfigure}
 	 	
- 			\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L2 w drugim modelu po odrzuceniu części danych część 2.}
+ 			\caption{Krzywe uczące dla najlepszych przypadków używając regularyzacji L2 w drugim modelu po odrzuceniu częsci danych część 2.}
 			\label{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_wykresy_uczenia_2}
 		\end{figure}
 		
@@ -1022,7 +1022,7 @@ backend=bibtex
 		 		\caption{parametr $\lambda$ - 0,3}
 		 	\end{subfigure}
 		 	
-		 	\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L1 w drugim modelu po odrzuceniu części danych część 1.}
+		 	\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L1 w drugim modelu po odrzuceniu częsci danych część 1.}
 			\label{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves_1}
 		\end{figure}
 		
@@ -1037,7 +1037,7 @@ backend=bibtex
 		 		\caption{parametr $\lambda$ - 3}
 		 	\end{subfigure}
 		  	
-		  	\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L1 w drugim modelu po odrzuceniu części danych część 2.}
+		  	\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L1 w drugim modelu po odrzuceniu częsci danych część 2.}
 			\label{fig: drugi_model_przy_regularyzacji_l1_po_odrzuceniu_czesci_danych_learning_curves_2}
 		\end{figure}
 		 	
@@ -1052,7 +1052,7 @@ backend=bibtex
 		 		\caption{parametr $\lambda$ - 0,3}
 		 	\end{subfigure}
 		 	
-		 	\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L2 w drugim modelu po odrzuceniu części danych część 1.}
+		 	\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L2 w drugim modelu po odrzuceniu częsci danych część 1.}
 			\label{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves_1}
 		\end{figure}
 		
@@ -1067,21 +1067,21 @@ backend=bibtex
 		 		\caption{parametr $\lambda$ - 3}
 		 	\end{subfigure}
 	 	
- 			\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L2 w drugim modelu po odrzuceniu części danych część 2.}
+ 			\caption{Krzywe uczące dla zmiennej ilości danych używając regularyzacji L2 w drugim modelu po odrzuceniu częsci danych część 2.}
 			\label{fig: drugi_model_przy_regularyzacji_l2_po_odrzuceniu_czesci_danych_learning_curves_2}
 		\end{figure}		
 		
 		Badając powyższe wykresy nasuwają się następujące wnioski:
 		\begin{itemize}
 		\item Odrzucenie przypadków skrajnie odstających od reszty obniżyło \textit{MSE} danych co najmniej 3-krotnie (a w dotychczas najgorszych przypadkach nawet 10-krotnie), co daje jednoznaczną odpowiedź gdzie leżał problem z lepszym przyuczeniem sieci do danych testowych.
-		\item Analizując tabelę \ref{porownanie_srednich_wartosci_mse_po_odrzuceniu_czesci_danych} wygląda na to, że tak jak poprzednio - funkcja regularyzacji \textit{L1} z parametrem $\lambda$ równym \textbf{1} daje najlepsze rezultaty. Jednakże nie wiele gorszym zestawem parametrów, ze zbliżonym \textit{MSE} danych testowych odznacza się ta sama funkcja z parametrem $\lambda$ równym \textbf{0,3}.
+		\item Analizując tabelę \ref{porownanie_srednich_wartosci_mse_po_odrzuceniu_czesci_danych} wygląda na to, że tak jak poprzednio - funkcja regularyzacji \textit{L1} z parametrem $\lambda$ równym \textbf{1} daje najlepsze rezultaty. Jeznakże nie wiele gorszym zestawem parametrów, ze zbliżonym \textit{MSE} danych testowych odznacza się ta sama funkcja z parametrem $\lambda$ równym \textbf{0,3}.
 		\item Patrząc na wykresy krzywych uczących dla najlepszych przypadków widać, że niezależnie czy użyta została funkcja regularyzacji \textit{L1} czy \textit{L2}, przy parametrze $\lambda$ równym \textbf{1} sieć przyucza się minimalnie lepiej do danych testowych. Pamiętając co było źródłem dotychczasowego problemu można wywnioskować, że takie zachowanie może być spowodowane przez szumy zbioru danych, a sposobem ich wyeliminowania było by zebranie danych z większej ilości symulacji przeprowadzonych z wyższym parametrem \textit{Repeat number}.
 		\end{itemize}
 		
 		Podsumowując, w wyniku przeprowadzonych badań została znaleziony najlepsze kombinacje parametrów regularyzacji dla obecnych danych - funkcja \textit{L1} z parametrem $\lambda$ równym \textbf{0,3} lub \textbf{1}. Jednakże istnieje podejrzenie, że przez niską ilość powtórzeń symulacji dla danego zestawu parametrów wejściowych, w zbiorze danych wyjściowych istnieją szumy, których eliminacja podniosłaby efektywność sieci przy parametrze $\lambda$ równym \textbf{1}.
 		
 		\section{Zebranie większej ilości danych}	
-		Chcąc zbadać hipotezę, że przy parametrze regularyzacji $\lambda$ równym 1 model będzie się uczył lepiej na większej ilości danych, autor postanowił powtórzyć proces generacji danych symulacyjnych. Zrobione zostało to podobnie jak w sekcji \ref{zebranie_danych} z tym, że parametr \textit{Repeat number} w wygenerowanych plikach ustawiony na 50. Dzięki temu każda dana wyjściowa powinna być stabilniejsza ze względu na obliczanie średniej na 5 razy większej liczbie przypadków niż dotychczas.
+		Chcąc zbadać hipotezę, że przy parametrze regularyzacji $\lambda$ równym 1 model będzie się uczył lepiej na wiekszej ilości danych, autor postanowił powtórzyć proces generacji danych symulacyjnych. Zrobione zostało to podobnie jak w sekcji \ref{zebranie_danych} z tym, że parametr \textit{Repeat number} w wygenerowanych plikach ustawiony na 50. Dzięki temu każda dana wyjściowa powinna być stabilniejsza ze względu na obliczanie średniej na 5 razy wiekszej liczbie przypadków niż dotychczas.
 		
 		Po zebraniu danych oraz uśrednieniu ich w taki sam sposób jak w sekcji \ref{usrednianie_danych} powiększono zbiór uczący o kolejne 200 przypadków. Autor postanowił przeprowadzić badanie, jak wpłynie na model nauka na:
 		\begin{itemize}
@@ -1217,10 +1217,10 @@ backend=bibtex
 		\begin{itemize}
 		\item 1 warstwa ukryta z 20 neuronami i funkcją aktywacji ReLU,
 		\item warstwa wyjściowa składająca się z jednego neuronu z funkcją aktywacji ReLU,
-		\item użyta \textbf{regularyzacja L1} ze współczynnikiem $\lambda$ równym \textbf{0,3},
+		\item użyta \textbf{regularyacja L1} ze współczynnikiem $\lambda$ równym \textbf{0,3},
 		\item \textbf{współczynnik uczenia} - 0.1,
 		\item \textbf{metryka do optymalizacji} - MSE,
-		\item \textbf{liczba epok uczących} - 300,
+		\item \textbf{liczba epok uczacych} - 300,
 		\item podział na \textbf{dane treningowe} i \textbf{dane testowe} - 80\% : 20\%.
 		\end{itemize}
 		
@@ -1231,7 +1231,7 @@ backend=bibtex
 		\item normalizacja danych opisana w sekcji \ref{normalizacja_danych}.		
 		\end{enumerate}
 		
-		Na koniec stworzone zostało 20 modeli z powyższymi parametrami, które zostały osobno uczone. Po zakończeniu procesu nauki do dalszych badań autor wybrał ten, który miał najmniejszą różnicę pomiędzy błędem na danych treningowych i na danych testowych.
+		Na koniec strzowone zostało 20 modeli z powyższymi parametrami, które zostały osobno uczone. Po zakończeniu procesu nauki do dalszych badań autor wybrał ten, który miał najmniejszą różnicę pomiędzy błędem na danych treningowych i na danych testowych.
 		
 	\chapter{Optymalizacja modelu}
 	\textit{W tym rozdziale opisany zostanie proces optymalizacji wyjść modelu na podstawie danych wejściowych.}
@@ -1271,7 +1271,7 @@ backend=bibtex
 		Po optymalizacji czasu ewakuacji przez algorytm, w większości przypadków wygenerowane parametry wejściowe do symulatora nie zmieniały się i były takie jak w tabeli \ref{wygenerowane_parametry_wejsciowe_do_symulatora}. Brak w jednej komórce oznacza, że parametr pomiędzy kolejnymi procesami generacji znacznie zmieniał swoją wartość; za to fakt, że większość parametrów jest stała - dowodzi, że model i algorytm są stabilne. Co więcej można z niektórych parametrów wywnioskować że model działa poprawnie - chodzi tu o minimalizacje ilości ludzi w przestrzeni oraz maksymalizację średniej prędkości poruszania się pieszych (w obrębie narzuconych granic).
 		
 		\begin{table}[t]
-			\caption{Najczęściej występujące wygenerowane parametry wejściowe do symulatora.}
+			\caption{Najcześciej występujące wygenerowane parametry wejściowe do symulatora.}
 			\begin{mytabular}{r L}
 					\multicolumn{1}{c}{Nazwa parametru} & Najczęściej występujące wartość \\
 					Panic spread factor & 0.5 \\
@@ -1317,17 +1317,17 @@ backend=bibtex
 		\begin{itemize}
 		\item 1 warstwa ukryta z 20 neuronami i funkcją aktywacji ReLU,
 		\item warstwa wyjściowa składająca się z jednego neuronu z funkcją aktywacji ReLU,
-		\item użyta \textbf{regularyzacja L1} ze współczynnikiem $\lambda$ równym \textbf{0,3},
+		\item użyta \textbf{regularyacja L1} ze współczynnikiem $\lambda$ równym \textbf{0,3},
 		\item \textbf{współczynnik uczenia} - 0.1,
 		\item \textbf{metryka do optymalizacji} - MSE,
-		\item \textbf{liczba epok uczących} - 300,
+		\item \textbf{liczba epok uczacych} - 300,
 		\item podział na \textbf{dane treningowe} i \textbf{dane testowe} - 80\% : 20\%.
 		\end{itemize}
 		
 		Budowa takiego modelu pozwoliła uniezależnić się od symulatora \textit{PSP} podczas procesu symulacji - co było dużym zyskiem, gdyż symulacje trzeba było w nim włączać ręcznie.
 		
 		\section{Optymalizacja wyjść modelu}
-		Ostatnią częścią projektu była optymalizacja danych wyjściowych modelu na podstawie jego wejść. Autor użył do tego algorytmu \textit{Gradient descent} z 10 różnymi zestawami danych do optymalizacji, co miało dać szerszy pogląd na to czy proces optymalizacji będzie generował duże szumy. Jak się okazało - model przewidywał daną wyjściową na podstawie danych wejściowych z wypracowaną wcześniej dokładnością, co było dobrym znakiem. Co więcej algorytm potrafił zoptymalizować wejścia modelu tak, żeby za każdym zwracał bardzo zbliżone wyniki. Daje to także ostateczne rozwiązanie postawionego problemu optymalnego wyboru ścieżki lub wyjścia ewakuacyjnego - dzięki odpowiedniemu dostrojeniu parametrów pieszych - szybkości, sposobu wyboru ścieżki, dozwolonej gęstości na metr kwadratowy i tym podobnych - udało się zminimalizować czas potrzebny na ich ewakuację. Czas jaki się udało osiągnąć było to przewidywane przez sieć - 19,57 sekund, a przetestowane w symulatorze - 17 - 18 sekund.
+		Ostatnią częścią projektu była optymalizacja danych wyjściowych modelu na podstawie jego wejść. Autor użył do tego algorytmu \textit{Gradient descent} z 10 różnymi zestawami danych do optymalizacji, co miało dać szerszy pogląd na to czy proces optymalizacji będzie generował duże szumy. Jak się okazało - model przewidywał daną wyjściową na podstawie danych wejściowych z wypracowaną wcześniej dokładnością, co było dobrym znakiem. Co więcej algorytm potrafił zoptymalizować wejścia modelu tak, żeby za każdym zwracał bardzo zbliżone wyniki. Daje to także ostateczne rozwiązanie postawionego problemu optymalnego wyboru ścieżki lub wyjścia ewakuacyjnego - dzięki odpowiedniemu dostrojeniu parametrów pieszych - szybkości, sposobu wyboru ścieżki, dozwolonej gęstości na metr kwadratowy i tym podobnch - udało się zminimalizować czas potrzebny na ich ewakuację. Czas jaki się udało osiągnąć było to przewidywane przez sieć - 19,57 sekund, a przetestowane w symulatorze - 17 - 18 sekund.
 		
 		Ostatecznie analiza parametrów widocznych w tabeli \ref{wygenerowane_parametry_wejsciowe_do_symulatora} wykazała poprawność działania modelu według ludzkiej intuicji oraz jego stabilność.
 		
