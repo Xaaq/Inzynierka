@@ -143,5 +143,24 @@
   \field{note}{\newline\url{https://en.wikipedia.org/wiki/Partial_derivative}}
     \field{title}{Partial derivative}
   \endentry
+
+  \entry{modelowanie_ewakuacji_pieszych}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=iRLWM}{%
+         prefix={i},
+         prefixi={i},
+         family={Robert\bibnamedelima Lubaś},
+         familyi={R\bibinitperiod\bibinitdelim L\bibinitperiod},
+         given={Wojciech\bibnamedelima Myśliwiec},
+         giveni={W\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RLWMi1}
+    \strng{fullhash}{RLWMi1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{\newline\url{}}
+    \field{title}{Modelowanie ewakuacji pieszych}
+  \endentry
 \enddatalist
 \endinput
