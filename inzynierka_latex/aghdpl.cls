@@ -130,8 +130,36 @@ Supervisor: & {\itshape \@supervisor}\\
 
 {~~}\vspace{20mm}
 
-{\large\itshape Uprzedzony o~odpowiedzialno\'sci karnej na~podstawie art.~115 ust.~1~i~2 ustawy z~dnia 4~lutego 1994~r. o~prawie autorskim i~prawach pokrewnych (t.j. Dz.U. z~2006~r. Nr~90, poz.~631 z~p{\'o}{\'z}n. zm.): ,,Kto przyw\l{}aszcza sobie autorstwo albo~wprowadza w~b\l{}\k{a}d co~do~autorstwa ca\l{}o\'sci lub cz\k{e}\'sci cudzego utworu albo~artystycznego wykonania, podlega grzywnie, karze ograniczenia wolno\'sci albo~pozbawienia wolno\'sci do~lat~3. Tej~samej karze podlega, kto~rozpowszechnia bez~podania nazwiska lub~pseudonimu tw\'orcy cudzy utw\'or w~wersji oryginalnej albo~w~postaci opracowania, artystycznego wykonania albo~publicznie zniekszta\l{}ca taki utw\'or, artystyczne wykonanie, fonogram, wideogram lub nadanie.'', a~tak\.ze uprzedzony o~odpowiedzialno\'sci dyscyplinarnej na~podstawie art.~211 ust.~1 ustawy z~dnia 27~lipca 2005~r. Prawo o~szkolnictwie wy\.zszym (t.j. Dz.~U. z~2012~r. poz.~572, z~p\'o\'zn. zm.): ,,Za~naruszenie przepis\'ow obowi\k{a}zuj\k{a}cych w~uczelni oraz~za~czyny uchybiaj\k{a}ce godno\'sci studenta student ponosi odpowiedzialno\'s\'c dyscyplinarn\k{a} przed komisj\k{a} dyscyplinarn\k{a} albo~przed s\k{a}dem kole\.ze\'nskim samorz\k{a}du studenckiego, zwanym dalej <<s\k{a}dem kole\.ze\'nskim>>.'', o\'swiadczam, \.ze~niniejsz\k{a} prac\k{e} dyplomow\k{a} wykona\l{}em(-am) osobi\'scie i~samodzielnie i~\.ze~nie~korzysta\l{}em(-am) ze~\'zr\'ode\l{} innych ni\.z~wymienione w pracy. }
+{\large\itshape \small{Uprzedzony o odpowiedzialno\'sci karnej na podstawie art. 115 ust. 1 i 2 ustawy z dnia
+4 lutego 1994 r. o prawie autorskim i prawach pokrewnych (t.j. Dz.U. z 2018 r. poz.
+1191 z p\'o\'zn. zm.): "Kto przyw\l{}aszcza sobie autorstwo albo wprowadza w b\l{}\k{a}d co do
+autorstwa ca\l{}o\'sci lub cz\k{e}\'sci cudzego utworu albo artystycznego wykonania, podlega
+grzywnie, karze ograniczenia wolno\'sci albo pozbawienia wolno\'sci do lat 3. Tej samej
+karze podlega, kto rozpowszechnia bez podania nazwiska lub pseudonimu tw\'orcy cudzy
+utw\'or w wersji oryginalnej albo w postaci opracowania, artystyczne wykonanie albo
+publicznie zniekszta\l{}ca taki utw\'or, artystyczne wykonanie, fonogram, wideogram lub
+nadanie.", a tak\.ze uprzedzony o odpowiedzialno\'sci dyscyplinarnej na podstawie art.
+307 ust. 1 ustawy z dnia 20 lipca 2018 r. Prawo o szkolnictwie wy\.zszym i nauce (Dz. U.
+z 2018 r. poz. 1668 z p\'o\'zn. zm.) "Student podlega odpowiedzialno\'sci dyscyplinarnej za
+naruszenie przepis\'ow obowi\k{a}zuj\k{a}cych w uczelni oraz za czyn uchybiaj\k{a}cy godno\'sci
+studenta.", o\'swiadczam, \.ze niniejsz\k{a} prac\k{e} dyplomow\k{a} wykona\l{}em(-am) osobi\'scie
+i samodzielnie i nie korzysta\l{}em(-am) ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.
 
+Jednocze\'snie Uczelnia informuje, \.ze zgodnie z art. 15a ww. ustawy o prawie autorskim
+i prawach pokrewnych Uczelni przys\l{}uguje pierwsze\'nstwo w opublikowaniu pracy
+dyplomowej studenta. Je\.zeli Uczelnia nie opublikowa\l{}a pracy dyplomowej w terminie
+6 miesi\k{e}cy od dnia jej obrony, autor mo\.ze j\k{a} opublikowa\'c, chyba \.ze praca jest cz\k{e}\'sci\k{a}
+utworu zbiorowego. Ponadto Uczelnia jako podmiot, o kt\'orym mowa w art. 7 ust. 1 pkt 1
+ustawy z dnia 20 lipca 2018 r. - Prawo o szkolnictwie wy\.zszym i nauce (Dz. U. z 2018 r.
+poz. 1668 z p\'o\'zn. zm.), mo\.ze korzysta\'c bez wynagrodzenia i bez konieczno\'sci uzyskania
+zgody autora z utworu stworzonego przez studenta w wyniku wykonywania obowi\k{a}zk\'ow
+zwi\k{a}zanych z odbywaniem studi\'ow, udost\k{e}pnia\'c utw\'or ministrowi w\l{}a\'sciwemu do spraw
+szkolnictwa wy\.zszego i nauki oraz korzysta\'c z utwor\'ow znajduj\k{a}cych si\k{e} w prowadzonych
+przez niego bazach danych, w celu sprawdzania z wykorzystaniem systemu
+antyplagiatowego. Minister w\l{}a\'sciwy do spraw szkolnictwa wy\.zszego i nauki mo\.ze
+korzysta\'c z prac dyplomowych znajduj\k{a}cych si\k{e} w prowadzonych przez niego bazach
+danych w zakresie niezb\k{e}dnym do zapewnienia prawid\l{}owego utrzymania i rozwoju tych
+baz oraz wsp\'o\l{}pracuj\k{a}cych z nimi system\'ow informatycznych.}}
 
 \clearpage \titlepage
 
