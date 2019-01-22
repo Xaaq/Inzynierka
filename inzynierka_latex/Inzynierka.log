@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.21)  21 JAN 2019 23:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.21)  22 JAN 2019 17:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1856,6 +1856,30 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.74> not available
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 192.
 
+Underfull \hbox (badness 4242) in paragraph at lines 193--194
+[]\T1/phv/m/n/12 W dzi-siej-szym ±wie-cie kªa-dziony jest na-cisk na pro-jek-to
+-wa-nie bu-dyn-ków
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 193--194
+\T1/phv/m/n/12 u»y-tecz-no-±ci pu-blicz-nej w taki spo-sób, aby za-pew-ni¢ mo»-
+li-wie naj-wi¦k-sze
+ []
+
+
+Underfull \hbox (badness 3323) in paragraph at lines 193--194
+\T1/phv/m/n/12 bez-pie-cze«-stwo lu-dzi, któ-rzy b¦d¡ z nich ko-rzy-stali. Jed-
+nak»e, jed-no-cze-±nie
+ []
+
+
+Underfull \hbox (badness 5802) in paragraph at lines 193--194
+\T1/phv/m/n/12 wy-ma-gane jest, aby ta-kie bu-dynki byªy tak»e funk-cjo-nalne -
+ na przy-kªad
+ []
+
+
 Underfull \hbox (badness 2057) in paragraph at lines 195--196
 \T1/phv/m/n/12 które do-tych-czas byªy nie-roz-wi¡-zy-walne za po-moc¡ in-nych 
 me-tod. Jed-nym z
@@ -1867,10 +1891,7 @@ Underfull \hbox (badness 3189) in paragraph at lines 195--196
  \T1/phv/m/sl/12 Halo\T1/phv/m/n/12 , w któ-rych
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5
+[5
 
 
 ]
@@ -2904,7 +2925,7 @@ y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Inzynierka.pdf (78 pages, 3269656 bytes).
+Output written on Inzynierka.pdf (78 pages, 3269677 bytes).
 PDF statistics:
  837 PDF objects out of 1000 (max. 8388607)
  666 compressed objects within 7 object streams
